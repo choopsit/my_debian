@@ -1,0 +1,83 @@
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'saltstack/salt-vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+call plug#end()
+
+set viminfo+=n~/.vim/viminfo
+
+" ----- General Settings -----
+syntax on                       " Active syntax color
+"nohls
+set history=100                 " History limit
+set number                      " Show line number
+set relativenumber              " Show relative line numbers
+set t_Co=256                    " Force 256 colors
+set splitbelow                  " Horizontal split by ':sp'
+set splitright                  " Vertical split by ':vs'
+"set mouse=a                     " Use mouse
+set showcmd                     " Display incomplete commands
+set wildmenu                    " Display completion matches in a status line
+set is hls                      " Highlight search as we type
+
+" Jump to the last known cursor position when reopening file
+if has("autocmd")
+    au BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+endif
+
+" ----- Text and Indent Settings -----
+set encoding=UTF-8              " Ensure encoding is UTF-8
+set textwidth=0                 " No textwidth limit
+set cursorline                  " Highlight current line
+    hi CursorLine term=bold cterm=bold guibg=Grey40
+set matchpairs+=<:>             " Add <> to % matchpairs
+set autoindent                  " General indent setting
+set smartindent                 " Language specific indent setting
+filetype plugin indent on       " Use file type based Indent setting
+set shiftwidth=4                " Number of characters to indent by
+set tabstop=4                   " Set Tab length to 4 spaces
+set softtabstop=4               " Set soft Tab length to 4 spaces
+set expandtab                   " Set Tab character to expand as spaces
+set colorcolumn=81              " Highlight 81th column
+    hi ColorColumn ctermbg=235
+
+"set list                        " Show hidden characters
+set lcs=tab:→\ ,space:·,nbsp:␣,eol:¬,trail:•
+highlight NonText ctermfg=8
+highlight SpecialKey ctermfg=8
+
+" ----- Keymap -----
+" Permit clean paste
+set pastetoggle=<F2>
+" Toggle line numbers
+map <F3> :set relativenumber! <bar> set number!<CR>
+" Toggle hidden characters
+map <F4> :set list!<CR>
+" Spell check
+map <F6> :setlocal spell! spelllang=en_us<CR>
+" Reload config
+map <C-m> :source ~/.vim/vimrc<CR>
+" Toggle search highlight
+map <C-c> :set invhls<CR>
+" Split
+map <C-h> :sp<CR>
+map <C-s> :vsp<CR>
+
+" ----- Plugs settings -----
+set background=dark
+silent! colorscheme gruvbox
+"colorscheme nord
+"colorscheme jellybeans
+hi Normal ctermbg=none
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme='jellybeans'

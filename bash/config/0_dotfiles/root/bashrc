@@ -1,0 +1,36 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+HISTCONTROL=ignoreboth
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+force_color_prompt=yes
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1="${debian_chroot:+($debian_chroot)}\[\033[00;37m\][\[\033[01;31m\]\u\[\033[00;37m\]@\[\033[01;36m\]\h \[\033[01;34m\]\w\[\033[00;37m\]]#\[\033[00m\] "
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+eval "`dircolors`"
+alias ls='ls --color=auto'
+alias ll='ls --color=auto -halF'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias tree='tree --dirsfirst'
+alias hgrep='history | grep -i'
