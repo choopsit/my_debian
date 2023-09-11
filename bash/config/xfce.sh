@@ -242,7 +242,7 @@ deploy_config(){
         [[ -d "${git_folder}" ]] || mkdir -p "${git_folder}"
         chown -R "${user}":"${user}" "${user_home}"/Work
 
-        url_list=("https://github.com/choopsit/debian_scripts" \
+        url_list=("https://github.com/choopsit/my_xfce" \
             "https://github.com/SylEleuth/gruvbox-plus-icon-pack" \
             "https://github.com/SylEleuth/Gruvbox-GTK-Theme")
 
