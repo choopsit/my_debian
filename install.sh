@@ -77,4 +77,4 @@ else
     my_de="${de_list[0]}"
 fi
 
-echo "${SCRIPT_PATH}/bash/config/${my_de}.sh"
+"${SCRIPT_PATH}/bash/config/${my_de}.sh"
