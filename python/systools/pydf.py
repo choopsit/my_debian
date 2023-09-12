@@ -90,7 +90,7 @@ def draw_fs(mount_point):
     cfs = color_fs(used_prop)
     cn = "\33[37m"
 
-    total_lg = 10
+    total_lg = 12
     used_lg = used_prop * total_lg // 100
     used_gr = used_lg * f"#"
     free_gr = (total_lg - used_lg) * "-"
@@ -115,7 +115,7 @@ def draw_fs(mount_point):
 
     repart = f"{used_u:.1f}{DEF}/{ctxt}{total_u:.1f}{DEF}{unit}"
 
-    lensepsp = 26 - len(repart)
+    lensepsp = 27 - len(repart)
     sepsp = " " * lensepsp
 
     gline = f"  [{cfs}{used_gr}{cn}{free_gr}{DEF}]{sepg}{cfs}{used_prop}{DEF}%"
