@@ -252,7 +252,7 @@ deploy_config(){
             su -l "${user}" -c "git clone ${git_url}.git ${git_repo}"
         done
 
-        my_git_repo="${git_folder}"/debian_scripts
+        my_git_repo="${git_folder}"/my_xfce
 
         [[ ${systools_cpt} == 0 ]] &&
             "${my_git_repo}"/deployment/deploy_systools.sh && 
