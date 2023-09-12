@@ -243,8 +243,9 @@ deploy_config(){
         chown -R "${user}":"${user}" "${user_home}"/Work
 
         url_list=("https://github.com/choopsit/my_xfce" \
+            "https://github.com/vinceliuice/Colloid-gtk-theme" \
             "https://github.com/SylEleuth/gruvbox-plus-icon-pack" \
-            "https://github.com/SylEleuth/Gruvbox-GTK-Theme")
+            "https://github.com/vinceliuice/McMojave-cursors.git")
 
         for git_url in ${url_list[@]}; do
             git_repo="${git_folder}/${git_url##*/}"
@@ -344,6 +345,7 @@ install_xfce
 
 deploy_config
 
+clear
 echo -e "${OK} Custom XFCE installed and configured"
 
 read -rp "Reboot now and enjoy [Y/n] ? " -n1 reboot_now
