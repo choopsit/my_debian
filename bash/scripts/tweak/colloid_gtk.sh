@@ -113,7 +113,7 @@ if [[ $(whoami) == root ]]; then
         -i /tmp/"${gtk_theme}"/install.sh
 
     for variant in gruvbox nord; do
-        /tmp/"${gtk_theme}"/install.sh -c dark --tweaks "${variant}" >/dev/null
+        /tmp/"${gtk_theme}"/install.sh -c dark --tweaks "${variant}"
     done
     echo
 else
