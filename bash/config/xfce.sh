@@ -242,7 +242,7 @@ deploy_config(){
         [[ -d "${git_folder}" ]] || mkdir -p "${git_folder}"
         chown -R "${user}":"${user}" "${user_home}"/Work
 
-        url_list=("https://github.com/choopsit/my_xfce" \
+        url_list=("https://github.com/choopsit/my_debian" \
             "https://github.com/vinceliuice/Colloid-gtk-theme" \
             "https://github.com/SylEleuth/gruvbox-plus-icon-pack" \
             "https://github.com/vinceliuice/McMojave-cursors.git")
@@ -253,7 +253,7 @@ deploy_config(){
             su -l "${user}" -c "git clone ${git_url}.git ${git_repo}"
         done
 
-        my_git_repo="${git_folder}"/my_xfce
+        my_git_repo="${git_folder}"/my_debian
 
         [[ ${systools_cpt} == 0 ]] &&
             "${my_git_repo}"/deployment/deploy_systools.sh && 
