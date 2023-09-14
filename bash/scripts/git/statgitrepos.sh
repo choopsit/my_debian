@@ -40,7 +40,7 @@ get_status(){
     commits_count="$(git rev-list --all --count)"
     git_localrepo="$(basename "${git_folder}")"
     namelength="${#git_localrepo}"
-    seplength=$((30-namelength))
+    seplength=$((28-namelength))
     sep="$(for i in $(seq "${seplength}"); do echo -n "-"; done)"
     echo -n -e "${CYN}Repo${DEF}: ${YLO}${git_localrepo} \e[37mx${sep}x "
     echo -e "${CYN}Last commit${DEF}: ${last_commit} (${commits_count})"

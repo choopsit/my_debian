@@ -90,7 +90,7 @@ def draw_fs(mount_point):
     cfs = color_fs(used_prop)
     cn = "\33[37m"
 
-    total_lg = 12
+    total_lg = 10
     used_lg = used_prop * total_lg // 100
     used_gr = used_lg * f"#"
     free_gr = (total_lg - used_lg) * "-"
