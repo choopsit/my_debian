@@ -159,8 +159,9 @@ EOF
 sys_config(){
     echo -e "${NFO} Applying custom system configuration..."
 
-    for dotfile in "${SCRIPT_PATH}"/0_dotfiles/root/*; do
-        copy_conf "${dotfile}" /root
+    my_conf=("skel/profile" "sket/vim" "root/bashrc")
+    for conf in "${my_conf[@]}"; do
+        copy_conf "${SCRIPT_PATH}/0_dotfiles/${conf}" /root
     done
 
     if [[ ${allow_root_ssh,,} == y ]]; then
@@ -199,7 +200,7 @@ user_config(){
 
     echo -e "${NFO} Applying custom configuration for ${conf_user}..."
 
-    for dotfile in "${SCRIPT_PATH}"/0_dotfiles/xfce_user/*; do
+    for dotfile in "${SCRIPT_PATH}"/0_dotfiles/skel/*; do
         copy_conf "${dotfile}" "${dest}"
     done
 
@@ -219,6 +220,7 @@ deploy_config(){
 
     user_config /etc/skel
 
+    clear
     echo -e "${OK} Custom XFCE installed"
 
     users_cpt=0
@@ -305,16 +307,14 @@ if [[ ${debian_version} == "${TESTING}" ]]; then
     done
 fi
 
+clear
 read -rp "Clean sources.list [y/N] ? " -n1 clean_sl
 [[ ${clean_sl} ]] && echo
 
 
 ssh_conf=/etc/ssh/sshd_config
-if [[ -f "${ssh_conf}" ]]; then
-    (grep -qv ^"PermitRootLogin yes" "${ssh_conf}") ||
-        (grep -qv ^"PermitRootLogin yes" "${ssh_conf}".d/*) ||
-        read -rp "Allow 'root' on ssh [y/N] ? " -n1 allow_root_ssh
-fi
+! (grep -rq ^"PermitRootLogin yes" "${ssh_conf}"*) &&
+    read -rp "Allow 'root' on ssh [y/N] ? " -n1 allow_root_ssh
 
 [[ ${allow_root_ssh} ]] && echo
 
