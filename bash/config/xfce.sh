@@ -247,7 +247,7 @@ deploy_config(){
         url_list=("https://github.com/choopsit/my_debian" \
             "https://github.com/vinceliuice/Colloid-gtk-theme" \
             "https://github.com/SylEleuth/gruvbox-plus-icon-pack" \
-            "https://github.com/vinceliuice/McMojave-cursors.git")
+            "https://github.com/vinceliuice/McMojave-cursors")
 
         for git_url in ${url_list[@]}; do
             git_repo="${git_folder}/${git_url##*/}"
@@ -313,7 +313,7 @@ read -rp "Clean sources.list [y/N] ? " -n1 clean_sl
 
 
 ssh_conf=/etc/ssh/sshd_config
-! (grep -rq ^"PermitRootLogin yes" "${ssh_conf}"*) &&
+! (grep -rq ^"PermitRootLogin yes" "${ssh_conf}"* 2>/dev/null) &&
     read -rp "Allow 'root' on ssh [y/N] ? " -n1 allow_root_ssh
 
 [[ ${allow_root_ssh} ]] && echo
