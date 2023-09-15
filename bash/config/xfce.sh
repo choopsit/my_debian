@@ -41,37 +41,37 @@ usage(){
 stable_sources(){
     cat <<EOF > /etc/apt/sources.list
 # ${STABLE}
-deb http://deb.debian.org/debian/ ${STABLE} main contrib non-free
-#deb-src http://deb.debian.org/debian/ ${STABLE} main contrib non-free
+deb http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
 # ${STABLE} security
-deb http://deb.debian.org/debian-security/ ${STABLE}-security/updates main contrib non-free
-#deb-src http://deb.debian.org/debian-security/ ${STABLE}-security/updates main contrib non-free
+deb http://deb.debian.org/debian-security/ ${STABLE}-security/updates main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian-security/ ${STABLE}-security/updates main contrib non-free non-free-firmware
 # ${STABLE} volatiles
-deb http://deb.debian.org/debian/ ${STABLE}-updates main contrib non-free
-#deb-src http://deb.debian.org/debian/ ${STABLE}-updates main contrib non-free
+deb http://deb.debian.org/debian/ ${STABLE}-updates main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian/ ${STABLE}-updates main contrib non-free non-free-firmware
 # ${STABLE} backports
-deb http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free
-#deb-src http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free
+deb http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-free-firmware
 EOF
 }
 
 testing_sources(){
     cat <<EOF > /etc/apt/sources.list
 # testing
-deb http://deb.debian.org/debian/ testing main contrib non-free
-#deb-src http://deb.debian.org/debian/ testing main contrib non-free
+deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
 
 # testing security
-deb http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free
-#deb-src http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free
+deb http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free non-free-firmware
 EOF
 }
 
 sid_sources(){
     cat <<EOF > /etc/apt/sources.list
 # sid
-deb http://deb.debian.org/debian/ sid main contrib non-free
-#deb-src http://deb.debian.org/debian/ sid main contrib non-free
+deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware 
 EOF
 }
 
@@ -159,7 +159,7 @@ EOF
 sys_config(){
     echo -e "${NFO} Applying custom system configuration..."
 
-    my_conf=("skel/profile" "sket/vim" "root/bashrc")
+    my_conf=("skel/profile" "skel/vim" "root/bashrc")
     for conf in "${my_conf[@]}"; do
         copy_conf "${SCRIPT_PATH}/0_dotfiles/${conf}" /root
     done
@@ -233,10 +233,10 @@ deploy_config(){
             add_grp sudo "${user}"
             [[ ${inst_virtmanager,,} == y ]] && add_grp libvirt "${user}"
 
-            read -rp "Apply configuration to user '${user}' [y/N] ? " -n1 user_conf
+            read -rp "Apply configuration to user '${user}' [Y/n] ? " -n1 user_conf
 
             [[ ${user_conf} ]] && echo
-            [[ ${user_conf,,} == y ]] && users[${users_cpt}]="${user}" &&
+            [[ ${user_conf,,} != n ]] && users[${users_cpt}]="${user}" &&
                 users_home[${users_cpt}]="${user_home}" && ((users_cpt+=1))
         fi
 
@@ -244,18 +244,9 @@ deploy_config(){
         [[ -d "${git_folder}" ]] || mkdir -p "${git_folder}"
         chown -R "${user}":"${user}" "${user_home}"/Work
 
-        url_list=("https://github.com/choopsit/my_debian" \
-            "https://github.com/vinceliuice/Colloid-gtk-theme" \
-            "https://github.com/SylEleuth/gruvbox-plus-icon-pack" \
-            "https://github.com/vinceliuice/McMojave-cursors")
-
-        for git_url in ${url_list[@]}; do
-            git_repo="${git_folder}/${git_url##*/}"
-            su -l "${user}" -c "rm -rf ${git_repo}"
-            su -l "${user}" -c "git clone ${git_url}.git ${git_repo}"
-        done
-
+        git_url="https://github.com/choopsit/my_debian.git"
         my_git_repo="${git_folder}"/my_debian
+        su -l "${user}" -c "git clone ${git_url} ${my_git_repo}"
 
         [[ ${systools_cpt} == 0 ]] &&
             "${my_git_repo}"/deployment/deploy_systools.sh && 
@@ -308,7 +299,7 @@ if [[ ${debian_version} == "${TESTING}" ]]; then
 fi
 
 clear
-read -rp "Clean sources.list [y/N] ? " -n1 clean_sl
+read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
 [[ ${clean_sl} ]] && echo
 
 
@@ -339,7 +330,7 @@ ssh_conf=/etc/ssh/sshd_config
 
 [[ ${inst_virtmanager} ]] && echo
 
-[[ ${clean_sl,,} == y ]] && clean_sources "${debian_version}"
+[[ ${clean_sl,,} != n ]] && clean_sources "${debian_version}"
 
 install_xfce
 
