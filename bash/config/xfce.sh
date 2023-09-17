@@ -184,9 +184,8 @@ sys_config(){
 
     resources="${SCRIPT_PATH}"/2_resources
 
-    gruvbox_gtk="${resources}"/gruvbox-arc.xml
     gtk_styles=/usr/share/gtksourceview-4/styles
-    cp "${gruvbox_gtk}" "${gtk_styles}"/
+    cp "${resources}"/*.xml "${gtk_styles}"/
 }
 
 user_config(){

@@ -4,7 +4,6 @@
 
  This file is part of GtkSourceView
 
- Original Work:
  Copyright (C) 2016 Jean-Patrick Guerrero <jeanpatrick.guerrero@gmail.com>
  Color scheme by morhetz - https://github.com/morhetz/gruvbox
 
@@ -22,21 +21,19 @@
  License along with this library; if not, write to the Free Software
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
- Modifications by Choops <choopsbd@gmail.com>:
- Modify dark0_hard, dark0 and dark1 to fit arc-theme
 -->
 
-<style-scheme id="gruvbox-arc" _name="Gruvbox-arc" version="1.0">
+<style-scheme id="gruvbox-dark" _name="Gruvbox-Dark" version="1.0">
 
-  <author>Choops</author>
-  <_description>Dark color scheme using the Gruvbox color palette on arc-theme background</_description>
+  <author>Jean-Patrick Guerrero</author>
+  <_description>Dark color scheme using the Gruvbox color palette</_description>
 
   <!-- Gruvbox Palette -->
 
-  <color name="dark0_hard"  value="#3b4252" />
-  <color name="dark0"       value="#2e3440" />
+  <color name="dark0_hard"	value="#1d2021"/>
+  <color name="dark0"		value="#282828"/>
   <color name="dark0_soft"	value="#32302f"/>
-  <color name="dark1"       value="#3b4252" />
+  <color name="dark1"		value="#3c3836"/>
   <color name="dark2"		value="#504945"/>
   <color name="dark3"		value="#665c54"/>
   <color name="dark4"		value="#7c6f64"/>
