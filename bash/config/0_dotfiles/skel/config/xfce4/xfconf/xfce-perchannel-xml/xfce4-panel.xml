@@ -137,7 +137,7 @@
       <property name="position-categories-alternate" type="bool" value="true"/>
       <property name="menu-width" type="int" value="942"/>
       <property name="menu-height" type="int" value="598"/>
-      <property name="menu-opacity" type="int" value="70"/>
+      <property name="menu-opacity" type="int" value="95"/>
       <property name="favorites" type="array">
         <value type="string" value="xfce4-web-browser.desktop"/>
         <value type="string" value="xfce4-file-manager.desktop"/>
@@ -149,18 +149,19 @@
         <value type="string" value="deluge.desktop"/>
       </property>
       <property name="recent" type="array">
-        <value type="string" value="virt-manager.desktop"/>
         <value type="string" value="deluge.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
         <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
-        <value type="string" value="org.gnome.gThumb.desktop"/>
+        <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="org.xfce.mousepad.desktop"/>
         <value type="string" value="synaptic.desktop"/>
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="PCSX2.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="terminator.desktop"/>
         <value type="string" value="nvidia-settings.desktop"/>
+        <value type="string" value="xfce4-file-manager.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
+      <property name="launcher-show-name" type="bool" value="true"/>
     </property>
     <property name="plugin-15" type="string" value="appmenu">
       <property name="plugins" type="empty">
