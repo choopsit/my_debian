@@ -164,11 +164,11 @@ sys_config(){
         copy_conf "${SCRIPT_PATH}/0_dotfiles/${conf}" /root
     done
 
-    if [[ ${allow_root_ssh,,} == y ]]; then
-        mkdir -p "${ssh_conf}".d
-        echo "PermitRootLogin yes" > "${ssh_conf}".d/allow_root.conf
-        systemctl restart ssh
-    fi
+    # if [[ ${allow_root_ssh,,} == y ]]; then
+    #     mkdir -p "${ssh_conf}".d
+    #     echo "PermitRootLogin yes" > "${ssh_conf}".d/allow_root.conf
+    #     systemctl restart ssh
+    # fi
 
     pulse_param="flat-volumes = no"
     pulse_conf=/etc/pulse/daemon.conf
@@ -205,11 +205,7 @@ user_config(){
 
     vim +PlugInstall +qall
 
-    autostart_dir="${dest}"/.config/autostart
-    mkdir -p "${autostart_dir}"
-    cp /usr/share/applications/plank.desktop "${autostart_dir}"/
-
-    for useless_file in .bashrc .bash_logout; do
+    for useless_file in .bashrc .bash_logout .vimrc .vim_info; do
         rm -f "${dest}"/"${useless_file}"
     done
 }
@@ -238,28 +234,33 @@ deploy_config(){
             [[ ${user_conf,,} != n ]] && users[${users_cpt}]="${user}" &&
                 users_home[${users_cpt}]="${user_home}" && ((users_cpt+=1))
         fi
+    done
 
-        git_folder="${user_home}"/Work/git
-        [[ -d "${git_folder}" ]] || mkdir -p "${git_folder}"
-        chown -R "${user}":"${user}" "${user_home}"/Work
+    [[ ${#users[@]} -lt 1 ]] && "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
+    # TODO: deploy systools if no user selected for config appliance
+
+    for i in $(seq 0 $((users_cpt-1))); do
+        user_group="$(awk -F: '/^'"${users[${i}]}"':/{print $5}' /etc/passwd)"
+
+        user_config "${users_home[${i}]}"
+
+        chown -R "${users[${i}]}":"${user_group//,}" "${users_home[${i}]}"
+
+        git_folder="${users_home[${i}]}"/Work/git
+        [[ -d "${git_folder}" ]] || su -l "${users[${i}]}" -c "mkdir -p ${git_folder}"
 
         git_url="https://github.com/choopsit/my_debian.git"
         my_git_repo="${git_folder}"/my_debian
-        su -l "${user}" -c "git clone ${git_url} ${my_git_repo}"
+        su -l "${users[${i}]}" -c "git clone ${git_url} ${my_git_repo}"
+        su -l "${users[${i}]}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
 
-        [[ ${systools_cpt} == 0 ]] &&
-            "${my_git_repo}"/deployment/deploy_systools.sh && 
-            "${my_git_repo}"/bash/scripts/tweak/themeupgrade.sh &&
+        if [[ ${systools_cpt} == 0 ]]; then
+            "${my_git_repo}"/deployment/deploy_systools.sh 
+            "${my_git_repo}"/bash/scripts/tweak/themeupgrade.sh
             ((systools_cpt+=1))
+        fi
 
-        su -l "${user}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
-        su -l "${user}" -c "vim +PlugInstall +qall"
-    done
-
-    for i in $(seq 0 $((users_cpt-1))); do
-        user_config "${users_home[${i}]}"
-        user_group="$(awk -F: '/^'"${users[${i}]}"':/{print $5}' /etc/passwd)"
-        chown -R "${users[${i}]}":"${user_group//,}" "${users_home[${i}]}"
+        su -l "${users[${i}]}" -c "vim +PlugInstall +qall"
     done
 }
 
@@ -268,10 +269,10 @@ add_grp(){
     user="$2"
 
     [[ $(groups "${user}") == *" ${group}"* ]] ||
-        read -rp "Add user '${user}' to '${group}' group [y/N] ? " -n1 add_user_to_grp
+        read -rp "Add user '${user}' to '${group}' group [Y/n] ? " -n1 add_user_to_grp
 
     [[ ${add_user_to_grp} ]] && echo
-    [[ ${add_user_to_grp,,} == y ]] && adduser "${user}" "${group}"
+    [[ ${add_user_to_grp,,} != n ]] && adduser "${user}" "${group}"
 
     echo -e "${NFO} '${user}' added to '${group}'"
 }
@@ -302,11 +303,11 @@ read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
 [[ ${clean_sl} ]] && echo
 
 
-ssh_conf=/etc/ssh/sshd_config
-! (grep -rq ^"PermitRootLogin yes" "${ssh_conf}"* 2>/dev/null) &&
-    read -rp "Allow 'root' on ssh [y/N] ? " -n1 allow_root_ssh
+# ssh_conf=/etc/ssh/sshd_config
+# ! (grep -rq ^"PermitRootLogin yes" "${ssh_conf}"* 2>/dev/null) &&
+#     read -rp "Allow 'root' on ssh [y/N] ? " -n1 allow_root_ssh
 
-[[ ${allow_root_ssh} ]] && echo
+# [[ ${allow_root_ssh} ]] && echo
 
 (dpkg -l | grep -q "^ii  kodi ") ||
     read -rp "Install Kodi [y/N] ? " -n1 inst_kodi

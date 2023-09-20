@@ -1,7 +1,6 @@
 vim
 git
-curl
-ssh
+openssh-server
 rsync
 p7zip-full
 tree
