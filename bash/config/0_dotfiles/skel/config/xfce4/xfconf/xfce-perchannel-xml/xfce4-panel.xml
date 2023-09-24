@@ -126,7 +126,7 @@
       </property>
     </property>
     <property name="plugin-3" type="string" value="whiskermenu">
-      <property name="button-icon" type="string" value="xfce4-whiskermenu"/>
+      <property name="button-icon" type="string" value="org.xfce.panel.whiskermenu"/>
       <property name="launcher-icon-size" type="int" value="4"/>
       <property name="hover-switch-category" type="bool" value="true"/>
       <property name="category-show-name" type="bool" value="false"/>
@@ -135,33 +135,26 @@
       <property name="favorites-in-recent" type="bool" value="true"/>
       <property name="position-search-alternate" type="bool" value="false"/>
       <property name="position-categories-alternate" type="bool" value="true"/>
-      <property name="menu-width" type="int" value="942"/>
-      <property name="menu-height" type="int" value="598"/>
-      <property name="menu-opacity" type="int" value="95"/>
+      <property name="menu-width" type="int" value="800"/>
+      <property name="menu-height" type="int" value="580"/>
+      <property name="menu-opacity" type="int" value="85"/>
       <property name="favorites" type="array">
         <value type="string" value="xfce4-web-browser.desktop"/>
+        <value type="string" value="xfce4-mail-reader.desktop"/>
         <value type="string" value="xfce4-file-manager.desktop"/>
-        <value type="string" value="libreoffice-startcenter.desktop"/>
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="virt-manager.desktop"/>
         <value type="string" value="synaptic.desktop"/>
-        <value type="string" value="PCSX2.desktop"/>
-        <value type="string" value="deluge.desktop"/>
+        <value type="string" value="virt-manager.desktop"/>
       </property>
       <property name="recent" type="array">
-        <value type="string" value="deluge.desktop"/>
         <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="org.xfce.mousepad.desktop"/>
-        <value type="string" value="synaptic.desktop"/>
+        <value type="string" value="deluge.desktop"/>
         <value type="string" value="PCSX2.desktop"/>
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="terminator.desktop"/>
-        <value type="string" value="nvidia-settings.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="launcher-show-name" type="bool" value="true"/>
+      <property name="position-categories-horizontal" type="bool" value="false"/>
     </property>
     <property name="plugin-15" type="string" value="appmenu">
       <property name="plugins" type="empty">
