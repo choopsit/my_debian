@@ -56,10 +56,6 @@ hello_icon(){
 
     echo -e "${NFO} Installing/Updating ${icon_theme}..."
 
-    if [[ $(whoami) != root ]]; then
-        higher="sudo"
-    fi
-
     if [[ -d "${thm_gitpath}" ]]; then
         pushd "${thm_gitpath}" >/dev/null
         upd_state="$(git pull | tee /dev/tty)"
@@ -81,7 +77,11 @@ hello_icon(){
     fi
 
     if [[ ${upd_state} != "Already up to date." ]]; then
-        "${higher}" "${thm_gitpath}"/install.sh --black -b
+        if [[ $(whoami) == root ]]; then
+            "${thm_gitpath}"/install.sh --black -b
+        else
+            sudo "${thm_gitpath}"/install.sh --black -b
+        fi
     fi
     echo
 }

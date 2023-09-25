@@ -164,12 +164,6 @@ sys_config(){
         copy_conf "${SCRIPT_PATH}/0_dotfiles/${conf}" /root
     done
 
-    # if [[ ${allow_root_ssh,,} == y ]]; then
-    #     mkdir -p "${ssh_conf}".d
-    #     echo "PermitRootLogin yes" > "${ssh_conf}".d/allow_root.conf
-    #     systemctl restart ssh
-    # fi
-
     pulse_param="flat-volumes = no"
     pulse_conf=/etc/pulse/daemon.conf
     (grep -q ^"${pulse_param}" "${pulse_conf}") &&
@@ -215,11 +209,13 @@ deploy_config(){
 
     user_config /etc/skel
 
+    "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
+    "${SCRIPT_PATH}"/../../deployment/deploy_systools.sh
+
     clear
     echo -e "${OK} Custom XFCE installed"
 
     users_cpt=0
-    systools_cpt=0
 
     for user_home in /home/*; do
         user="$(basename "${user_home}")"
@@ -236,9 +232,6 @@ deploy_config(){
         fi
     done
 
-    [[ ${#users[@]} -lt 1 ]] && "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
-    # TODO: deploy systools if no user selected for config appliance
-
     for i in $(seq 0 $((users_cpt-1))); do
         user_group="$(awk -F: '/^'"${users[${i}]}"':/{print $5}' /etc/passwd)"
 
@@ -251,23 +244,14 @@ deploy_config(){
 
         git_url="https://github.com/choopsit/my_debian.git"
         my_git_repo="${git_folder}"/my_debian
+
         if [[ -d "${my_git_repo}" ]]; then
-            git config --global --add safe.directory "${my_git_repo}"
-            pushd "${my_git_repo}" >/dev/null
-            git pull
-            popd >/dev/null
+            su -l "${users[${i}]}" -c "pushd ${my_git_repo} >/dev/null && git pull && popd >/dev/null"
         else
             su -l "${users[${i}]}" -c "git clone ${git_url} ${my_git_repo}"
         fi
 
         su -l "${users[${i}]}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
-
-        if [[ ${systools_cpt} == 0 ]]; then
-            "${my_git_repo}"/deployment/deploy_systools.sh 
-            "${my_git_repo}"/bash/scripts/tweak/themeupgrade.sh
-            ((systools_cpt+=1))
-        fi
-
         su -l "${users[${i}]}" -c "vim +PlugInstall +qall"
     done
 }
@@ -309,13 +293,6 @@ fi
 clear
 read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
 [[ ${clean_sl} ]] && echo
-
-
-# ssh_conf=/etc/ssh/sshd_config
-# ! (grep -rq ^"PermitRootLogin yes" "${ssh_conf}"* 2>/dev/null) &&
-#     read -rp "Allow 'root' on ssh [y/N] ? " -n1 allow_root_ssh
-
-# [[ ${allow_root_ssh} ]] && echo
 
 (dpkg -l | grep -q "^ii  kodi ") ||
     read -rp "Install Kodi [y/N] ? " -n1 inst_kodi

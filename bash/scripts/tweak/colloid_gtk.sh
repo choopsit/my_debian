@@ -58,10 +58,6 @@ hello_gtk(){
 
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
-    if [[ $(whoami) != root ]]; then
-        higher="sudo"
-    fi
-
     pkg_list=/tmp/pkglist
 
     rm -f "${pkg_list}"
@@ -70,7 +66,13 @@ hello_gtk(){
         (dpkg -l | grep -q "^ii  ${pkg}") || echo "${pkg}" >>"${pkg_list}"
     done
 
-    [[ -f "${pkg_list}" ]] && "${higher}" xargs apt install -y < "${pkg_list}"
+    if [[ -f "${pkg_list}" ]]; then
+        if [[ $(whoami) == root ]]; then
+            xargs apt install -y < "${pkg_list}"
+        else
+            sudo xargs apt install -y < "${pkg_list}"
+        fi
+    fi
 
     if [[ -d "${thm_gitpath}" ]]; then
         pushd "${thm_gitpath}" >/dev/null
@@ -97,12 +99,20 @@ hello_gtk(){
             -e 's/^\([[:space:]]*\)echo.*gnome-shell.*/\1echo -n/' \
             -i "${thm_gitpath}"/install.sh
 
-        "${higher}" rm -rf "${THEMES_DIR}"/"${theme_name}"
+        if [[ $(whoami) == root ]]; then
+            rm -rf "${THEMES_DIR}"/Colloid-Dark-*
+        else
+            sudo rm -rf "${THEMES_DIR}"/Colloid-Dark-*
+        fi
 
         for variant in gruvbox nord; do
-            "${higher}" "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
+            if [[ $(whoami) != root ]]; then
+                "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
+            else
+                sudo "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
+            fi
         done
-        
+
         pushd "${thm_gitpath}" >/dev/null
         git reset --hard HEAD -q
         popd >/dev/null

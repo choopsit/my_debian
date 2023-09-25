@@ -57,10 +57,6 @@ hello_icon(){
 
     echo -e "${NFO} Installing/Updating ${icon_theme}..."
 
-    if [[ $(whoami) != root ]]; then
-        higher="sudo"
-    fi
-
     if [[ -d "${thm_gitpath}" ]]; then
         pushd "${thm_gitpath}" >/dev/null
         upd_state="$(git pull | tee /dev/tty)"
@@ -82,8 +78,13 @@ hello_icon(){
     fi
 
     if [[ ! ${upd_state} == "Already up to date." ]]; then
-        "${higher}" rm -rf "${THEMES_DIR}/${theme_name}"
-        "${higher}" cp -r "${thm_gitpath}/${theme_name}" "${THEMES_DIR}"/
+        if [[ $(whoami) == root ]]; then
+            rm -rf "${THEMES_DIR}/${theme_name}"
+            cp -r "${thm_gitpath}/${theme_name}" "${THEMES_DIR}"/
+        else
+            sudo rm -rf "${THEMES_DIR}/${theme_name}"
+            sudo cp -r "${thm_gitpath}/${theme_name}" "${THEMES_DIR}"/
+        fi
     fi 
     echo
 }

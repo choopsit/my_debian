@@ -56,10 +56,6 @@ hello_gtk(){
 
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
-    if [[ $(whoami) != root ]]; then
-        higher="sudo"
-    fi
-
     pkg_list=/tmp/pkglist
 
     rm -f "${pkg_list}"
@@ -68,7 +64,13 @@ hello_gtk(){
         (dpkg -l | grep -q "^ii  ${pkg}") || echo "${pkg}" >>"${pkg_list}"
     done
 
-    [[ -f "${pkg_list}" ]] && "${higher}" xargs apt install -y < "${pkg_list}"
+    if [[ -f "${pkg_list}" ]]; then
+        if [[ $(whoami) == root ]]; then
+            xargs apt install -y < "${pkg_list}"
+        else
+            && sudo xargs apt install -y < "${pkg_list}"
+        fi
+    fi
 
     if [[ -d "${thm_gitpath}" ]]; then
         pushd "${thm_gitpath}" >/dev/null
@@ -91,7 +93,11 @@ hello_gtk(){
     fi
 
     if [[ ${upd_state} != "Already up to date." ]]; then
-        "${higher}" "${thm_gitpath}"/install.sh -c dark -o standard
+        if [[ $(whoami) == root ]]; then
+            "${thm_gitpath}"/install.sh -c dark -o standard
+        else
+            sudo "${thm_gitpath}"/install.sh -c dark -o standard
+        fi
     fi
     echo
 }
