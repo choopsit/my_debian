@@ -59,7 +59,7 @@ hello_gtk(){
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
     if [[ $(whoami) != root ]]; then
-        higher=sudo
+        higher="sudo "
     fi
 
     pkg_list=/tmp/pkglist
@@ -70,7 +70,7 @@ hello_gtk(){
         (dpkg -l | grep -q "^ii  ${pkg}") || echo "${pkg}" >>"${pkg_list}"
     done
 
-    [[ -f "${pkg_list}" ]] && "${higher}" xargs apt install -y < "${pkg_list}"
+    [[ -f "${pkg_list}" ]] && "${higher}"xargs apt install -y < "${pkg_list}"
 
     if [[ -d "${thm_gitpath}" ]]; then
         pushd "${thm_gitpath}" >/dev/null
@@ -97,10 +97,10 @@ hello_gtk(){
             -e 's/^\([[:space:]]*\)echo.*gnome-shell.*/\1echo -n/' \
             -i "${thm_gitpath}"/install.sh
 
-        "${higher}" rm -rf "${THEMES_DIR}"/"${theme_name}"
+        "${higher}"rm -rf "${THEMES_DIR}"/"${theme_name}"
 
         for variant in gruvbox nord; do
-            "${higher}" "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
+            "${higher}${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
         done
         
         pushd "${thm_gitpath}" >/dev/null

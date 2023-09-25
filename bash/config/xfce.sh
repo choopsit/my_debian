@@ -251,7 +251,15 @@ deploy_config(){
 
         git_url="https://github.com/choopsit/my_debian.git"
         my_git_repo="${git_folder}"/my_debian
-        su -l "${users[${i}]}" -c "git clone ${git_url} ${my_git_repo}"
+        if [[ -d "${my_git_repo}" ]]; then
+            git config --global --add safe.directory "${my_git_repo}"
+            pushd "${my_git_repo}" >/dev/null
+            git pull
+            popd >/dev/null
+        else
+            su -l "${users[${i}]}" -c "git clone ${git_url} ${my_git_repo}"
+        fi
+
         su -l "${users[${i}]}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
 
         if [[ ${systools_cpt} == 0 ]]; then
