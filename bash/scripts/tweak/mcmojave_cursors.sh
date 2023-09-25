@@ -57,7 +57,7 @@ hello_cursors(){
     echo -e "${NFO} Installing/Updating ${cursors}..."
 
     if [[ $(whoami) != root ]]; then
-        higher="sudo "
+        higher="sudo"
     fi
 
     if [[ -d "${thm_gitpath}" ]]; then
@@ -82,7 +82,7 @@ hello_cursors(){
 
     if [[ ${upd_state} != "Already up to date." ]]; then
         pushd "${thm_gitpath}" >/dev/null
-        "${higher}"./install.sh
+        "${higher}" ./install.sh
         popd >/dev/null
     fi
     echo

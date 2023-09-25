@@ -60,11 +60,11 @@ hello_gtk(){
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
     if [[ $(whoami) != root ]]; then
-        higher="sudo "
+        higher="sudo"
     fi
 
     pkg=gtk2-engines-murrine
-    (dpkg -l | grep -q "^ii  ${pkg}") || "${higher}"xargs apt install -y "${pkg}"
+    (dpkg -l | grep -q "^ii  ${pkg}") || "${higher}" xargs apt install -y "${pkg}"
 
     if [[ -d "${thm_gitpath}" ]]; then
         pushd "${thm_gitpath}" >/dev/null
@@ -87,8 +87,8 @@ hello_gtk(){
     fi
 
     if [[ ${upd_state} != "Already up to date." ]]; then
-        "${higher}"rm -rf "${THEMES_DIR}"/"${theme_name}"
-        "${higher}"cp -r "${thm_gitpath}"/themes/"${theme_name}" "${THEMES_DIR}"/
+        "${higher}" rm -rf "${THEMES_DIR}"/"${theme_name}"
+        "${higher}" cp -r "${thm_gitpath}"/themes/"${theme_name}" "${THEMES_DIR}"/
     fi
     echo
 }

@@ -59,7 +59,7 @@ hello_gtk(){
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
     if [[ $(whoami) != root ]]; then
-        higher="sudo "
+        higher="sudo"
     fi
 
     if [[ -d "${thm_gitpath}" ]]; then
@@ -83,7 +83,7 @@ hello_gtk(){
     fi
 
     if [[ ${upd_state} != "Already up to date." ]]; then
-        "${higher}""${thm_gitpath}"/install.sh -c Dark
+        "${higher}" "${thm_gitpath}"/install.sh -c Dark
     fi
     echo
 }
