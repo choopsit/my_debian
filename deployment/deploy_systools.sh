@@ -31,13 +31,13 @@ usage(){
     exit "${errcode}"
 }
 
-link_script(){
+push_script(){
     script="$1"
     script_name="$(basename "${script}")"
-    if (ln -sf "${script}" /usr/local/bin/"${script_name%.*}"); then
-        echo -e "${OK} '${YLO}${script}${DEF}' linked to '/usr/local/bin/${CYN}${script_name%.*}${DEF}'"
+    if (cp -f "${script}" /usr/local/bin/"${script_name%.*}"); then
+        echo -e "${OK} '${YLO}${script}${DEF}' pushed as '/usr/local/bin/${CYN}${script_name%.*}${DEF}'"
     else
-        echo -e "${ERR} Failed to link '${script_name}'"
+        echo -e "${ERR} Failed to push '${script_name}'"
     fi
 }
 
@@ -56,7 +56,5 @@ base_dir="$(realpath "${script_dir}"/../)"
 echo -e "${NFO} Deploying bash and python systools to '${YLO}/usr/local/bin/${DEF}'..."
 
 for systool in "${base_dir}"/{bash,python}/systools/*; do
-    if [[ -f "${systool}" ]]; then
-        link_script "${systool}"
-    fi
+    push_script "${systool}"
 done

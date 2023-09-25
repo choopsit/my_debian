@@ -52,41 +52,45 @@ byebye_icon(){
 }
 
 hello_icon(){
-    if [[ -d ~/Work/git/"${icon_theme}" ]]; then
-        echo -e "${NFO} Installing/Updating ${icon_theme^}..."
+    thm_gitpath="$1"
 
-        pushd "${HOME}"/Work/git/"${icon_theme}" >/dev/null
-        git pull
+    echo -e "${NFO} Installing/Updating ${icon_theme}..."
+
+    if [[ $(whoami) != root ]]; then
+        higher=sudo
+    fi
+
+    if [[ -d "${thm_gitpath}" ]]; then
+        pushd "${thm_gitpath}" >/dev/null
+        upd_state="$(git pull | tee /dev/tty)"
         popd >/dev/null
-        echo
-    else
+    elif [[ $(whoami) != root ]]; then
         echo -e "${WRN} '${icon_theme}' repo must be cloned in '${HOME}/Work/git' before it can be updated"
         read -p "Do it now [y/N] ? " -rn1 go4it
         [[ ${go4it} ]] && echo
 
         if [[ ${go4it,} = y ]]; then
             mkdir -p "${HOME}"/Work/git
-            git clone ${git_url} "${HOME}"/Work/git/"${icon_theme}"
+            git clone "${git_url}" "${thm_gitpath}"
         else
             exit 0
         fi
+    else
+        rm -rf "${thm_gitpath}"
+        git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    sudo "${HOME}"/Work/git/"${icon_theme}"/install.sh --black -b
+    if [[ ${upd_state} != "Already up to date." ]]; then
+        "${higher}" "${thm_gitpath}"/install.sh --black -b
+    fi
+    echo
 }
 
 
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 if [[ $(whoami) == root ]]; then
-    # install only
-    rm -rf /tmp/"${icon_theme}"
-    rm -rf "${THEMES_DIR}"/"${icon_theme}"*
-
-    git clone "${git_url}" /tmp/"${icon_theme}"
-
-    /tmp/"${icon_theme}"/install.sh --black -b
-    echo
+    gitpath=/tmp/"${icon_theme}"
 else
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
 
@@ -95,6 +99,7 @@ else
     [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
     sudo true
-
-    hello_icon
+    gitpath="${HOME}"/Work/git/"${icon_theme}"
 fi
+
+hello_icon "${gitpath}"

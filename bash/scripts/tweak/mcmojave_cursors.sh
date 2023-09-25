@@ -52,28 +52,39 @@ byebye_cursors(){
 }
 
 hello_cursors(){
-    if [[ -d ~/Work/git/"${cursors}" ]]; then
-        echo -e "${NFO} Installing/Updating ${cursors}..."
+    thm_gitpath="$1"
 
-        pushd "${HOME}"/Work/git/"${cursors}" >/dev/null
-        git pull
+    echo -e "${NFO} Installing/Updating ${cursors}..."
+
+    if [[ $(whoami) != root ]]; then
+        higher=sudo
+    fi
+
+    if [[ -d "${thm_gitpath}" ]]; then
+        pushd "${thm_gitpath}" >/dev/null
+        upd_state="$(git pull | tee /dev/tty)"
         popd >/dev/null
-    else
+    elif [[ $(whoami) != root ]]; then
         echo -e "${WRN} '${cursors}' repo must be cloned in '${HOME}/Work/git' before it can be updated"
         read -p "Do it now [y/N] ? " -rn1 go4it
         [[ ${go4it} ]] && echo
 
         if [[ ${go4it,} = y ]]; then
             mkdir -p "${HOME}"/Work/git
-            git clone "${git_url}" "${HOME}"/Work/git/"${cursors}"
+            git clone "${git_url}" "${thm_gitpath}"
         else
             exit 0
         fi
+    else
+        rm -rf "${thm_gitpath}"
+        git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    pushd "${HOME}"/Work/git/"${cursors}" >/dev/null
-    sudo ./install.sh >/dev/null
-    popd >/dev/null
+    if [[ ${upd_state} != "Already up to date." ]]; then
+        pushd "${thm_gitpath}" >/dev/null
+        "${higher}" ./install.sh
+        popd >/dev/null
+    fi
     echo
 }
 
@@ -81,16 +92,7 @@ hello_cursors(){
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 if [[ $(whoami) == root ]]; then
-    # install only
-    rm -rf /tmp/"${cursors}"
-    rm -rf "${THEMES_DIR}"/"${cursors}"
-
-    git clone "${git_url}" /tmp/"${cursors}"
-
-    pushd /tmp/"${cursors}" >/dev/null
-    ./install.sh
-    popd >/dev/null
-    echo
+    gitpath=/tmp/"${cursors}"
 else
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
 
@@ -99,6 +101,7 @@ else
     [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
     sudo true
-
-    hello_cursors
+    gitpath="${HOME}"/Work/git/"${cursors}"
 fi
+
+hello_cursors "${gitpath}"
