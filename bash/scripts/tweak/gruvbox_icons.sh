@@ -77,7 +77,7 @@ hello_icon(){
         git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    if [[ ! ${upd_state} == "Already up to date." ]]; then
+    if ! [[ ${upd_state} = ^(Already up to date.|Déjà à jour.)$ ]] ; then
         if [[ $(whoami) == root ]]; then
             rm -rf "${THEMES_DIR}/${theme_name}"
             cp -r "${thm_gitpath}/${theme_name}" "${THEMES_DIR}"/

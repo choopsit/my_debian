@@ -92,7 +92,7 @@ hello_gtk(){
         git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    if [[ ${upd_state} != "Already up to date." ]]; then
+    if ! [[ ${upd_state} = ^(Already up to date.|Déjà à jour.)$ ]] ; then
         if [[ $(whoami) == root ]]; then
             "${thm_gitpath}"/install.sh -c dark -o standard
         else
