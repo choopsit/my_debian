@@ -75,7 +75,7 @@ hello_icon(){
         git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    if ! [[ ${upd_state} = ^(Already up to date.|Déjà à jour.)$ ]] ; then
+    if ! [[ ${upd_state} =~ ^(Already up to date.|Déjà à jour.)$ ]] ; then
         for theme_name in "kora" "kora-pgrey"; do
             if [[ $(whoami) == root ]]; then
                 rm -rf "${THEMES_DIR}"/"${theme_name}"

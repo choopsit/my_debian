@@ -94,7 +94,7 @@ hello_gtk(){
         git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    if ! [[ ${upd_state} = ^(Already up to date.|Déjà à jour.)$ ]] ; then
+    if ! [[ ${upd_state} =~ ^(Already up to date.|Déjà à jour.)$ ]] ; then
         sed -e 's/xfce4-panel -r/echo -n/' \
             -e 's/^\([[:space:]]*\)echo.*gnome-shell.*/\1echo -n/' \
             -i "${thm_gitpath}"/install.sh

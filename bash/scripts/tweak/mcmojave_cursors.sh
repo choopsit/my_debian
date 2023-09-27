@@ -76,7 +76,7 @@ hello_cursors(){
         git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    if ! [[ ${upd_state} = ^(Already up to date.|Déjà à jour.)$ ]] ; then
+    if ! [[ ${upd_state} =~ ^(Already up to date.|Déjà à jour.)$ ]] ; then
         pushd "${thm_gitpath}" >/dev/null
         if [[ $(whoami) == root ]]; then
             ./install.sh
