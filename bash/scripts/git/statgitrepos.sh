@@ -11,6 +11,7 @@ RED="\e[31m"
 GRN="\e[32m"
 YLO="\e[33m"
 CYN="\e[36m"
+GRY="\e[37m"
 
 ERR="${RED}ERR${DEF}:"
 OK="${GRN}OK${DEF}:"
@@ -42,7 +43,7 @@ get_status(){
     namelength="${#git_localrepo}"
     seplength=$((28-namelength))
     sep="$(for i in $(seq "${seplength}"); do echo -n "-"; done)"
-    echo -n -e "${CYN}Repo${DEF}: ${YLO}${git_localrepo} \e[37mx${sep}x "
+    echo -n -e "${CYN}Repo${DEF}: ${YLO}${git_localrepo} ${DEF}x${GRY}${sep}${DEF}x "
     echo -e "${CYN}Last commit${DEF}: ${last_commit} (${commits_count})"
 
     status="$(git status -s)"
@@ -50,7 +51,7 @@ get_status(){
         echo -e "${YLO}Uncommited changes${DEF}:"
         git status -s
     else
-        echo -e "${GRN}Up to date${DEF}"
+        echo -e "${GRN}Up to date${DEF}: \"${GRY}$(git log -1 --pretty=format:%B)${DEF}\""
     fi
 
     popd > /dev/null
