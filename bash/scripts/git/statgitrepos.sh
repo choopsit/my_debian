@@ -51,7 +51,9 @@ get_status(){
         echo -e "${YLO}Uncommited changes${DEF}:"
         git status -s
     else
-        echo -e "${GRN}Up to date${DEF}: \"${GRY}$(git log -1 --pretty=format:%B)${DEF}\""
+        sepupd="                          "
+        echo -n -e "${GRN}Up to date${DEF}${sepupd}x${GRY}---${DEF}> "
+        echo -e "${GRY}$(git log -1 --pretty=format:%B)${DEF}"
     fi
 
     popd > /dev/null
