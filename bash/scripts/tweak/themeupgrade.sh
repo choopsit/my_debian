@@ -20,8 +20,8 @@ NFO="${CYN}NFO${DEF}:"
 
 SCRIPT_PATH="$(dirname "$(realpath "$0")")"
 
-thm_list=("colloid_gtk" "gruvbox_icons")
-#thm_list=("whitesur_gtk" "gruvbox_gtk" "mojave_gtk" "kora_icons" "whitesur_cursors" "mcmojave_cursors")
+thm_list=("colloid_gtk" "gruvbox_gtk" "gruvbox_icons")
+#thm_list=("whitesur_gtk" "mojave_gtk" "kora_icons" "whitesur_cursors" "mcmojave_cursors")
 
 
 usage(){
