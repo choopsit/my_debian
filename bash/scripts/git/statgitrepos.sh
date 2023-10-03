@@ -52,7 +52,7 @@ get_status(){
         git status -s
     else
         sepupd="                          "
-        echo -n -e "${GRN}Up to date${DEF}${sepupd}x${GRY}---${DEF}> "
+        echo -n -e "${GRN}Up to date${DEF}${sepupd}${GRY}'---${DEF}> "
         echo -e "${GRY}$(git log -1 --pretty=format:%B)${DEF}"
     fi
 
