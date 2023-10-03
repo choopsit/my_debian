@@ -48,12 +48,14 @@ get_status(){
 
     status="$(git status -s)"
     if [[ ${status} ]]; then
-        echo -e "${YLO}Uncommited changes${DEF}:"
+        sepupd="                  "
+        echo -n -e "${YLO}Uncommited changes${sepupd}"
+        echo -e "${GRY}'---${DEF}> ${GRY}$(git log -1 --pretty=format:%B)${DEF}"
         git status -s
     else
         sepupd="                          "
-        echo -n -e "${GRN}Up to date${DEF}${sepupd}${GRY}'---${DEF}> "
-        echo -e "${GRY}$(git log -1 --pretty=format:%B)${DEF}"
+        echo -n -e "${GRN}Up to date${sepupd}"
+        echo -e "${GRY}'---${DEF}> ${GRY}$(git log -1 --pretty=format:%B)${DEF}"
     fi
 
     popd > /dev/null
