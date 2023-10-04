@@ -21,7 +21,8 @@ NFO="${CYN}NFO${DEF}:"
 THEMES_DIR=/usr/share/themes
 
 gtk_theme=Gruvbox-GTK-Theme
-git_url="https://github.com/SylEleuth/Gruvbox-GTK-Theme"
+#git_url="https://github.com/SylEleuth/Gruvbox-GTK-Theme"
+git_url="https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme"
 theme_name=Gruvbox-Dark-BL
 
 
