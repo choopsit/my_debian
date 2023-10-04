@@ -11,8 +11,8 @@
   <property name="misc-show-delete-action" type="bool" value="true"/>
   <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
   <property name="last-menubar-visible" type="bool" value="false"/>
-  <property name="last-window-width" type="int" value="952"/>
-  <property name="last-window-height" type="int" value="535"/>
+  <property name="last-window-width" type="int" value="942"/>
+  <property name="last-window-height" type="int" value="533"/>
   <property name="last-window-maximized" type="bool" value="false"/>
   <property name="last-separator-position" type="int" value="170"/>
   <property name="last-show-hidden" type="bool" value="false"/>
