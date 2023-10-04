@@ -184,7 +184,7 @@ def get_term():
     else:
         term_cmd = "x-terminal-emulator"
 
-    term_vers_cmd = f"{term_cmd} --version"
+    term_vers_cmd = f"{term_cmd} --version 2>/dev/null"
     term = os.popen(term_vers_cmd).read().rstrip()
     if "\n" in term:
         term = term.partition('\n')[0]
