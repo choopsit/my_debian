@@ -42,7 +42,7 @@ elif [[ $1 ]]; then
 fi
 
 script_dir="$(dirname "$(realpath "$0")")"
-bash_scripts_dir="$(realpath "${script_dir}"/../bash/scripts)"
+bash_scripts_dir="$(realpath "${script_dir}"/../scripts)"
 
 echo -e "${NFO} Deploying bash scripts to '${YLO}${HOME}/.local/bin/${DEF}'..."
 

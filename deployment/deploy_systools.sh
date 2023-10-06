@@ -55,6 +55,6 @@ base_dir="$(realpath "${script_dir}"/../)"
 
 echo -e "${NFO} Deploying bash and python systools to '${YLO}/usr/local/bin/${DEF}'..."
 
-for systool in "${base_dir}"/{bash,python}/systools/*; do
+for systool in "${base_dir}"/systools/*; do
     push_script "${systool}"
 done
