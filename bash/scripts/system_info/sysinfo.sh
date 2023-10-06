@@ -51,7 +51,7 @@ sys_info(){
     date +"%a %d %b %Y - %R:%S"
     echo
 
-    pyfetch
+    bfetch
 
     (dpkg -l | grep -q "^ii  virtualbox ") &&
         [[ $(VBoxManage list runningvms) ]] &&
