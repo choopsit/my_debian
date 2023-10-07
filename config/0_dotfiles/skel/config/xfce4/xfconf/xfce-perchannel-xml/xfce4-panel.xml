@@ -138,7 +138,7 @@
       <property name="position-search-alternate" type="bool" value="false"/>
       <property name="position-categories-alternate" type="bool" value="true"/>
       <property name="menu-width" type="int" value="880"/>
-      <property name="menu-height" type="int" value="580"/>
+      <property name="menu-height" type="int" value="600"/>
       <property name="menu-opacity" type="int" value="85"/>
       <property name="favorites" type="array">
         <value type="string" value="xfce4-web-browser.desktop"/>
@@ -150,15 +150,15 @@
       </property>
       <property name="recent" type="array">
         <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="deluge.desktop"/>
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
-        <value type="string" value="org.keepassxc.KeePassXC.desktop"/>
-        <value type="string" value="synaptic.desktop"/>
-        <value type="string" value="org.gnome.Quadrapassel.desktop"/>
         <value type="string" value="steam.desktop"/>
+        <value type="string" value="synaptic.desktop"/>
+        <value type="string" value="deluge.desktop"/>
+        <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
+        <value type="string" value="org.xfce.mousepad.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="org.keepassxc.KeePassXC.desktop"/>
+        <value type="string" value="org.gnome.Quadrapassel.desktop"/>
         <value type="string" value="libreoffice-startcenter.desktop"/>
-        <value type="string" value="org.gnome.eog.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="launcher-show-name" type="bool" value="true"/>

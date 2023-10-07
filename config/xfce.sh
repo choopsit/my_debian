@@ -210,7 +210,7 @@ deploy_config(){
     user_config /etc/skel
 
     "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
-    "${SCRIPT_PATH}"/../../deployment/deploy_systools.sh
+    "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
 
     clear
     echo -e "${OK} Custom XFCE installed"

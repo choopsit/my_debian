@@ -19,7 +19,7 @@
   <property name="misc-borders-default" type="bool" value="true"/>
   <property name="misc-cursor-blinks" type="bool" value="true"/>
   <property name="misc-cursor-shape" type="string" value="TERMINAL_CURSOR_SHAPE_BLOCK"/>
-  <property name="misc-default-geometry" type="string" value="103x50"/>
+  <property name="misc-default-geometry" type="string" value="103x49+982+36"/>
   <property name="misc-inherit-geometry" type="bool" value="false"/>
   <property name="misc-menubar-default" type="bool" value="false"/>
   <property name="misc-mouse-autohide" type="bool" value="false"/>
@@ -52,4 +52,5 @@
   <property name="color-bold-use-default" type="bool" value="true"/>
   <property name="color-bold-is-bright" type="bool" value="true"/>
   <property name="font-use-system" type="bool" value="false"/>
+  <property name="title-mode" type="string" value="TERMINAL_TITLE_APPEND"/>
 </channel>
