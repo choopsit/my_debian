@@ -43,7 +43,7 @@
   <property name="category-icon-size" type="uint" value="2"/>
   <property name="always-center" type="bool" value="true"/>
   <property name="last" type="empty">
-    <property name="window-height" type="int" value="1017"/>
+    <property name="window-height" type="int" value="1019"/>
     <property name="window-width" type="int" value="1920"/>
     <property name="pane-position" type="int" value="180"/>
   </property>

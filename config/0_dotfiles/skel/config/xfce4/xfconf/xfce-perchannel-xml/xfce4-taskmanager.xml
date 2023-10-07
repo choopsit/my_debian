@@ -8,6 +8,6 @@
     <property name="show-all-processes" type="bool" value="false"/>
     <property name="full-command-line" type="bool" value="false"/>
   </property>
-  <property name="window-width" type="int" value="410"/>
-  <property name="window-height" type="int" value="600"/>
+  <property name="window-width" type="int" value="938"/>
+  <property name="window-height" type="int" value="874"/>
 </channel>

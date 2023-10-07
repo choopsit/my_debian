@@ -1,1 +1,2 @@
 alias steam='steam -silent &'
+alias xfr='xfce4-panel -r 2>/dev/null'

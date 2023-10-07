@@ -150,15 +150,14 @@
       </property>
       <property name="recent" type="array">
         <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="deluge.desktop"/>
+        <value type="string" value="xfce4-taskmanager.desktop"/>
+        <value type="string" value="plank.desktop"/>
+        <value type="string" value="xfce4-file-manager.desktop"/>
+        <value type="string" value="xfce4-mail-reader.desktop"/>
         <value type="string" value="steam.desktop"/>
         <value type="string" value="synaptic.desktop"/>
-        <value type="string" value="deluge.desktop"/>
         <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
-        <value type="string" value="org.xfce.mousepad.desktop"/>
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="org.keepassxc.KeePassXC.desktop"/>
-        <value type="string" value="org.gnome.Quadrapassel.desktop"/>
-        <value type="string" value="libreoffice-startcenter.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="launcher-show-name" type="bool" value="true"/>
