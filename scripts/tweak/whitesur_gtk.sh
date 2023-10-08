@@ -40,22 +40,17 @@ usage(){
 }
 
 bye_gtk(){
+    [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${gtk_theme} is not installed\n" && exit 0
+
     echo -e "${NFO} Removing ${gtk_theme}..."
 
     sudo rm -rf "${THEMES_DIR}"/WhiteSur*
-}
-
-byebye_gtk(){
-    [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${gtk_theme} is not installed\n" && exit 0
-
-    bye_gtk
+    rm -rf "${thm_gitpath}"
     echo
     exit 0
 }
 
 hello_gtk(){
-    thm_gitpath="$1"
-
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
     if [[ -d "${thm_gitpath}" ]]; then
@@ -92,16 +87,17 @@ hello_gtk(){
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 if [[ $(whoami) == root ]]; then
-    gitpath=/tmp/"${gtk_theme}"
+    thm_gitpath=/tmp/"${gtk_theme}"
 else
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
 
-    [[ $1 =~ ^-(r|-remove)$ ]] && byebye_gtk
+    thm_gitpath="${HOME}"/Work/git/"${gtk_theme}"
+
+    [[ $1 =~ ^-(r|-remove)$ ]] && bye_gtk
 
     [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
     sudo true
-    gitpath="${HOME}"/Work/git/"${gtk_theme}"
 fi
 
-hello_gtk "${gitpath}"
+hello_gtk

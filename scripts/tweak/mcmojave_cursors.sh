@@ -40,20 +40,17 @@ usage(){
 }
 
 bye_cursors(){
-    echo -e "${NFO} Removing ${cursors}..."
-    sudo rm -rf "${THEMES_DIR}"/McMojave*
-}
-
-byebye_cursors(){
     [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${cursors} is not installed\n" && exit 0
-    bye_cursors
+
+    echo -e "${NFO} Removing ${cursors}..."
+
+    sudo rm -rf "${THEMES_DIR}"/McMojave*
+    rm -rf "${thm_gitpath}"
     echo
     exit 0
 }
 
 hello_cursors(){
-    thm_gitpath="$1"
-
     echo -e "${NFO} Installing/Updating ${cursors}..."
 
     if [[ -d "${thm_gitpath}" ]]; then
@@ -92,16 +89,17 @@ hello_cursors(){
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 if [[ $(whoami) == root ]]; then
-    gitpath=/tmp/"${cursors}"
+    thm_gitpath=/tmp/"${cursors}"
 else
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
 
-    [[ $1 =~ ^-(r|-remove)$ ]] && byebye_cursors
+    thm_gitpath="${HOME}"/Work/git/"${cursors}"
+
+    [[ $1 =~ ^-(r|-remove)$ ]] && bye_cursors
 
     [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
     sudo true
-    gitpath="${HOME}"/Work/git/"${cursors}"
 fi
 
-hello_cursors "${gitpath}"
+hello_cursors

@@ -20,9 +20,6 @@ NFO="${CYN}NFO${DEF}:"
 
 SCRIPT_PATH="$(dirname "$(realpath "$0")")"
 
-thm_list=("colloid_gtk" "gruvbox_icons")
-#thm_list=("gruvbox_gtk" "whitesur_gtk" "mojave_gtk" "kora_icons" "whitesur_cursors" "mcmojave_cursors")
-
 
 usage(){
     errcode="$1"
@@ -40,6 +37,17 @@ usage(){
 
 
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
+
+git_base="${HOME}/Work/git"
+thm_list=("colloid_gtk")
+[[ -d "${git_base}/Gruvbox-GTK-Theme" ]] && thm_list+=("gruvbox_gtk")
+[[ -d "${git_base}/gruvbox-plus-icon-pack" ]] && thm_list+=("gruvbox_icons")
+[[ -d "${git_base}/kora" ]] && thm_list+=("kora_icons")
+[[ -d "${git_base}/McMojave-cursors" ]] && thm_list+=("mcmojave_cursors")
+[[ -d "${git_base}/Mojave-gtk-theme" ]] && thm_list+=("mojave_gtk")
+[[ -d "${git_base}/WhiteSur-cursors" ]] && thm_list+=("whitesur_cursors")
+[[ -d "${git_base}/WhiteSur-gtk-theme" ]] && thm_list+=("whitesur_gtk")
+[[ -d "${git_base}/WhiteSur-icon-theme" ]] && thm_list+=("whitesur_icons")
 
 if [[ $(whoami) == root ]]; then
     # install only

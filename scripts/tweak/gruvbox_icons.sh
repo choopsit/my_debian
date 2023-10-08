@@ -41,20 +41,17 @@ usage(){
 }
 
 bye_icon(){
-    echo -e "${NFO} Removing ${icon_theme^}..."
-    sudo rm -rf "${THEMES_DIR}"/gruvbox*
-}
+    [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${icon_theme} is not installed\n" && exit 0
 
-byebye_icon(){
-    [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${icon_theme^} is not installed\n" && exit 0
-    bye_icon
+    echo -e "${NFO} Removing ${icon_theme}..."
+
+    sudo rm -rf "${THEMES_DIR}"/gruvbox*
+    rm -rf "${thm_gitpath}"
     echo
     exit 0
 }
 
 hello_icon(){
-    thm_gitpath="$1"
-
     echo -e "${NFO} Installing/Updating ${icon_theme}..."
 
     if [[ -d "${thm_gitpath}" ]]; then
@@ -93,16 +90,17 @@ hello_icon(){
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 if [[ $(whoami) == root ]]; then
-    gitpath=/tmp/"${icon_theme}"
+    thm_gitpath=/tmp/"${icon_theme}"
 else
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
 
-    [[ $1 =~ ^-(r|-remove)$ ]] && byebye_icon
+    thm_gitpath="${HOME}"/Work/git/"${icon_theme}"
+
+    [[ $1 =~ ^-(r|-remove)$ ]] && bye_icon
 
     [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
     sudo true
-    gitpath="${HOME}"/Work/git/"${icon_theme}"
 fi
 
-hello_icon "${gitpath}"
+hello_icon

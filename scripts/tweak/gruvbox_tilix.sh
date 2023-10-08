@@ -18,6 +18,11 @@ OK="${GRN}OK${DEF}:"
 WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
+THEMES_DIR=/usr/share/tilix/schemes
+tilix_theme=tilix-gruvbox
+git_url=https://github.com/MichaelThessel/tilix-gruvbox.git
+thm_gitpath="${HOME}"/Work/git/"${tilix_theme}"
+
 
 usage(){
     errcode="$1"
@@ -35,16 +40,11 @@ usage(){
 }
 
 install_tilix_gruvbox() {
-    THEMES_DIR=/usr/share/tilix/schemes
-
     if [[ -d "${THEMES_DIR}" ]]; then
-        tilix_theme=tilix-gruvbox
-        git_url=https://github.com/MichaelThessel/tilix-gruvbox.git
-
         if [[ -d ~/Work/git/"${tilix_theme}" ]]; then
             echo -e "${NFO} Installing/Updating ${tilix_theme}..."
 
-            pushd "${HOME}"/Work/git/"${tilix_theme}" >/dev/null
+            pushd "${thm_gitpath}" >/dev/null
             git pull
             popd >/dev/null
             echo
@@ -63,7 +63,7 @@ install_tilix_gruvbox() {
             fi
         fi
 
-        sudo ln -sf "${HOME}"/Work/git/"${tilix_theme}"/gruvbox-* "${THEMES_DIR}"/
+        sudo cp -rf "${thm_gitpath}"/gruvbox-* "${THEMES_DIR}"/
     else
         echo -e "${ERR} 'tilix' not installed."
         exit 1
@@ -71,7 +71,8 @@ install_tilix_gruvbox() {
 }
 
 remove_tilix_gruvbox() {
-    sudo rm -f "${THEMES_DIR}"/gruvbox-* 
+    sudo rm -rf "${THEMES_DIR}"/gruvbox-* 
+    rm -rf "${thm_gitpath}"
 }
 
 
