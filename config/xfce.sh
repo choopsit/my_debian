@@ -209,6 +209,8 @@ deploy_config(){
 
     user_config /etc/skel
 
+    wget -qO- https://git.io/papirus-folders-install | sh
+    papirus-folders -t Papirus-Dark -C yaru
     "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
     "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
 
