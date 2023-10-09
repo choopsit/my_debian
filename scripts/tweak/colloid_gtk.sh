@@ -100,8 +100,15 @@ hello_gtk(){
             sudo rm -rf "${THEMES_DIR}"/Colloid-Dark-*
         fi
 
+        color_thm=teal
+        if [[ $(whoami) == root ]]; then
+            "${thm_gitpath}"/install.sh -c dark --theme "${color_thm}"
+        else
+            sudo "${thm_gitpath}"/install.sh -c dark --theme "${color_thm}"
+        fi
+
         for variant in gruvbox nord; do
-            if [[ $(whoami) != root ]]; then
+            if [[ $(whoami) == root ]]; then
                 "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
             else
                 sudo "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
