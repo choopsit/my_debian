@@ -113,13 +113,15 @@ install_xfce(){
 
     (lspci | grep -q NVIDIA) && echo "nvidia-driver" >> "${usefull}" && add_i386=y
 
+    [[ ${inst_virtmanager,,} == y ]] && echo "virt-manager" >> "${usefull}"
+
     [[ ${inst_kodi,,} == y ]] && echo "kodi" >> "${usefull}"
+
+    [[ ${inst_games,,} == y ]] && echo -e "gnome-2048\nquadrapassel" >> "${usefull}"
 
     [[ ${inst_steam,,} == y ]] && echo "steam-installer" >> "${usefull}" && add_i386=y
 
     [[ ${inst_pcsx,,} == y ]] && echo "pcsx2" >> "${usefull}" && add_i386=y
-
-    [[ ${inst_virtmanager,,} == y ]] && echo "virt-manager" >> "${usefull}"
 
     [[ ${add_i386,,} == y ]] && dpkg --add-architecture i386
 
@@ -296,24 +298,29 @@ clear
 read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
 [[ ${clean_sl} ]] && echo
 
+(dpkg -l | grep -q "^ii  virt-manager") && (lspci | grep -qv QEMU) &&
+    (dpkg -l | grep -q "^ii  virtualbox ") && (lspci | grep -qiv virtualbox) &&
+    read -rp "Install Virtual Machine Manager [y/N] ? " -n1 inst_virtmanager
+
 (dpkg -l | grep -q "^ii  kodi ") ||
     read -rp "Install Kodi [y/N] ? " -n1 inst_kodi
 
 [[ ${inst_kodi} ]] && echo
 
-(dpkg -l | grep -q "^ii  steam") ||
-    read -rp "Install Steam [y/N] ? " -n1 inst_steam
+read -rp "Install games [y/N] ? " -n1 inst_games
+[[ ${inst_games} ]] && echo
 
-[[ ${inst_steam} ]] && echo
+if [[ ${inst_games,,} == y ]]; then
+    (dpkg -l | grep -q "^ii  steam") ||
+        read -rp "Install Steam [y/N] ? " -n1 inst_steam
 
-(dpkg -l | grep -q "^ii  pcsx2") ||
-    read -rp "Install PCSX2 [y/N] ? " -n1 inst_pcsx
+    [[ ${inst_steam} ]] && echo
 
-[[ ${inst_pcsx} ]] && echo
+    (dpkg -l | grep -q "^ii  pcsx2") ||
+        read -rp "Install PCSX2 [y/N] ? " -n1 inst_pcsx
 
-(dpkg -l | grep -q "^ii  virt-manager") && (lspci | grep -qv QEMU) &&
-    (dpkg -l | grep -q "^ii  virtualbox ") && (lspci | grep -qiv virtualbox) &&
-    read -rp "Install Virtual Machine Manager [y/N] ? " -n1 inst_virtmanager
+    [[ ${inst_pcsx} ]] && echo
+fi
 
 [[ ${inst_virtmanager} ]] && echo
 
