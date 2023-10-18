@@ -42,15 +42,14 @@ usage(){
 [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
 
-bdf_file=/tmp/"$(date +%m+%d+%H+%M+%S)"_bdf
-df -hT | grep -v 'tmpfs\|^Filesystem' >"${bdf_file}"
-
 echo -e "${CYN}Filesystems${DEF}:"
 while read line; do
-    devmap="$(awk '{print $1}' <<<"${line}")"
+    df_elts=(${line})
+
+    devmap=${df_elts[0]}
     fsline="${CYN}${devmap#/dev/}${DEF}"
 
-    fstype="$(awk '{print $2}' <<<"${line}")"
+    fstype=${df_elts[1]}
     if [[ ${fstype} =~ ^(nfs|cifs) ]]; then
         fscol="${BLU}"
     elif [[ ${fstype} =~ ^fuse ]]; then
@@ -64,14 +63,14 @@ while read line; do
     done
     fsline+=" [${fscol}${fstype}${DEF}]${sepfs}"
 
-    mntpoint="$(awk '{print $7}' <<<"${line}")"
+    mntpoint=${df_elts[6]}
     sepmp=" "
     for i in $(seq 1 "$((17-${#mntpoint}))"); do
         sepmp+=" "
     done
     fsline+="on ${fscol}${mntpoint}${DEF}${sepmp}["
 
-    pctused="$(awk '{print $6}' <<<"${line}")"
+    pctused=${df_elts[5]}
     pctu=${pctused%\%}
     if [[ ${pctu} -le 90 ]]; then
         grcol="${GRN}"
@@ -93,8 +92,8 @@ while read line; do
     [[ ${#pctu} -gt 1 ]] && seppct=" "
     fsline+="${graph}${DEF}]${seppct}${grcol}${pctu}${DEF}%"
 
-    used="$(awk '{print $4}' <<<"${line}")"
-    size="$(awk '{print $3}' <<<"${line}")"
+    used=${df_elts[3]}
+    size=${df_elts[2]}
     sepsp=" "
     for i in $(seq 1 "$((5-${#used}))"); do
         sepsp+=" "
@@ -105,7 +104,7 @@ while read line; do
     done
     fsline+="${sepsp}${fscol}${used}${DEF}/${fscol}${size}${sepsp2}${DEF}-"
 
-    free="$(awk '{print $5}' <<<"${line}")"
+    free=${df_elts[4]}
     sepf=" "
     for i in $(seq 1 "$((4-${#free}))"); do
         sepf+=" "
@@ -113,6 +112,6 @@ while read line; do
     fsline+="${sepf}${fscol}${free}${DEF} free"
 
     echo -e "${fsline}"
-done <"${bdf_file}"
+done < <(df -hT | grep -v 'tmpfs\|^Filesystem')
 
 echo

@@ -67,7 +67,7 @@ sys_info(){
     (dpkg -l | grep -q "^ii  transmission-daemon") &&
         [[ -e ~/.local/bin/tsm ]] && tsm -t
 
-    pydf
+    bdf
 }
 
 
