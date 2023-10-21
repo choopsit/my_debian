@@ -8,12 +8,15 @@ htop
 linux-headers-amd64
 build-essential
 deborphan
+firmware-iwlwifi
 task-desktop
 task-xfce-desktop
 xfce4-screenshooter
 xfce4-appmenu-plugin
 xfce4-weather-plugin
 xfce4-whiskermenu-plugin
+bluetooth
+blueman
 slick-greeter
 tumbler-plugins-extra
 file-roller

@@ -166,6 +166,12 @@ sys_config(){
         copy_conf "${SCRIPT_PATH}/0_dotfiles/${conf}" /root
     done
 
+    vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    mkdir -p /root/.vim/autoload
+    wget -O /root/.vim/autoload/plug.vim "${vimplug_url}"
+
+    vim +PlugInstall +qall
+
     pulse_param="flat-volumes = no"
     pulse_conf=/etc/pulse/daemon.conf
     (grep -q ^"${pulse_param}" "${pulse_conf}") &&
@@ -199,15 +205,47 @@ user_config(){
         copy_conf "${dotfile}" "${dest}"
     done
 
-    vim +PlugInstall +qall
+    if [[ ${conf_user} != "future users" ]]; then
+        chown -R "${conf_user}":"${conf_user}" "${dest}"
+
+        vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+        su -l "${conf_user}" -c "
+        mkdir -p ${dest}/.vim/autoload
+        wget -O ${dest}/.vim/autoload/plug.vim ${vimplug_url}
+        vim +PlugInstall +qall
+        "
+
+        my_git_url="https://github.com/choopsit/my_debian.git"
+        git_folder="${dest}"/Work/git
+        my_git_repo="${git_folder}"/my_debian
+
+        su -l "${conf_user}" -c "mkdir -p ${git_folder}"
+
+        if [[ -d "${my_git_repo}" ]]; then
+            su -l "${conf_user}" -c "cd ${my_git_repo}; git pull"
+        else
+            su -l "${conf_user}" -c "git clone ${my_git_url} ${my_git_repo}"
+        fi
+
+        su -l "${conf_user}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
+    fi
 
     for useless_file in .bashrc .bash_logout .vimrc .vim_info; do
-        rm -f "${dest}"/"${useless_file}"
+        rm -f "${dest}/${useless_file}"
     done
 }
 
 deploy_config(){
     sys_config
+
+    for sudouser in ${newsudo[@]}; do
+        adduser "${sudouser}" sudo
+    done
+
+    for libvirtuser in ${newlibvirt[@]}; do
+        adduser "${libvirtuser}" libvirt
+    done
 
     user_config /etc/skel
 
@@ -216,17 +254,59 @@ deploy_config(){
     "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
     "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
 
+    for i in $(seq 0 $((users_cpt-1))); do
+        user_config "${users_home[${i}]}"
+    done
+}
+
+feed_config(){
     clear
-    echo -e "${OK} Custom XFCE installed"
+    read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
+    [[ ${clean_sl} ]] && echo
+
+    (dpkg -l | grep -q "^ii  virt-manager") && (lspci | grep -qv QEMU) &&
+        (dpkg -l | grep -q "^ii  virtualbox ") && (lspci | grep -qiv virtualbox) &&
+        read -rp "Install Virtual Machine Manager [y/N] ? " -n1 inst_virtmanager
+
+    [[ ${inst_virtmanager} ]] && echo
+
+    (dpkg -l | grep -q "^ii  kodi ") ||
+        read -rp "Install Kodi [y/N] ? " -n1 inst_kodi
+
+    [[ ${inst_kodi} ]] && echo
+
+    read -rp "Install games [y/N] ? " -n1 inst_games
+    [[ ${inst_games} ]] && echo
+
+    if [[ ${inst_games,,} == y ]]; then
+        (dpkg -l | grep -q "^ii  steam") ||
+            read -rp "Install Steam [y/N] ? " -n1 inst_steam
+
+        [[ ${inst_steam} ]] && echo
+
+        (dpkg -l | grep -q "^ii  pcsx2") ||
+            read -rp "Install PCSX2 [y/N] ? " -n1 inst_pcsx
+
+        [[ ${inst_pcsx} ]] && echo
+    fi
 
     users_cpt=0
+    newsudo=()
+    newlibvirt=()
 
     for user_home in /home/*; do
         user="$(basename "${user_home}")"
 
         if (grep -q ^"${user}:" /etc/passwd); then
-            add_grp sudo "${user}"
-            [[ ${inst_virtmanager,,} == y ]] && add_grp libvirt "${user}"
+            read -rp "Add user '${user}' to 'sudo' group [Y/n] ? " -n1 add_user_to_sudo
+            [[ ${add_user_to_sudo} ]] && echo
+            [[ ${add_user_to_sudo,,} != n ]] && newsudo+=("${user}")
+
+            if [[ ${inst_virtmanager,,} == y ]]; then
+                read -rp "Add user '${user}' to 'libvirt' group [Y/n] ? " -n1 add_user_to_libvirt
+                [[ ${add_user_to_libvirt} ]] && echo
+                [[ ${add_user_to_libvirt,,} != n ]] && newlibvirt+=("${user}")
+            fi
 
             read -rp "Apply configuration to user '${user}' [Y/n] ? " -n1 user_conf
 
@@ -235,42 +315,6 @@ deploy_config(){
                 users_home[${users_cpt}]="${user_home}" && ((users_cpt+=1))
         fi
     done
-
-    for i in $(seq 0 $((users_cpt-1))); do
-        user_group="$(awk -F: '/^'"${users[${i}]}"':/{print $5}' /etc/passwd)"
-
-        user_config "${users_home[${i}]}"
-
-        chown -R "${users[${i}]}":"${user_group//,}" "${users_home[${i}]}"
-
-        git_folder="${users_home[${i}]}"/Work/git
-        [[ -d "${git_folder}" ]] || su -l "${users[${i}]}" -c "mkdir -p ${git_folder}"
-
-        git_url="https://github.com/choopsit/my_debian.git"
-        my_git_repo="${git_folder}"/my_debian
-
-        if [[ -d "${my_git_repo}" ]]; then
-            su -l "${users[${i}]}" -c "pushd ${my_git_repo} >/dev/null && git pull && popd >/dev/null"
-        else
-            su -l "${users[${i}]}" -c "git clone ${git_url} ${my_git_repo}"
-        fi
-
-        su -l "${users[${i}]}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
-        su -l "${users[${i}]}" -c "vim +PlugInstall +qall"
-    done
-}
-
-add_grp(){
-    group="$1"
-    user="$2"
-
-    [[ $(groups "${user}") == *" ${group}"* ]] ||
-        read -rp "Add user '${user}' to '${group}' group [Y/n] ? " -n1 add_user_to_grp
-
-    [[ ${add_user_to_grp} ]] && echo
-    [[ ${add_user_to_grp,,} != n ]] && adduser "${user}" "${group}"
-
-    echo -e "${NFO} '${user}' added to '${group}'"
 }
 
 
@@ -294,35 +338,7 @@ if [[ ${debian_version} == "${TESTING}" ]]; then
     done
 fi
 
-clear
-read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
-[[ ${clean_sl} ]] && echo
-
-(dpkg -l | grep -q "^ii  virt-manager") && (lspci | grep -qv QEMU) &&
-    (dpkg -l | grep -q "^ii  virtualbox ") && (lspci | grep -qiv virtualbox) &&
-    read -rp "Install Virtual Machine Manager [y/N] ? " -n1 inst_virtmanager
-
-(dpkg -l | grep -q "^ii  kodi ") ||
-    read -rp "Install Kodi [y/N] ? " -n1 inst_kodi
-
-[[ ${inst_kodi} ]] && echo
-
-read -rp "Install games [y/N] ? " -n1 inst_games
-[[ ${inst_games} ]] && echo
-
-if [[ ${inst_games,,} == y ]]; then
-    (dpkg -l | grep -q "^ii  steam") ||
-        read -rp "Install Steam [y/N] ? " -n1 inst_steam
-
-    [[ ${inst_steam} ]] && echo
-
-    (dpkg -l | grep -q "^ii  pcsx2") ||
-        read -rp "Install PCSX2 [y/N] ? " -n1 inst_pcsx
-
-    [[ ${inst_pcsx} ]] && echo
-fi
-
-[[ ${inst_virtmanager} ]] && echo
+feed_config
 
 [[ ${clean_sl,,} != n ]] && clean_sources "${debian_version}"
 
