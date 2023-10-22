@@ -261,6 +261,8 @@ deploy_config(){
 
 feed_config(){
     clear
+    echo -e "${CYN}System configuration${DEF}:"
+
     read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
     [[ ${clean_sl} ]] && echo
 
@@ -290,6 +292,8 @@ feed_config(){
         [[ ${inst_pcsx} ]] && echo
     fi
 
+    echo -e "${CYN}User(s) configuration${DEF}:"
+
     users_cpt=0
     newsudo=()
     newlibvirt=()
@@ -298,11 +302,13 @@ feed_config(){
         user="$(basename "${user_home}")"
 
         if (grep -q ^"${user}:" /etc/passwd); then
-            read -rp "Add user '${user}' to 'sudo' group [Y/n] ? " -n1 add_user_to_sudo
-            [[ ${add_user_to_sudo} ]] && echo
-            [[ ${add_user_to_sudo,,} != n ]] && newsudo+=("${user}")
+            if ! (groups "${user}" | grep -q sudo); then
+                read -rp "Add user '${user}' to 'sudo' group [Y/n] ? " -n1 add_user_to_sudo
+                [[ ${add_user_to_sudo} ]] && echo
+                [[ ${add_user_to_sudo,,} != n ]] && newsudo+=("${user}")
+            fi
 
-            if [[ ${inst_virtmanager,,} == y ]]; then
+            if [[ ${inst_virtmanager,,} == y ]] && ! (groups "${user}" | grep -q libvirt); then
                 read -rp "Add user '${user}' to 'libvirt' group [Y/n] ? " -n1 add_user_to_libvirt
                 [[ ${add_user_to_libvirt} ]] && echo
                 [[ ${add_user_to_libvirt,,} != n ]] && newlibvirt+=("${user}")
@@ -315,6 +321,13 @@ feed_config(){
                 users_home[${users_cpt}]="${user_home}" && ((users_cpt+=1))
         fi
     done
+
+    echo -e "${CYN}Last Check${DEF}:"
+    read -p "Apply now [Y/n] ? " -rn1 gogogo
+    [[ ${gogogo} ]] && echo
+    if [[ ${gogogo,,} == n ]]; then
+        echo -e "${YLO}Maybe next time${DEF}..." && exit 0
+    fi
 }
 
 
