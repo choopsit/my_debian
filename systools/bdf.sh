@@ -47,7 +47,12 @@ while read line; do
     df_elts=(${line})
 
     devmap=${df_elts[0]}
-    fsline="${CYN}${devmap#/dev/}${DEF}"
+    mydev=${devmap#/dev/}
+    sepdev=""
+    for i in $(seq 1 "$((8-${#mydev}))"); do
+        sepdev+=" "
+    done
+    fsline="${CYN}${mydev}${DEF}${sepdev}"
 
     fstype=${df_elts[1]}
     if [[ ${fstype} =~ ^(nfs|cifs) ]]; then
@@ -57,15 +62,15 @@ while read line; do
     else
         fscol="${GRY}"
     fi
-    sepfs=" "
-    for i in $(seq 1 "$((5-${#fstype}))"); do
+    sepfs=""
+    for i in $(seq 1 "$((9-${#fstype}))"); do
         sepfs+=" "
     done
     fsline+=" [${fscol}${fstype}${DEF}]${sepfs}"
 
     mntpoint=${df_elts[6]}
     sepmp=" "
-    for i in $(seq 1 "$((17-${#mntpoint}))"); do
+    for i in $(seq 1 "$((26-${#mntpoint}))"); do
         sepmp+=" "
     done
     fsline+="on ${fscol}${mntpoint}${DEF}${sepmp}["
@@ -89,7 +94,8 @@ while read line; do
         grf+="-"
     done
     graph="${grcol}${gru}${fscol}${grf}"
-    [[ ${#pctu} -gt 1 ]] && seppct=" "
+    seppct=" "
+    [[ ${#pctu} -lt 2 ]] && seppct="  "
     fsline+="${graph}${DEF}]${seppct}${grcol}${pctu}${DEF}%"
 
     used=${df_elts[3]}
