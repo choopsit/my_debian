@@ -77,9 +77,11 @@ while read line; do
 
     pctused=${df_elts[5]}
     pctu=${pctused%\%}
-    if [[ ${pctu} -le 90 ]]; then
+    if (( ${pctu} <= 90 )); then
+    #if [[ ${pctu} -le 90 ]]; then
         grcol="${GRN}"
-    elif [[ ${pctu} -gt 95 ]]; then
+    elif (( ${pctu} > 95 )); then
+    #elif [[ ${pctu} -gt 95 ]]; then
         grcol="${RED}"
     else
         grcol="${YLO}"
@@ -118,6 +120,6 @@ while read line; do
     fsline+="${sepf}${fscol}${free}${DEF} free"
 
     echo -e "${fsline}"
-done < <(df -hT | grep -v 'tmpfs\|^Filesystem')
+done < <(df -hT | grep -v 'tmpfs\|^Filesystemi\|^Sys')
 
 echo
