@@ -17,8 +17,8 @@ OK="${GRN}OK${DEF}:"
 WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
-DEBIAN_V=11.5.0
-MINT_V=21
+DEBIAN_V=12.2.0
+MINT_V=21.2
 GPARTED_V=1.4.-5
 
 
@@ -39,11 +39,8 @@ usage(){
 
 check_usbkey(){
     device="$1"
-    if mount | grep "${device}"; then
-        echo -e "${NFO} Mounted partition(s) from device '${device}':"
-        for part in $(mount | awk '/'"${device}"'/{print $3}'); do
-            echo "       - ${part}"
-        done
+    if mount | grep -q "${device}"; then
+        echo -e "${NFO} Mounted partition(s) from device '${device}'"
     else
         echo -e "${ERR} No partition from device '${device}' mounted" && exit 1
     fi
