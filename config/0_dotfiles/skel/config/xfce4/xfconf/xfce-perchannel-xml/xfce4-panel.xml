@@ -38,6 +38,8 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="ethernet network connection “bridge0 port 1” active"/>
+        <value type="string" value="ethernet network connection “wired connection 1” active"/>
         <value type="string" value="deluge"/>
         <value type="string" value="system-config-printer"/>
         <value type="string" value="steam"/>
@@ -91,7 +93,7 @@
     <property name="plugin-23" type="string" value="weather">
       <property name="msl" type="int" value="35"/>
       <property name="timezone" type="string" value="Europe/Paris"/>
-      <property name="offset" type="string" value="+02:00"/>
+      <property name="offset" type="string" value="+01:00"/>
       <property name="cache-max-age" type="int" value="172800"/>
       <property name="power-saving" type="bool" value="true"/>
       <property name="units" type="empty">
@@ -128,7 +130,7 @@
       </property>
     </property>
     <property name="plugin-3" type="string" value="whiskermenu">
-      <property name="button-icon" type="string" value="org.xfce.panel.whiskermenu"/>
+      <property name="button-icon" type="string" value="xfce4-whiskermenu"/>
       <property name="launcher-icon-size" type="int" value="4"/>
       <property name="hover-switch-category" type="bool" value="true"/>
       <property name="category-show-name" type="bool" value="false"/>
@@ -137,27 +139,28 @@
       <property name="favorites-in-recent" type="bool" value="true"/>
       <property name="position-search-alternate" type="bool" value="false"/>
       <property name="position-categories-alternate" type="bool" value="true"/>
-      <property name="menu-width" type="int" value="880"/>
-      <property name="menu-height" type="int" value="600"/>
-      <property name="menu-opacity" type="int" value="85"/>
+      <property name="menu-width" type="int" value="942"/>
+      <property name="menu-height" type="int" value="598"/>
+      <property name="menu-opacity" type="int" value="95"/>
       <property name="favorites" type="array">
         <value type="string" value="xfce4-web-browser.desktop"/>
-        <value type="string" value="xfce4-mail-reader.desktop"/>
         <value type="string" value="xfce4-file-manager.desktop"/>
+        <value type="string" value="libreoffice-startcenter.desktop"/>
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="synaptic.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="deluge.desktop"/>
       </property>
       <property name="recent" type="array">
-        <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="deluge.desktop"/>
-        <value type="string" value="xfce4-taskmanager.desktop"/>
-        <value type="string" value="plank.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
-        <value type="string" value="xfce4-mail-reader.desktop"/>
-        <value type="string" value="steam.desktop"/>
-        <value type="string" value="synaptic.desktop"/>
         <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
+        <value type="string" value="deluge.desktop"/>
+        <value type="string" value="steam.desktop"/>
+        <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="PCSX2.desktop"/>
+        <value type="string" value="nm-connection-editor.desktop"/>
+        <value type="string" value="synaptic.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="xfce4-file-manager.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="launcher-show-name" type="bool" value="true"/>
