@@ -42,7 +42,8 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[\033[00;37m\][\[\033[01;32m\]\u\[\033[00;37m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w\[\033[00m\]\$(__git_ps1)\[\033[00;37m\]]\`if [ \$? != 0 ]; then echo \[\033[91m\]; else echo \[\033[92m\]; fi\`\$\[\033[00m\] "
+    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00;37m\]@\[\033[00;36m\]\h\[\033[00;37m\]>\[\033[01;33m\]\w\[\033[00m\]\$(__git_ps1)\`if [ \$? != 0 ]; then echo \[\033[01\;31m\]; else echo \[\033[01\;32m\]; fi\`>\[\033[00m\] "
+    #PS1="${debian_chroot:+($debian_chroot)}\[\033[00;37m\][\[\033[01;32m\]\u\[\033[00;37m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w\[\033[00m\]\$(__git_ps1)\[\033[00;37m\]]\`if [ \$? != 0 ]; then echo \[\033[91m\]; else echo \[\033[92m\]; fi\`\$\[\033[00m\] "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
