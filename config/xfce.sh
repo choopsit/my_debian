@@ -266,8 +266,8 @@ feed_config(){
     read -rp "Clean sources.list [Y/n] ? " -n1 clean_sl
     [[ ${clean_sl} ]] && echo
 
-    (dpkg -l | grep -q "^ii  virt-manager") && (lspci | grep -qv QEMU) &&
-        (dpkg -l | grep -q "^ii  virtualbox ") && (lspci | grep -qiv virtualbox) &&
+    ! (dpkg -l | grep -q "^ii  virt-manager") && ! (lspci | grep -q QEMU) &&
+        ! (dpkg -l | grep -q "^ii  virtualbox ") && ! (lspci | grep -qi virtualbox) &&
         read -rp "Install Virtual Machine Manager [y/N] ? " -n1 inst_virtmanager
 
     [[ ${inst_virtmanager} ]] && echo
@@ -292,6 +292,14 @@ feed_config(){
         [[ ${inst_pcsx} ]] && echo
     fi
 
+    #TODO or NOTTODO: switch to only ask for user with uid=1000
+    # user="$(ID=1000 awk -F: '$3 == ENVIRON["ID"] {print $1}' /etc/passwd)"
+    # if [[ ${user} ]]; then
+    #     echo -e "${CYN}Primary user configuration${DEF}:"
+    #     user_home=/home/"${user}"
+    #     ask_perms "${user}"
+    #     ask_conf "${user}"
+    # fi
     echo -e "${CYN}User(s) configuration${DEF}:"
 
     users_cpt=0
