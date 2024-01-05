@@ -32,6 +32,7 @@ evince
 gimp
 eog
 mpv
-deluge
+transmission-qt
+qt5ct
 keepassxc
 webext-keepassxc-browser

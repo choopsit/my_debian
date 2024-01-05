@@ -100,7 +100,7 @@ sys_update(){
 install_xfce(){
     usefull=/tmp/usefull_pkgs
     useless=/tmp/useless_pkgs
-    pkg_lists="${SCRIPT_PATH}"/1_pkg
+    pkg_lists="${SCRIPT_PATH}"/pkg
 
     cp "${pkg_lists}"/xfce_base "${usefull}"
     cp "${pkg_lists}"/xfce_useless "${useless}"
@@ -163,7 +163,7 @@ sys_config(){
 
     my_conf=("skel/profile" "skel/vim" "root/bashrc")
     for conf in "${my_conf[@]}"; do
-        copy_conf "${SCRIPT_PATH}/0_dotfiles/${conf}" /root
+        copy_conf "${SCRIPT_PATH}/dotfiles/${conf}" /root
     done
 
     vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -184,7 +184,7 @@ sys_config(){
     (grep -qvs redshift "${redshift_conf}") &&
         echo -e "\n[redshift]\nallowed=true\nsystem=false\nusers=" >> "${redshift_conf}"
 
-    resources="${SCRIPT_PATH}"/2_resources
+    resources="${SCRIPT_PATH}"/resources
 
     gtk_styles=/usr/share/gtksourceview-4/styles
     cp "${resources}"/*.xml "${gtk_styles}"/
@@ -201,7 +201,7 @@ user_config(){
 
     echo -e "${NFO} Applying custom configuration for ${conf_user}..."
 
-    for dotfile in "${SCRIPT_PATH}"/0_dotfiles/skel/*; do
+    for dotfile in "${SCRIPT_PATH}"/dotfiles/skel/*; do
         copy_conf "${dotfile}" "${dest}"
     done
 

@@ -33,3 +33,6 @@ fi
 
 # use system wide VMs
 export LIBVIRT_DEFAULT_URI='qemu:///system'
+
+# qt5ct-style
+export QT_QPA_PLATFORMTHEME=gtk3
