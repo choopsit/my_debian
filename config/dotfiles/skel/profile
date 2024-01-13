@@ -35,4 +35,4 @@ fi
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
 # qt5ct-style
-export QT_QPA_PLATFORMTHEME=gtk3
+export QT_QPA_PLATFORMTHEME=qt5ct

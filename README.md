@@ -1,50 +1,54 @@
 # my\_debian
 
-personal debian xfce config (tested on boolworm and sid)
+personal debian xfce config (tested on 12.x "bookworm" and sid)
 
-## desktop:
+---------
 
-base package: task-xfce-desktop
+## desktop
 
-## applications:
+base package: task-xfce-desktop (+ task-desktop)
 
-*/!\ WARNING: some pplications you previously installed could be uninstalled during the process if they are or depend on one of the packages listed in "config/pkg/xfce\_useless"*
+---------
 
-### system-tools:
+## applications
+
+*/!\ WARNING: some applications you previously installed could be uninstalled during the process if they are or depend on one of the packages listed in "config/pkg/xfce\_useless"*
+
+### system-tools
 
 - terminal-emulator: xfce4-terminal
-- virtualization-support [optional]: virt-manager
 - system-monitor: htop
+- virtualization support [optional]: virt-manager
 
-### accessories:
+### accessories
 
 - text-editors: vim, mousepad
 - archivers: p7zip-full, file-roller
 
-### internet:
+### internet
 
 - web-browser: firefox on sid / firefox-esr on bookworm
 - torrent-client [optional]: transmission-qt / deluge
 
-### multimedia:
+### multimedia
 
 - video-player: mpv
 - music-player: quodlibet
-- Tag-editor: exfalso
-- Mediacenter [optional]: kodi
+- tag-editor: exfalso
+- mediacenter [optional]: kodi
 
-### office:
+### office
 
 - office-suite: libreoffice (from desktop base)
 - PDF-viewer: evince
 
-### graphisme:
+### graphisme
 
 - image-viewer: eog (eye of gnome)
 - image-editor: gimp
-- 3D-Editor [optional]: blender
+- 3D-editor [optional]: blender
 
-### games [optional]:
+### games [optional]
 
 - steam
 - pcsx2 (playstation 2 emulator)
@@ -53,8 +57,20 @@ base package: task-xfce-desktop
 
 ---------
 
+## how to
+
 run "install.sh" to deploy.
 
 ---------
 
-thinking about other Desktop Enevironments and Window Managers to provide...
+## Personalisation
+
+### Default theme
+
+- gtk-theme: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
+- icon-theme: papirus 'yaru'
+- cursors: adwaita
+
+### Installable themes with scripts deployed in $HOME/.local/bin
+
+
