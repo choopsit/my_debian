@@ -16,30 +16,30 @@ base package: task-xfce-desktop (+ task-desktop)
 
 ### system-tools
 
-- terminal-emulator: xfce4-terminal
+- terminal-emulator: xfce4-terminal *(from desktop base)*
 - system-monitor: htop
 - virtualization support [optional]: virt-manager
 
 ### accessories
 
-- text-editors: vim, mousepad
+- text-editors: mousepad *(from desktop base)*, vim
 - archivers: p7zip-full, file-roller
 
 ### internet
 
 - web-browser: firefox on sid / firefox-esr on bookworm
-- torrent-client [optional]: transmission-qt / deluge
+- torrent-client [optional]: transmission-qt
 
 ### multimedia
 
 - video-player: mpv
-- music-player: quodlibet
-- tag-editor: exfalso
+- music-player: quodlibet *(from desktop base)*
+- tag-editor: exfalso *(from desktop base)*
 - mediacenter [optional]: kodi
 
 ### office
 
-- office-suite: libreoffice (from desktop base)
+- office-suite: libreoffice *(from desktop base)*
 - PDF-viewer: evince
 
 ### graphisme
@@ -63,14 +63,29 @@ run "install.sh" to deploy.
 
 ---------
 
-## Personalisation
+## personalisation
 
-### Default theme
+### default theme
 
 - gtk-theme: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
 - icon-theme: papirus 'yaru'
 - cursors: adwaita
 
-### Installable themes with scripts deployed in $HOME/.local/bin
+### installable themes with scripts deployed in $HOME/.local/bin
 
+#### gtk-themes
 
+- Colloid-gtk-theme gruvbox/nord/teal dark: https://github.com/vinceliuice/Colloid-gtk-theme
+- Gruvbox-GTK-Theme: ttps://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
+- WhiteSur-gtk-theme: https://github.com/vinceliuice/WhiteSur-gtk-theme
+
+#### icon-themes
+
+- Gruvbox-plus-icon-pack: https://github.com/SylEleuth/gruvbox-plus-icon-pack
+- Kora-icon-theme: https://github.com/bikass/kora
+- WhiteSur-icon-theme: https://github.com/vinceliuice/WhiteSur-icon-theme
+
+#### cursors
+
+- McMojave-cursors: https://github.com/vinceliuice/McMojave-cursors
+- WhiteSur-cursors: https://github.com/vinceliuice/WhiteSur-cursors

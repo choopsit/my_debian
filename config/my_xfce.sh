@@ -30,7 +30,7 @@ shadow=,blue
 border=blue,black
 title=white,black
 textbox=white,black
-radiolist=black,black
+radiolist=black,blue
 label=black,blue
 checkbox=black,white
 compactbutton=black,lightgray
@@ -38,7 +38,7 @@ button=white,blue"
 
 
 usage(){
-    errcode="$1"
+    local errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}" &&
         echo -e "${WRN} It's a combination of personal choices. Use it at your own risk."
@@ -53,43 +53,8 @@ usage(){
     exit "${errcode}"
 }
 
-get_longest_elt_length(){
-    echo "$@" | sed "s/ /\n/g" | wc -L
-}
-
-clsrc_menu(){
-    clsrc_title="Clean sources.list"
-    clsrc_text="Modify /etc/apt/sources.list to include properly all needed branches ?"
-    (whiptail --title "${clsrc_title}" --yesno "${clsrc_text}" 8 78) && clsrc=y
-}
-
-softs_menu(){
-    softs_title="Optional softwares"
-    # TODO FIRST:
-    # checkboxes list
-}
-
-games_menu(){
-    games_title="Games"
-    # TODO:
-    # checkboxes list
-}
-
-usrcfg_menu(){
-    usrcfg_title="User config"
-    # TODO:
-    # successive yes/no
-}
-
-config_menus(){
-    clsrc_menu
-    softs_menu
-    games_menu
-    usrcfg_menu
-}
-
 stable_sources(){
-    cat <<EOF > /etc/apt/sources.list
+    cat <<eof > /etc/apt/sources.list
 # ${STABLE}
 deb http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
@@ -102,11 +67,11 @@ deb http://deb.debian.org/debian/ ${STABLE}-updates main contrib non-free non-fr
 # ${STABLE} backports
 deb http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-free-firmware
-EOF
+eof
 }
 
 testing_sources(){
-    cat <<EOF > /etc/apt/sources.list
+    cat <<eof > /etc/apt/sources.list
 # testing
 deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
@@ -114,20 +79,21 @@ deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmwar
 # testing security
 deb http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free non-free-firmware
-EOF
+eof
 }
 
 sid_sources(){
-    cat <<EOF > /etc/apt/sources.list
+    cat <<eof > /etc/apt/sources.list
 # sid
 deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware 
-EOF
+eof
 }
 
 clean_sources(){
-    version="$1"
-    echo -e "${NFO} Cleaning sources.list..."
+    local version="$1"
+
+    echo -e "${nfo} cleaning sources.list..."
     if [[ ${version} == "${STABLE}" ]]; then
         stable_sources
     elif [[ ${version} == "${TESTING}" ]]; then
@@ -137,101 +103,160 @@ clean_sources(){
     fi
 }
 
+clean_sources_menu(){
+    clsrc_title="Clean sources.list"
+    clsrc_text="Modify /etc/apt/sources.list to include properly all needed branches ?"
+    (whiptail --title "${clsrc_title}" --yesno "${clsrc_text}" 8 78) && clean_sources
+}
+
+init_pkglists(){
+    usefull=/tmp/usefull_pkgs
+    useless=/tmp/useless_pkgs
+    pkg_lists="${SCRIPT_PATH}"/pkg
+
+    rm -f "${usefull}"
+    rm -f "${useless}"
+
+    cp "${pkg_lists}"/xfce_base "${usefull}"
+    cp "${pkg_lists}"/xfce_useless "${useless}"
+}
+
+get_longest_elt_length(){
+    echo "$@" | sed "s/ /\n/g" | wc -L
+}
+
+max() {
+    echo -e "$1\n$2" | sort -n | tail -1
+}
+
+replicate() {
+    local n="$1"
+    local x="$2"
+    local str
+
+    for _ in $(seq 1 "$n"); do
+        str="$str$x"
+    done
+    echo "$str"
+}
+
+feed_checkboxes(){
+    local my_list=("$@")
+
+    for i in $(seq 0 2 ${#my_list[@]}); do
+        [[ $i -ge ${#my_list[@]} ]] && continue
+
+        key="${my_list[$i]}"
+        value="${softs[$((i + 1))]}"
+        [[ $value ]] || value="$key"
+
+        checkboxes["$key"]="$value"
+    done
+}
+
+add_apps(){
+    local my_title=$1
+    shift
+    local my_text=$1
+    shift
+    local chkbx_src=("$@")
+
+    unset checkboxes
+    declare -A checkboxes
+
+    feed_checkboxes "${chkbx_src[@]}"
+
+    choices=()
+    local maxlen
+    maxlen="$(get_longest_elt_length "${!checkboxes[@]}")"
+    linesize="$(max "$maxlen" 42)"
+    local spacer
+    spacer="$(replicate "$((linesize - maxlen))" " ")"
+
+    for key in "${!checkboxes[@]}"; do
+        readarray -t my_pkgs < <(printf '%b\n' "${checkboxes[$key]}")
+        primary_pkg="${my_pkgs[0]}"
+        if (dpkg -l | grep -q "^ii  ${primary_pkg}"); then
+            choices+=("${key}" "${spacer}" "ON")
+        else
+            choices+=("${key}" "${spacer}" "OFF")
+        fi
+    done
+
+    result=$(
+    whiptail --title "${my_title}" \
+        --checklist "${my_text}" 13 "$((linesize + 12))" 5 \
+        "${choices[@]}" \
+        3>&2 2>&1 1>&3
+    )
+    [[ $? != 0 ]] && exit 1
+
+    programs=$(echo "$result" | sed 's/" /\n/g' | sed 's/"//g')
+
+    while IFS= read -r pgm; do
+        echo -e "${checkboxes["${pgm}"]}" >> "${usefull}"
+    done <<< "${programs}"
+}
+
+applications_adding_menu(){
+    init_pkglists
+
+    softs_title="Optional softwares"
+    softs_text="Choose application(s) you want to install"
+
+    # list: key1 value1 key2 value2 key3 value3... to feed checkboxes
+    softs=(
+        "virtmanager" "virt-manager"
+        "transmission" "transmission-qt\nqt5ct"
+        "kodi" ""
+        "blender" ""
+        "keepassxc" "keepassxc\nwebext-keepassxc-browser"
+    )
+
+    add_apps "${softs_title}" "${softs_text}" "${softs[@]}"
+
+    games_title="Optional games"
+    games_text="Choose game(s) you want to install"
+
+    games=(
+        "steam" "steam-installer"
+        "pcsx2" ""
+        "quadrapassel" ""
+        "2048" "gnome-2048"
+    )
+
+    add_apps "${games_title}" "${games_text}" "${games[@]}"
+}
+
 sys_update(){
-    echo -e "${NFO} Upgrading system..."
+    echo -e "${nfo} upgrading system..."
     apt update
     apt upgrade -y
     apt full-upgrade -y
 }
 
 install_packages(){
-    usefull=/tmp/usefull_pkgs
-    useless=/tmp/useless_pkgs
-    pkg_lists="${SCRIPT_PATH}"/pkg
-
-    cp "${pkg_lists}"/xfce_base "${usefull}"
-    cp "${pkg_lists}"/xfce_useless "${useless}"
-
     add_i386=n
+
+    grep -q "pcsx2" "${usefull}" && add_i386=y
 
     [[ ${debian_version} == sid ]] &&
         echo -e "firefox\napt-listbugs\nneedrestart" >> "${usefull}" &&
         echo -e "firefox-esr\nzutty" >> "${useless}"
 
-    (lspci | grep -q NVIDIA) && echo "nvidia-driver" >> "${usefull}" && add_i386=y
-
-    # TODO:
-    # add packages returned by menus to "$usefull"
+    (lspci | grep -q nvidia) && add_i386=y && echo "nvidia-driver" >> "${usefull}"
 
     [[ ${add_i386,,} == y ]] && dpkg --add-architecture i386
 
     sys_update
 
-    echo -e "${NFO} Installing new packages then removing useless ones..."
+    echo -e "${nfo} installing new packages then removing useless ones..."
 
     xargs apt install -y < "${usefull}"
 
     xargs apt purge -y < "${useless}"
 
     apt autoremove --purge -y
-}
-
-copy_conf(){
-    src="$1"
-    dst="$2"
-
-    if [[ -f "${src}" ]]; then
-        cp "${src}" "${dst}"/."$(basename "${src}")"
-    elif [[ -d "${src}" ]]; then
-        mkdir -p  "${dst}"/."$(basename "${src}")"
-        cp -r "${src}"/* "${dst}"/."$(basename "${src}")"/
-    fi
-}
-
-user_config(){
-    dest="$1"
-
-    if [[ ${dest} == /etc/skel ]]; then
-        conf_user="future users"
-    else
-        conf_user="$(basename "${dest}")"
-    fi
-
-    echo -e "${NFO} Applying custom configuration for ${conf_user}..."
-
-    for dotfile in "${SCRIPT_PATH}"/dotfiles/skel/*; do
-        copy_conf "${dotfile}" "${dest}"
-    done
-
-    if [[ ${conf_user} != "future users" ]]; then
-        chown -R "${conf_user}":"${conf_user}" "${dest}"
-
-        vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-
-        su -l "${conf_user}" -c "
-        mkdir -p ${dest}/.vim/autoload
-        wget -O ${dest}/.vim/autoload/plug.vim ${vimplug_url}
-        vim +PlugInstall +qall
-        "
-
-        my_git_url="https://github.com/choopsit/my_debian.git"
-        git_folder="${dest}"/Work/git
-        my_git_repo="${git_folder}"/my_debian
-
-        su -l "${conf_user}" -c "mkdir -p ${git_folder}"
-
-        if [[ -d "${my_git_repo}" ]]; then
-            su -l "${conf_user}" -c "cd ${my_git_repo}; git pull"
-        else
-            su -l "${conf_user}" -c "git clone ${my_git_url} ${my_git_repo}"
-        fi
-
-        su -l "${conf_user}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
-    fi
-
-    for useless_file in .bashrc .bash_logout .vimrc .vim_info; do
-        rm -f "${dest}/${useless_file}"
-    done
 }
 
 lightdm_config(){
@@ -244,7 +269,64 @@ draw-user-backgrounds=true
 EOF
 }
 
-sys_config(){
+copy_conf(){
+    local src="$1"
+    local dst="$2"
+
+    if [[ -f "${src}" ]]; then
+        cp "${src}" "${dst}"/."$(basename "${src}")"
+    elif [[ -d "${src}" ]]; then
+        mkdir -p  "${dst}"/."$(basename "${src}")"
+        cp -r "${src}"/* "${dst}"/."$(basename "${src}")"/
+    fi
+}
+
+user_config(){
+    local dest="$1"
+
+    if [[ ${dest} == /etc/skel ]]; then
+        conf_user="future users"
+    else
+        conf_user="$(basename "${dest}")"
+    fi
+
+    echo -e "${nfo} applying custom configuration for ${conf_user}..."
+
+    for dotfile in "${SCRIPT_PATH}"/dotfiles/skel/*; do
+        copy_conf "${dotfile}" "${dest}"
+    done
+
+    if [[ ${conf_user} != "future users" ]]; then
+        chown -R "${conf_user}":"${conf_user}" "${dest}"
+
+        vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+        su -l "${conf_user}" -c "
+        curl -fLo ${dest}/.vim/autoload/plug.vim --create-dirs ${vimplug_url}
+        vim +PlugInstall +qall
+        "
+
+        my_git_url="https://github.com/choopsit/my_debian.git"
+        git_folder="${dest}"/Work/git
+        my_git_repo="${git_folder}"/my_debian
+
+        su -l "${conf_user}" -c "mkdir -p ${git_folder}"
+
+        if [[ -d "${my_git_repo}" ]]; then
+            su -l "${conf_user}" -c "cd ${my_git_repo} && git pull"
+        else
+            su -l "${conf_user}" -c "git clone ${my_git_url} ${my_git_repo}"
+        fi
+
+        su -l "${conf_user}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
+    fi
+
+    for useless_file in .bashrc .bash_logout .vimrc .vim_info; do
+        rm -f "${dest}/${useless_file}"
+    done
+}
+
+system_config(){
     echo -e "${NFO} Applying custom system configuration..."
 
     my_conf=("skel/profile" "skel/vim" "root/bashrc")
@@ -254,7 +336,8 @@ sys_config(){
 
     vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     mkdir -p /root/.vim/autoload
-    wget -O /root/.vim/autoload/plug.vim "${vimplug_url}"
+    curl -fLo /root/.vim/autoload/plug.vim --create-dirs "${vimplug_url}"
+    #wget -O /root/.vim/autoload/plug.vim "${vimplug_url}"
 
     vim +PlugInstall +qall
 
@@ -276,38 +359,52 @@ sys_config(){
     cp "${resources}"/*.xml "${gtk_styles}"/
 
     user_config /etc/skel
-}
-
-apply_config(){
-    [[ ${clsrc} == y ]] && clean_sources
-
-    install_packages
-
-    sys_config
-
-    for sudouser in ${newsudo[@]}; do
-        adduser "${sudouser}" sudo
-    done
-
-    for libvirtuser in ${newlibvirt[@]}; do
-        adduser "${libvirtuser}" libvirt
-    done
 
     wget -qO- https://git.io/papirus-folders-install | sh
     papirus-folders -t Papirus-Dark -C yaru
     "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
     "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
+}
 
-    # TODO:
-    # deploy user config for users chosen from menus
-    for i in $(seq 0 $((users_cpt-1))); do
-        user_config "${users_home[${i}]}"
+add_user_to(){
+    local grp="$1"
+
+    add2grp_title="Privileges elevation"
+    add2grp_text="Add user '${user}' to 'sudo' ${grp} ?"
+    if (whiptail --title "${add2grp_title}" --yesno "${add2grp_text}" 8 78); then
+        adduser "${user}" "${grp}"
+    fi
+}
+
+user_config_menu(){
+    usrcfg_title="user config"
+    softs_text="apply xfce config for '${user}' ?"
+
+    users_cpt=0
+
+    for user_home in /home/*; do
+        user="$(basename "${user_home}")"
+
+        if (grep -q ^"${user}:" /etc/passwd); then
+            if ! (groups "${user}" | grep -q sudo); then
+                add_user_to sudo
+            fi
+
+            if [[ ${inst_virtmanager,,} == y ]] && ! (groups "${user}" | grep -q libvirt); then
+                add_user_to libvirt
+            fi
+
+            cfg_title="User configuration"
+            cfg_text="Apply personalization to ${user}'s profile ?"
+            (whiptail --title "${cfg_title}" --yesno "${cfg_text}" 8 78) &&
+                user_config "${user_home}"
+        fi
     done
 }
 
 end_menu() {
     reboot_title="Custom XFCE installed and configured"
-    reboot_text="Reboot now and enjoy ? "
+    reboot_text="Reboot now and enjoy ?"
     (whiptail --title "${reboot_title}" --yesno "${reboot_text}" 8 78) && reboot
     exit 0
 }
@@ -337,9 +434,15 @@ fi
 ! [[ "$STABLE $TESTING sid" =~ (\ |^)$debian_version(\ |$) ]] &&
     echo -e "${ERR} Unsupported version '${version}'" && exit 1
 
-# go!
-config_menus
-apply_config
+# system part: manage packages, add few scripts to '/usr/local/bin'
+#              and supply personalization for future users
+clean_sources_menu
+applications_adding_menu
+install_packages
+system_config
+
+# users_part: privileges elevation and personalization supply
+user_config_menu
 
 # quit
 end_menu

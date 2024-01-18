@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 description="Deploy my personal desktop configuration"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 set -e
@@ -53,11 +53,12 @@ de_list=("xfce")
 #de_list=("xfce" "gnome")
 
 if [[ ${#de_list[@]} -gt 1 ]]; then
+    # TODO: replace this by whiptail TUI
     i=0
     echo -e "${CYN}Available Desktop Environment configurations${DEF}:"
-    for de in "${de_list[@]}"; do
+    for de_name in "${de_list[@]}"; do
         i=$((i+1))
-        echo "  ${i} - ${de_list[$((i-1))]}"
+        echo "  ${i} - ${de_name}"
     done
 
     read -p "Choose your poison: " -rn1 de_idx
@@ -66,7 +67,7 @@ if [[ ${#de_list[@]} -gt 1 ]]; then
     if [[ ! ${de_idx} =~ '^[1-9]$' ]]; then
         nb_de="${#de_list[@]}"
         if [[ ${de_idx} -ge 1 ]] && [[ ${de_idx} -le ${nb_de} ]]; then
-            my_de="${de_list[$((de_idx-1))]}"
+            de="${de_list[$((de_idx-1))]}"
         else
             echo -e "${ERR} Invalid choice" && exit 1
         fi
@@ -74,7 +75,7 @@ if [[ ${#de_list[@]} -gt 1 ]]; then
         echo -e "${ERR} Invalid choice" && exit 1
     fi
 else
-    my_de="${de_list[0]}"
+    de="${de_list[0]}"
 fi
 
-"${SCRIPT_PATH}/config/${my_de}.sh"
+"${SCRIPT_PATH}/config/my_${de}.sh"
