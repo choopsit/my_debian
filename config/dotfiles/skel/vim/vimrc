@@ -1,14 +1,12 @@
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
-Plug 'nanotech/jellybeans.vim'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'saltstack/salt-vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
 call plug#end()
 
 set viminfo+=n~/.vim/viminfo

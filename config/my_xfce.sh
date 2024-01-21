@@ -34,7 +34,7 @@ radiolist=black,blue
 label=black,blue
 checkbox=black,white
 compactbutton=black,lightgray
-button=white,blue"
+button=white,red"
 
 
 usage(){

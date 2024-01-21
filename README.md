@@ -22,13 +22,15 @@ base package: task-xfce-desktop (+ task-desktop)
 
 ### accessories
 
+- dock: plank
 - text-editors: mousepad *(from desktop base)*, vim
 - archivers: p7zip-full, file-roller
+- day/night-color-temperature: redshift
 
 ### internet
 
 - web-browser: firefox on sid / firefox-esr on bookworm
-- torrent-client [optional]: transmission-qt
+- torrent-client [optional]: transmission-qt *(add qt5ct for better qt5-apps integration)*
 
 ### multimedia
 
@@ -63,12 +65,12 @@ run "install.sh" to deploy.
 
 ---------
 
-## personalisation
+## personalization
 
 ### default theme
 
 - gtk-theme: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
-- icon-theme: papirus 'yaru'
+- icon-theme: papirus 'yaru' (using papirus-folders: https://github.com/PapirusDevelopmentTeam/papirus-folders)
 - cursors: adwaita
 
 ### installable themes with scripts deployed in $HOME/.local/bin

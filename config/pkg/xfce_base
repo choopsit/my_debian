@@ -8,7 +8,6 @@ tree
 htop
 linux-headers-amd64
 build-essential
-deborphan
 firmware-iwlwifi
 task-desktop
 task-xfce-desktop

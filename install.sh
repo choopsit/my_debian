@@ -19,6 +19,21 @@ NFO="${CYN}NFO${DEF}:"
 
 SCRIPT_PATH="$(dirname "$(realpath "$0")")"
 
+# whiptail colors
+export NEWT_COLORS="
+root=,blue
+window=,black
+shadow=,blue
+border=blue,black
+title=white,black
+textbox=white,black
+radiolist=black,blue
+label=black,blue
+checkbox=black,white
+compactbutton=black,lightgray
+button=white,red"
+
+
 usage(){
     errcode="$1"
 
