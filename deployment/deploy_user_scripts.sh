@@ -3,7 +3,7 @@
 set -e
 
 description="Deploy bash scripts to ~/.local/bin"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmai
 
 DEF="\e[0m"
@@ -21,7 +21,7 @@ STABLE=bullseye
 TESTING=bookworm
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"

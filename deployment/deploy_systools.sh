@@ -18,7 +18,7 @@ WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -31,7 +31,7 @@ usage(){
     exit "${errcode}"
 }
 
-push_script(){
+push_script() {
     script="$1"
     script_name="$(basename "${script}")"
     if (cp -f "${script}" /usr/local/bin/"${script_name%.*}"); then

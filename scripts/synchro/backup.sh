@@ -3,7 +3,7 @@
 set -e
 
 description="Backup user config and more in /volumes/backup"
-# version: 12.0
+# version: 12.1
 # author: "Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -22,7 +22,7 @@ DEST_ROOT=/volumes/backup
 DEST_BKP="${DEST_ROOT}/$(date +"%y%m")_${USER}-on-$(hostname -s)"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -36,7 +36,7 @@ usage(){
     exit "${errcode}"
 }
 
-mount_backup_dest(){
+mount_backup_dest() {
     ! (groups | grep -q sudo) &&
         echo "${ERR} ${USER} cannot mount ${DEST_ROOT}. Need 'sudo' rights" &&
         exit 1
@@ -47,7 +47,7 @@ mount_backup_dest(){
     sudo mount "${DEST_ROOT}"
 }
 
-umount_backup_dest(){
+umount_backup_dest() {
     if (groups | grep -q sudo); then
         read -p "Unmount ${DEST_ROOT} [Y/n] ?" -rn1 umnt_dest
         [[ ${umnt_dest} ]] && echo
@@ -55,7 +55,7 @@ umount_backup_dest(){
     fi
 }
 
-rsync_bkp(){
+rsync_bkp() {
     src="$1"
 
     src_path="$(realpath --no-symlinks "${src}")"
@@ -73,7 +73,7 @@ rsync_bkp(){
     fi
 }
 
-home_backup(){
+home_backup() {
     home_bkp="${DEST_BKP}${HOME}"
 
     echo -e "${NFO} Backuping '${YLO}${HOME}${DEF}' to '${YLO}${home_bkp}${DEF}'..."
@@ -88,7 +88,7 @@ home_backup(){
     done
 }
 
-sysconf_backup(){
+sysconf_backup() {
     echo -e "${NFO} Backuping ${YLO}system configurations${DEF} to '${YLO}${DEST_BKP}/${DEF}'..."
 
     elements_to_backup=("/etc/apt/sources.list" "/etc/apt/sources.list.d" \
@@ -104,7 +104,7 @@ sysconf_backup(){
     done
 }
 
-spec_backup(){
+spec_backup() {
     src_folder="$1"
 
     echo -e "${NFO} Backuping '${YLO}${src_folder}${DEF}' to '${YLO}${DEST_BKP}/${DEF}'..."

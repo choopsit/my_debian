@@ -3,7 +3,7 @@
 set -e
 
 description="Install/Update tilix gruvbox theme"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -24,7 +24,7 @@ git_url=https://github.com/MichaelThessel/tilix-gruvbox.git
 thm_gitpath="${HOME}"/Work/git/"${tilix_theme}"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"

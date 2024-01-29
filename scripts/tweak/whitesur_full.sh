@@ -3,7 +3,7 @@
 set -e
 
 description="Install/Update WhiteSur gtk/cursors/icons-theme"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -19,7 +19,7 @@ WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -34,7 +34,7 @@ usage(){
     exit "${errcode}"
 }
 
-whitesur(){
+whitesur() {
     [[ -e ~/.local/bin/whitesur_gtk ]] && whitesur_gtk "$1"
     errcode="$?"
     [[ -e ~/.local/bin/whitesur_cursors ]] && whitesur_cursors "$1"

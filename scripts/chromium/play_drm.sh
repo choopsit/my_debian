@@ -3,7 +3,7 @@
 #set -e
 
 description="Install or remove widevine lib in chromium"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -18,7 +18,7 @@ WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"

@@ -3,7 +3,7 @@
 set -e
 
 description="Install/Update Kora icon-theme"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -23,7 +23,7 @@ THEMES_DIR=/usr/share/icons
 icon_theme=kora
 git_url="https://github.com/bikass/kora.git"
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -38,7 +38,7 @@ usage(){
     exit "${errcode}"
 }
 
-bye_icon(){
+bye_icon() {
     [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${icon_theme} is not installed\n" && exit 0
 
     echo -e "${NFO} Removing ${icon_theme}..."
@@ -49,7 +49,7 @@ bye_icon(){
     exit 0
 }
 
-hello_icon(){
+hello_icon() {
     echo -e "${NFO} Installing/Updating ${icon_theme}..."
 
     if [[ -d "${thm_gitpath}" ]]; then

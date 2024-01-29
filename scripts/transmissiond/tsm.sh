@@ -3,7 +3,7 @@
 set -e
 
 description="Make 'transmission-cli' manipulations simplified"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -18,7 +18,7 @@ WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -36,19 +36,19 @@ usage(){
     exit "${errcode}"
 }
 
-show_queue(){
+show_queue() {
     clear
     show_cmd="transmission-remote -l && echo '\nPress <Ctrl>+<C> to quit'"
     watch "${show_cmd}"
 }
 
-restart_daemon(){
+restart_daemon() {
     echo -e "${NFO} Restarting transmission-daemon..."
     sudo systemctl restart transmission-daemon
     echo -e "${OK} Transmission-daemon restarted\n"
 }
 
-tsmd_status(){
+tsmd_status() {
     my_port="$1"
     echo -e "${CYN}Transmission-daemon status${DEF}:"
     echo -e "${NFO} Testing port '${YLO}${my_port}${DEF}'..."
@@ -62,7 +62,7 @@ tsmd_status(){
     fi
 }
 
-test_port(){
+test_port() {
     tsm_conf="${HOME}/.config/transmission-daemon/settings.json"
 
     [[ ! -f ${tsm_conf} ]] &&
@@ -78,7 +78,7 @@ test_port(){
     fi
 }
 
-add_me(){
+add_me() {
     my_t="$1"
 
     if [[ -f "${my_t}" ]]; then
@@ -91,13 +91,13 @@ add_me(){
     fi
 }
 
-add_torrents(){
+add_torrents() {
     for torrent in "${HOME}"/Downloads/*.torrent; do
         add_me "${torrent}"
     done
 }
 
-remove_torrent(){
+remove_torrent() {
     torrent_id="$2"
     if [[ $(transmission-remote -t "${torrent_id}" -i) ]]; then
         tname="$(transmission-remote -t "${torrent_id}" -i | awk '/Name:/ {print $2}')"

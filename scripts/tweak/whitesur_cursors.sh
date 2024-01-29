@@ -3,7 +3,7 @@
 set -e
 
 description="Install/Update WhiteSur cursors"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -24,7 +24,7 @@ cursors=WhiteSur-cursors
 git_url="https://github.com/vinceliuice/WhiteSur-cursors.git"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -39,7 +39,7 @@ usage(){
     exit "${errcode}"
 }
 
-bye_cursors(){
+bye_cursors() {
     [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${cursors} is not installed\n" && exit 0
 
     echo -e "${NFO} Removing ${cursors}..."
@@ -50,7 +50,7 @@ bye_cursors(){
     exit 0
 }
 
-hello_cursors(){
+hello_cursors() {
     echo -e "${NFO} Installing/Updating ${cursors}..."
 
     if [[ -d "${thm_gitpath}" ]]; then

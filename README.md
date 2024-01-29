@@ -50,10 +50,17 @@ base package: task-xfce-desktop (+ task-desktop)
 - image-editor: gimp
 - 3D-editor [optional]: blender
 
+### science
+
+- freecad [otional]
+- stellarium [optional]
+
 ### games [optional]
 
 - steam
 - pcsx2 (playstation 2 emulator)
+- supertuxkart
+- pokerth
 - quadrapassel (tetris-like)
 - gnome-2048
 

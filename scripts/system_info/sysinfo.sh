@@ -3,7 +3,7 @@
 #set -e
 
 description="Display system informations"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -18,7 +18,7 @@ WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -33,7 +33,7 @@ usage(){
     exit "${errcode}"
 }
 
-sys_upgrade(){
+sys_upgrade() {
     echo -e "${CYN}System Upgrade${DEF}:"
     echo -e "${NFO} Upating repos..."
     sudo apt update
@@ -46,7 +46,7 @@ sys_upgrade(){
     echo
 }
 
-sys_info(){
+sys_info() {
     echo -e "${CYN}System Informations${DEF}:"
     date +"%a %d %b %Y - %R:%S"
     echo

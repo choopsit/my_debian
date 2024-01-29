@@ -3,7 +3,7 @@
 set -e
 
 description="Install/Update Gruvbox gtk-theme gruvbox and nord variants"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -26,7 +26,7 @@ git_url="https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme"
 theme_name=Gruvbox-Dark-BL
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -41,7 +41,7 @@ usage(){
     exit "${errcode}"
 }
 
-bye_gtk(){
+bye_gtk() {
     [[ ! -d "${THEMES_DIR}" ]] && echo -e "${NFO} ${gtk_theme} is not installed\n" && exit 0
 
     echo -e "${NFO} Removing ${gtk_theme}..."
@@ -52,7 +52,7 @@ bye_gtk(){
     exit 0
 }
 
-hello_gtk(){
+hello_gtk() {
     echo -e "${NFO} Installing/Updating ${gtk_theme}..."
 
     pkg=gtk2-engines-murrine

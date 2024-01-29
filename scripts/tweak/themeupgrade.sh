@@ -3,7 +3,7 @@
 #set -e
 
 description="Install/Update my personal choice of gtk/cursors/icons-themes"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -21,7 +21,7 @@ NFO="${CYN}NFO${DEF}:"
 SCRIPT_PATH="$(dirname "$(realpath "$0")")"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"

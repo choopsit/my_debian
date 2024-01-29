@@ -3,7 +3,7 @@
 set -e
 
 description="Create USB bootable key with debian stable on it"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -22,7 +22,7 @@ MINT_V=21.2
 GPARTED_V=1.4.-5
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"
@@ -37,7 +37,7 @@ usage(){
     exit "${errcode}"
 }
 
-check_usbkey(){
+check_usbkey() {
     device="$1"
     if mount | grep -q "${device}"; then
         echo -e "${NFO} Mounted partition(s) from device '${device}'"
@@ -46,7 +46,7 @@ check_usbkey(){
     fi
 }
 
-choose_support(){
+choose_support() {
     support=""
     choices=("debian stable" "linuxmint" "gparted")
     iso_urls[0]="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-${DEBIAN_V}-amd64-netinst.iso"
@@ -70,13 +70,13 @@ choose_support(){
     fi
 }
 
-get_iso(){
+get_iso() {
     iso_url="$1"
     echo -e "${NFO} Downloading ${YLO}${iso_url##*/}${DEF}..."
     wget -O /tmp/my.iso "${iso_url}"
 }
 
-burn_support(){
+burn_support() {
     support="$1"
     device="$2"
     echo -e "${NFO} Deploying ${YLO}${support}${DEF} on '${YLO}${device}${DEF}'..."

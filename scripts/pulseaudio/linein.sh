@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 description="Line-in listening management"
-# version: 12.0
+# version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
 set -e
@@ -15,7 +15,7 @@ CYN="\e[36m"
 ERR="${RED}E${DEF}:"
 OK="${GRN}OK${DEF}:"
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}"

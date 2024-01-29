@@ -37,7 +37,7 @@ compactbutton=black,lightgray
 button=white,red"
 
 
-usage(){
+usage() {
     local errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}" &&
@@ -53,7 +53,7 @@ usage(){
     exit "${errcode}"
 }
 
-stable_sources(){
+stable_sources() {
     cat <<eof > /etc/apt/sources.list
 # ${STABLE}
 deb http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
@@ -70,7 +70,7 @@ deb http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-
 eof
 }
 
-testing_sources(){
+testing_sources() {
     cat <<eof > /etc/apt/sources.list
 # testing
 deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
@@ -82,7 +82,7 @@ deb http://deb.debian.org/debian-security/ testing-security/updates main contrib
 eof
 }
 
-sid_sources(){
+sid_sources() {
     cat <<eof > /etc/apt/sources.list
 # sid
 deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware
@@ -90,7 +90,7 @@ deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware
 eof
 }
 
-clean_sources(){
+clean_sources() {
     local version="$1"
 
     echo -e "${nfo} cleaning sources.list..."
@@ -103,13 +103,13 @@ clean_sources(){
     fi
 }
 
-clean_sources_menu(){
+clean_sources_menu() {
     clsrc_title="Clean sources.list"
     clsrc_text="Modify /etc/apt/sources.list to include properly all needed branches ?"
     (whiptail --title "${clsrc_title}" --yesno "${clsrc_text}" 8 78) && clean_sources
 }
 
-init_pkglists(){
+init_pkglists() {
     usefull=/tmp/usefull_pkgs
     useless=/tmp/useless_pkgs
     pkg_lists="${SCRIPT_PATH}"/pkg
@@ -121,7 +121,7 @@ init_pkglists(){
     cp "${pkg_lists}"/xfce_useless "${useless}"
 }
 
-get_longest_elt_length(){
+get_longest_elt_length() {
     echo "$@" | sed "s/ /\n/g" | wc -L
 }
 
@@ -140,7 +140,7 @@ replicate() {
     echo "$str"
 }
 
-feed_checkboxes(){
+feed_checkboxes() {
     local my_list=("$@")
 
     for i in $(seq 0 2 ${#my_list[@]}); do
@@ -154,7 +154,7 @@ feed_checkboxes(){
     done
 }
 
-add_apps(){
+add_apps() {
     local my_title=$1
     shift
     local my_text=$1
@@ -183,9 +183,14 @@ add_apps(){
         fi
     done
 
+    dialogwheight="$((${#checkboxes[@]} + 8))"
+    dialogwidth="$((linesize + 12))"
+    checklistheight="${#checkboxes[@]}"
+
     result=$(
     whiptail --title "${my_title}" \
-        --checklist "${my_text}" 13 "$((linesize + 12))" 5 \
+        --checklist "${my_text}" \
+        "${dialogheight}" "${dialogwidth}" "${checklistheight}" \
         "${choices[@]}" \
         3>&2 2>&1 1>&3
     )
@@ -198,19 +203,23 @@ add_apps(){
     done <<< "${programs}"
 }
 
-applications_adding_menu(){
+applications_adding_menu() {
     init_pkglists
 
     softs_title="Optional softwares"
     softs_text="Choose application(s) you want to install"
 
-    # list: key1 value1 key2 value2 key3 value3... to feed checkboxes
+    # list: key1 packages1 key2 packages2 key3 packages3... to feed checkboxes
+    # if packages# = key# then packages# can be "" to simplify additions
     softs=(
         "virtmanager" "virt-manager"
         "transmission" "transmission-qt\nqt5ct"
         "kodi" ""
         "blender" ""
+        "inkscape" ""
         "keepassxc" "keepassxc\nwebext-keepassxc-browser"
+        "freecad" ""
+        "stellarium" ""
     )
 
     add_apps "${softs_title}" "${softs_text}" "${softs[@]}"
@@ -223,19 +232,21 @@ applications_adding_menu(){
         "pcsx2" ""
         "quadrapassel" ""
         "2048" "gnome-2048"
+        "supertuxkart" ""
+        "pokerth" ""
     )
 
     add_apps "${games_title}" "${games_text}" "${games[@]}"
 }
 
-sys_update(){
+sys_update() {
     echo -e "${nfo} upgrading system..."
     apt update
     apt upgrade -y
     apt full-upgrade -y
 }
 
-install_packages(){
+install_packages() {
     add_i386=n
 
     grep -q "pcsx2" "${usefull}" && add_i386=y
@@ -259,7 +270,7 @@ install_packages(){
     apt autoremove --purge -y
 }
 
-lightdm_config(){
+lightdm_config() {
     cat <<EOF > "${lightdm_conf}"
 [Seat:*]
 greeter-hide-users=false
@@ -269,7 +280,7 @@ draw-user-backgrounds=true
 EOF
 }
 
-copy_conf(){
+copy_conf() {
     local src="$1"
     local dst="$2"
 
@@ -281,7 +292,7 @@ copy_conf(){
     fi
 }
 
-user_config(){
+user_config() {
     local dest="$1"
 
     if [[ ${dest} == /etc/skel ]]; then
@@ -305,6 +316,8 @@ user_config(){
         curl -fLo ${dest}/.vim/autoload/plug.vim --create-dirs ${vimplug_url}
         vim +PlugInstall +qall
         "
+        #su -l "${conf_user}" -c "wget -O /root/.vim/autoload/plug.vim ${vimplug_url}"
+        #su -l "${conf_user}" -c "vim +PlugInstall +qall"
 
         my_git_url="https://github.com/choopsit/my_debian.git"
         git_folder="${dest}"/Work/git
@@ -326,7 +339,7 @@ user_config(){
     done
 }
 
-system_config(){
+system_config() {
     echo -e "${NFO} Applying custom system configuration..."
 
     my_conf=("skel/profile" "skel/vim" "root/bashrc")
@@ -366,7 +379,7 @@ system_config(){
     "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
 }
 
-add_user_to(){
+add_user_to() {
     local grp="$1"
 
     add2grp_title="Privileges elevation"
@@ -376,28 +389,38 @@ add_user_to(){
     fi
 }
 
-user_config_menu(){
+elevation() {
+    local usr="$1"
+
+    if ! (groups "${usr}" | grep -q sudo); then
+        add_user_to sudo
+    fi
+
+    if [[ ${inst_virtmanager,,} == y ]] && ! (groups "${usr}" | grep -q libvirt); then
+        add_user_to libvirt
+    fi
+}
+
+apply_perso() {
+    local usr="$1"
+
+    cfg_title="User configuration"
+    cfg_text="Apply personalization to ${usr}'s profile ?"
+    if (whiptail --title "${cfg_title}" --yesno "${cfg_text}" 8 78); then
+        user_config "/home/${usr}"
+    fi
+}
+
+user_config_menu() {
     usrcfg_title="user config"
     softs_text="apply xfce config for '${user}' ?"
-
-    users_cpt=0
 
     for user_home in /home/*; do
         user="$(basename "${user_home}")"
 
         if (grep -q ^"${user}:" /etc/passwd); then
-            if ! (groups "${user}" | grep -q sudo); then
-                add_user_to sudo
-            fi
-
-            if [[ ${inst_virtmanager,,} == y ]] && ! (groups "${user}" | grep -q libvirt); then
-                add_user_to libvirt
-            fi
-
-            cfg_title="User configuration"
-            cfg_text="Apply personalization to ${user}'s profile ?"
-            (whiptail --title "${cfg_title}" --yesno "${cfg_text}" 8 78) &&
-                user_config "${user_home}"
+            elevation "${user}"
+            apply_perso "${user}"
         fi
     done
 }

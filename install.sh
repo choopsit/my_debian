@@ -34,7 +34,7 @@ compactbutton=black,lightgray
 button=white,red"
 
 
-usage(){
+usage() {
     errcode="$1"
 
     [[ ${errcode} == 0 ]] && echo -e "${CYN}${description}${DEF}" &&
