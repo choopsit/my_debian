@@ -51,7 +51,7 @@ dlogo=("     ,get\$\$gg.    "
     "     \e[30m#\e[31m#\e[32m#\e[33m#\e[34m#\e[35m#\e[36m#\e[37m#     "
 )
 
-line[0]="${GRN}${USER}${GRY}@${YLO}$(hostname -s)${DEF}"
+line[0]="${GRN}${USER}${DEF}@${YLO}$(hostname -s)${DEF}"
 os="$(awk -F"\"" '/^PRETTY/ {print $2}' /etc/os-release)"
 line[1]="${CYN}OS${DEF}:     ${os}"
 
