@@ -22,7 +22,7 @@
     </property>
     <property name="HDMI-0" type="string" value="MITAC 43&quot;">
       <property name="Active" type="bool" value="true"/>
-      <property name="EDID" type="string" value="5d34be9b7f80f4756b5901f2e348d6d7ae35c254"/>
+      <property name="EDID" type="string" value="188f80fac7ee6b4f5cea1fbe9d3c55306bc346c2"/>
       <property name="Resolution" type="string" value="1920x1080"/>
       <property name="RefreshRate" type="double" value="60"/>
       <property name="Rotation" type="int" value="0"/>
@@ -58,7 +58,7 @@
     </property>
     <property name="HDMI-0" type="string" value="MITAC 43&quot;">
       <property name="Active" type="bool" value="true"/>
-      <property name="EDID" type="string" value="5d34be9b7f80f4756b5901f2e348d6d7ae35c254"/>
+      <property name="EDID" type="string" value="188f80fac7ee6b4f5cea1fbe9d3c55306bc346c2"/>
       <property name="Resolution" type="string" value="1920x1080"/>
       <property name="RefreshRate" type="double" value="60"/>
       <property name="Rotation" type="int" value="0"/>
