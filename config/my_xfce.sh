@@ -307,17 +307,16 @@ user_config() {
         copy_conf "${dotfile}" "${dest}"
     done
 
+    [[ ${debian_version} == sid ]] && rm -rf "${dest}/config/xfce4/terminal"
+
     if [[ ${conf_user} != "future users" ]]; then
         chown -R "${conf_user}":"${conf_user}" "${dest}"
 
         vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+        vimplug_dest="${dest}/.vim/autoload/plug.vim "
 
-        su -l "${conf_user}" -c "
-        curl -fLo ${dest}/.vim/autoload/plug.vim --create-dirs ${vimplug_url}
-        vim +PlugInstall +qall
-        "
-        #su -l "${conf_user}" -c "wget -O /root/.vim/autoload/plug.vim ${vimplug_url}"
-        #su -l "${conf_user}" -c "vim +PlugInstall +qall"
+        su -l "${conf_user}" -c "curl -fLo ${vimplug_dest} --create-dirs ${vimplug_url}"
+        su -l "${conf_user}" -c "vim +PlugInstall +qall"
 
         my_git_url="https://github.com/choopsit/my_debian.git"
         git_folder="${dest}"/Work/git
@@ -348,10 +347,7 @@ system_config() {
     done
 
     vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    mkdir -p /root/.vim/autoload
     curl -fLo /root/.vim/autoload/plug.vim --create-dirs "${vimplug_url}"
-    #wget -O /root/.vim/autoload/plug.vim "${vimplug_url}"
-
     vim +PlugInstall +qall
 
     pulse_param="flat-volumes = no"
