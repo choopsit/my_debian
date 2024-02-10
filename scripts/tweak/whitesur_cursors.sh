@@ -74,11 +74,13 @@ hello_cursors() {
     fi
 
     if ! [[ ${upd_state} =~ ^(Already up to date.|Déjà à jour.)$ ]] ; then
+        pushd "${thm_gitpath}" >/dev/null
         if [[ $(whoami) == root ]]; then
-            "${thm_gitpath}"/install.sh
+            ./install.sh
         else
-            sudo "${thm_gitpath}"/install.sh
+            sudo ./install.sh
         fi
+        popd >/dev/null
     fi
     echo
 }
