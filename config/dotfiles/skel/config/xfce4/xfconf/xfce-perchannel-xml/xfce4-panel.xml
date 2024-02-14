@@ -153,11 +153,11 @@
         <value type="string" value="PCSX2.desktop"/>
       </property>
       <property name="recent" type="array">
+        <value type="string" value="PCSX2.desktop"/>
         <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
         <value type="string" value="synaptic.desktop"/>
         <value type="string" value="transmission-qt.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="PCSX2.desktop"/>
         <value type="string" value="libreoffice-startcenter.desktop"/>
         <value type="string" value="qt5ct.desktop"/>
         <value type="string" value="blueman-manager.desktop"/>

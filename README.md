@@ -78,9 +78,9 @@ run "install.sh" to deploy.
 
 - gtk-theme: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
 - icon-theme: papirus 'yaru' (using papirus-folders: https://github.com/PapirusDevelopmentTeam/papirus-folders)
-- cursors: adwaita
+- cursors: WhiteSur-cursors - https://github.com/vinceliuice/WhiteSur-cursors
 
-### installable themes with scripts deployed in $HOME/.local/bin
+### more installable themes with scripts deployed in $HOME/.local/bin
 
 #### gtk-themes
 
@@ -97,4 +97,3 @@ run "install.sh" to deploy.
 #### cursors
 
 - McMojave-cursors: https://github.com/vinceliuice/McMojave-cursors
-- WhiteSur-cursors: https://github.com/vinceliuice/WhiteSur-cursors
