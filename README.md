@@ -18,7 +18,7 @@ base package: task-xfce-desktop (+ task-desktop)
 
 - terminal-emulator: xfce4-terminal *(from desktop base)*
 - system-monitor: htop
-- virtualization support [optional]: virt-manager
+- virtualization supports [optional]: virt-manager, cockpit-machines
 
 ### accessories
 
@@ -29,14 +29,15 @@ base package: task-xfce-desktop (+ task-desktop)
 
 ### internet
 
-- web-browser: firefox on sid / firefox-esr on bookworm
-- torrent-client [optional]: transmission-qt *(add qt5ct for better qt5-apps integration)*
+- web-browser: firefox on sid|firefox-esr on bookworm, chromium [optional]
+- torrent-clients [optional]: transmission-qt *(add qt5ct for better qt5-apps integration)*, deluge
 
 ### multimedia
 
 - video-player: mpv
-- music-player: quodlibet *(from desktop base)*
+- music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*
+- audio-ripper/editors: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
 
 ### office
@@ -47,19 +48,21 @@ base package: task-xfce-desktop (+ task-desktop)
 ### graphisme
 
 - image-viewer: eog (eye of gnome)
-- image-editor: gimp
+- image-editors [optional]: gimp, inkscape
 - 3D-editor [optional]: blender
 
-### science
+### science [optional]
 
-- freecad [otional]
-- stellarium [optional]
+- freecad
+- leocad (virtual brick CAD)
+- stellarium
 
 ### games [optional]
 
 - steam
 - pcsx2 (playstation 2 emulator)
 - supertuxkart
+- 0ad
 - pokerth
 - quadrapassel (tetris-like)
 - gnome-2048

@@ -131,13 +131,13 @@ max() {
 
 replicate() {
     local n="$1"
-    local x="$2"
+    local pattern="$2"
     local str
 
     for _ in $(seq 1 "$n"); do
-        str="$str$x"
+        str="${str}${pattern}"
     done
-    echo "$str"
+    echo "${str}"
 }
 
 feed_checkboxes() {
@@ -148,9 +148,9 @@ feed_checkboxes() {
 
         key="${my_list[$i]}"
         value="${softs[$((i + 1))]}"
-        [[ $value ]] || value="$key"
+        [[ ${value} ]] || value="${key}"
 
-        checkboxes["$key"]="$value"
+        checkboxes["${key}"]="${value}"
     done
 }
 
@@ -169,12 +169,12 @@ add_apps() {
     choices=()
     local maxlen
     maxlen="$(get_longest_elt_length "${!checkboxes[@]}")"
-    linesize="$(max "$maxlen" 42)"
+    linesize="$(max "${maxlen}" 42)"
     local spacer
     spacer="$(replicate "$((linesize - maxlen))" " ")"
 
     for key in "${!checkboxes[@]}"; do
-        readarray -t my_pkgs < <(printf '%b\n' "${checkboxes[$key]}")
+        readarray -t my_pkgs < <(printf '%b\n' "${checkboxes[${key}]}")
         primary_pkg="${my_pkgs[0]}"
         if (dpkg -l | grep -q "^ii  ${primary_pkg}"); then
             choices+=("${key}" "${spacer}" "ON")
@@ -196,7 +196,7 @@ add_apps() {
     )
     [[ $? != 0 ]] && exit 1
 
-    programs=$(echo "$result" | sed 's/" /\n/g' | sed 's/"//g')
+    programs=$(echo "${result}" | sed 's/" /\n/g' | sed 's/"//g')
 
     while IFS= read -r pgm; do
         echo -e "${checkboxes["${pgm}"]}" >> "${usefull}"
@@ -206,37 +206,79 @@ add_apps() {
 applications_adding_menu() {
     init_pkglists
 
-    softs_title="Optional softwares"
-    softs_text="Choose application(s) you want to install"
+    nets_title="Internet and security"
+    nets_text="Choose internet and security application(s) you want to install"
 
     # list: key1 packages1 key2 packages2 key3 packages3... to feed checkboxes
     # if packages# = key# then packages# can be "" to simplify additions
-    softs=(
-        "virtmanager" "virt-manager"
-        "transmission" "transmission-qt\nqt5ct"
-        "kodi" ""
-        "blender" ""
-        "inkscape" ""
+    nets=(
+        "chromium" ""
+        "deluge" ""
+        "transmission-qt" "transmission-qt\nqt5ct"
         "keepassxc" "keepassxc\nwebext-keepassxc-browser"
-        "freecad" ""
-        "stellarium" ""
     )
 
-    add_apps "${softs_title}" "${softs_text}" "${softs[@]}"
+    add_apps "${nets_title}" "${nets_text}" "${nets[@]}"
 
-    games_title="Optional games"
+    media_title="Multimedia"
+    media_text="Choose multimedia application(s) you want to install"
+
+    media=(
+        "lollypop" ""
+        "soundconverter" ""
+        "sound-juicer" ""
+        "audacity" ""
+        "kodi" ""
+    )
+
+    add_apps "${media_title}" "${media_text}" "${media[@]}"
+
+    graph_title="Graphics"
+    graph_text="Choose graphics tool(s) you want to install"
+
+    graph=(
+        "gimp" ""
+        "blender" ""
+        "inkscape" ""
+    )
+
+    add_apps "${graph_title}" "${graph_text}" "${graph[@]}"
+
+    virt_title="Virtualization"
+    virt_text="Choose Virtual machines manager(s) you want to install"
+
+    virt=(
+        "virt-manager" ""
+        "cockpit-images" "cockpit\ncockpit-machines\ncockpit-pcp"
+    )
+
+    add_apps "${virt_title}" "${virt_text}" "${virt[@]}"
+
+    games_title="Games"
     games_text="Choose game(s) you want to install"
 
     games=(
         "steam" "steam-installer"
         "pcsx2" ""
+        "0ad" ""
         "quadrapassel" ""
-        "2048" "gnome-2048"
+        "gnome-2048" ""
         "supertuxkart" ""
         "pokerth" ""
     )
 
     add_apps "${games_title}" "${games_text}" "${games[@]}"
+
+    sci_title="Science"
+    sci_text="Choose science/educational application(s) you want to install"
+
+    sci=(
+        "leocad" ""
+        "freecad" ""
+        "stellarium" ""
+    )
+
+    add_apps "${sci_title}" "${sci_text}" "${sci[@]}"
 }
 
 sys_update() {
@@ -249,13 +291,13 @@ sys_update() {
 install_packages() {
     add_i386=n
 
-    grep -q "pcsx2" "${usefull}" && add_i386=y
-
     [[ ${debian_version} == sid ]] &&
         echo -e "firefox\napt-listbugs\nneedrestart" >> "${usefull}" &&
         echo -e "firefox-esr\nzutty" >> "${useless}"
 
     (lspci | grep -q nvidia) && add_i386=y && echo "nvidia-driver" >> "${usefull}"
+
+    grep -q "pcsx2" "${usefull}" && add_i386=y
 
     [[ ${add_i386,,} == y ]] && dpkg --add-architecture i386
 
@@ -379,7 +421,7 @@ add_user_to() {
     local grp="$1"
 
     add2grp_title="Privileges elevation"
-    add2grp_text="Add user '${user}' to 'sudo' ${grp} ?"
+    add2grp_text="Add user '${user}' to '${grp}' group ?"
     if (whiptail --title "${add2grp_title}" --yesno "${add2grp_text}" 8 78); then
         adduser "${user}" "${grp}"
     fi
@@ -392,7 +434,7 @@ elevation() {
         add_user_to sudo
     fi
 
-    if [[ ${inst_virtmanager,,} == y ]] && ! (groups "${usr}" | grep -q libvirt); then
+    if grep -q 'virt\|cockpit' "${usefull}" && ! (groups "${usr}" | grep -q libvirt); then
         add_user_to libvirt
     fi
 }
