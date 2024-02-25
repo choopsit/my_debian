@@ -375,8 +375,8 @@ user_config() {
         su -l "${conf_user}" -c "${my_git_repo}/deployment/deploy_user_scripts.sh"
     fi
 
-    for useless_file in .bashrc .bash_logout .vimrc .vim_info; do
-        rm -f "${dest}/${useless_file}"
+    for obsolete_dotfile in .bashrc .bash_logout .vimrc .vim_info; do
+        rm -f "${dest}/${obsolete_dotfile}"
     done
 }
 

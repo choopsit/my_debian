@@ -4,6 +4,12 @@ personal debian xfce config (tested on 12.x "bookworm" and sid)
 
 ---------
 
+## how to
+
+run "install.sh" to deploy.
+
+---------
+
 ## desktop
 
 base package: task-xfce-desktop (+ task-desktop)
@@ -37,7 +43,7 @@ base package: task-xfce-desktop (+ task-desktop)
 - video-player: mpv
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*
-- audio-ripper/editors: sound-juicer, soundconverter, audacity
+- audio-ripper/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
 
 ### office
@@ -69,12 +75,6 @@ base package: task-xfce-desktop (+ task-desktop)
 
 ---------
 
-## how to
-
-run "install.sh" to deploy.
-
----------
-
 ## personalization
 
 ### default theme
@@ -87,16 +87,37 @@ run "install.sh" to deploy.
 
 #### gtk-themes
 
-- Colloid-gtk-theme gruvbox/nord/teal dark: https://github.com/vinceliuice/Colloid-gtk-theme
-- Gruvbox-GTK-Theme: ttps://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
-- WhiteSur-gtk-theme: https://github.com/vinceliuice/WhiteSur-gtk-theme
+- colloid\_gtk: gruvbox/nord/teal dark: https://github.com/vinceliuice/Colloid-gtk-theme
+- gruvbox\_gtk: ttps://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
+- whiteSur\_gtk: https://github.com/vinceliuice/WhiteSur-gtk-theme
 
 #### icon-themes
 
-- Gruvbox-plus-icon-pack: https://github.com/SylEleuth/gruvbox-plus-icon-pack
-- Kora-icon-theme: https://github.com/bikass/kora
-- WhiteSur-icon-theme: https://github.com/vinceliuice/WhiteSur-icon-theme
+- gruvbox\_icons: https://github.com/SylEleuth/gruvbox-plus-icon-pack
+- kora\_icons: https://github.com/bikass/kora
+- whitesur\_icons: https://github.com/vinceliuice/WhiteSur-icon-theme
 
 #### cursors
 
-- McMojave-cursors: https://github.com/vinceliuice/McMojave-cursors
+- mcmojave\_cursors: https://github.com/vinceliuice/McMojave-cursors
+
+---------
+
+## Other scripts
+
+### userlevel: $HOME/.local/bin
+
+- pastep: set volume up/down step in percent
+- linein: switch audio line in on/off
+- sysinfo: combine bfetch and bdf (+ upgrade)
+- statgitrepo: return state of git repos in $HOME/Work/git
+- themeupragde: upgrade themes installed with supplied scripts
+- tsm: simple transmission-daemon management
+- backup: rsync backup (few sytem conf + $HOME important things) to /volumes/backup
+
+### systemlevel: /usr/local/bin
+
+- bdf: graphical view of 'df' (python alternative: pydf)
+- bfetch: system informations (python alternative: pyfetch)
+- netinfo: return connexions informations (actually python but may switch to bash)
+- udbcreator: generate bootable USB key
