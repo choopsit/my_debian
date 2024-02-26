@@ -6,13 +6,13 @@ personal debian xfce config (tested on 12.x "bookworm" and sid)
 
 ## how to
 
-run "install.sh" to deploy.
+run "**install.sh**" to deploy.
 
 ---------
 
 ## desktop
 
-base package: task-xfce-desktop (+ task-desktop)
+**base package**: task-xfce-desktop (+ task-desktop)
 
 ---------
 
@@ -79,27 +79,27 @@ base package: task-xfce-desktop (+ task-desktop)
 
 ### default theme
 
-- gtk-theme: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
-- icon-theme: papirus 'yaru' (using papirus-folders: https://github.com/PapirusDevelopmentTeam/papirus-folders)
-- cursors: WhiteSur-cursors - https://github.com/vinceliuice/WhiteSur-cursors
+- **gtk-theme**: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
+- **icon-theme**: papirus 'yaru' (using papirus-folders: https://github.com/PapirusDevelopmentTeam/papirus-folders)
+- **cursors**: WhiteSur-cursors - https://github.com/vinceliuice/WhiteSur-cursors
 
 ### more installable themes with scripts deployed in $HOME/.local/bin
 
 #### gtk-themes
 
-- colloid\_gtk: gruvbox/nord/teal dark: https://github.com/vinceliuice/Colloid-gtk-theme
-- gruvbox\_gtk: ttps://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
-- whiteSur\_gtk: https://github.com/vinceliuice/WhiteSur-gtk-theme
+- **colloid_gtk**: gruvbox/nord/teal dark: https://github.com/vinceliuice/Colloid-gtk-theme
+- **gruvbox_gtk**: https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
+- **whiteSur_gtk**: https://github.com/vinceliuice/WhiteSur-gtk-theme
 
 #### icon-themes
 
-- gruvbox\_icons: https://github.com/SylEleuth/gruvbox-plus-icon-pack
-- kora\_icons: https://github.com/bikass/kora
-- whitesur\_icons: https://github.com/vinceliuice/WhiteSur-icon-theme
+- **gruvbox_icons**: https://github.com/SylEleuth/gruvbox-plus-icon-pack
+- **kora_icons**: https://github.com/bikass/kora
+- **whitesur_icons**: https://github.com/vinceliuice/WhiteSur-icon-theme
 
 #### cursors
 
-- mcmojave\_cursors: https://github.com/vinceliuice/McMojave-cursors
+- **mcmojave_cursors**: https://github.com/vinceliuice/McMojave-cursors
 
 ---------
 
@@ -107,17 +107,17 @@ base package: task-xfce-desktop (+ task-desktop)
 
 ### userlevel: $HOME/.local/bin
 
-- pastep: set volume up/down step in percent
-- linein: switch audio line in on/off
-- sysinfo: combine bfetch and bdf (+ upgrade)
-- statgitrepo: return state of git repos in $HOME/Work/git
-- themeupragde: upgrade themes installed with supplied scripts
-- tsm: simple transmission-daemon management
-- backup: rsync backup (few sytem conf + $HOME important things) to /volumes/backup
+- **pastep**: set volume up/down step in percent
+- **linein**: switch audio line in on/off
+- **sysinfo**: combine bfetch and bdf (+ upgrade)
+- **statgitrepo**: return state of git repos in $HOME/Work/git
+- **themeupragde**: upgrade themes installed with supplied scripts
+- **tsm**: simple transmission-daemon management
+- **backup**: rsync backup (few sytem conf + $HOME important things) to /volumes/backup
 
 ### systemlevel: /usr/local/bin
 
-- bdf: graphical view of 'df' (python alternative: pydf)
-- bfetch: system informations (python alternative: pyfetch)
-- netinfo: return connexions informations (actually python but may switch to bash)
-- udbcreator: generate bootable USB key
+- **bdf**: graphical view of 'df' (python alternative: pydf)
+- **bfetch**: system informations (python alternative: pyfetch)
+- **netinfo**: return connexions informations (actually python but may switch to bash)
+- **udbcreator**: generate bootable USB key
