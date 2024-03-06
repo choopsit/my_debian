@@ -27,7 +27,8 @@ usage() {
     echo -e "${CYN}Options${DEF}:"
     echo -e "  -h,--help:    Print this help"
     echo -e "  -u,--upgrade: Upgrade system before displaying informations"
-    echo -e "  -ub: Upgrade system and do a backup before displaying informations"
+    echo -e "  -U,--fullupgrade: Upgrade system (fullupgrade) before displaying informations"
+    echo -e "  -b,--backup: Upgrade system and do a backup before displaying informations"
     echo
 
     exit "${errcode}"
@@ -39,7 +40,11 @@ sys_upgrade() {
     sudo apt update
 
     echo -e "\n${NFO} Upgrading..."
-    sudo apt full-upgrade
+    if [[ ${full_upgrade} ]] ; then
+        sudo apt full-upgrade
+    else
+        sudo apt upgrade
+    fi
 
     echo -e "\n${NFO} Purging unneeded packages..."
     sudo apt autoremove --purge
@@ -76,6 +81,10 @@ if [[ $1 =~ ^-(h|-help)$ ]]; then
 elif [[ $1 =~ ^-(u|-upgrade)$ ]]; then
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
     do_upgrade=true
+elif [[ $1 =~ ^-(U|-fullupgrade)$ ]]; then
+    (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
+    do_upgrade=true
+    full_upgrade=true
 elif [[ $1 == -ub ]]; then
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
     do_upgrade=true
