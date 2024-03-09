@@ -17,9 +17,9 @@ OK="${GRN}OK${DEF}:"
 WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
-DEBIAN_V=12.2.0
-MINT_V=21.2
-GPARTED_V=1.4.-5
+DEBIAN_V="12.5.0"
+MINT_V="21.3"
+GPARTED_V="1.6.0-1"
 
 
 usage() {
