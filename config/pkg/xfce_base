@@ -6,7 +6,6 @@ rsync
 p7zip-full
 tree
 htop
-linux-headers-amd64
 build-essential
 firmware-iwlwifi
 task-desktop

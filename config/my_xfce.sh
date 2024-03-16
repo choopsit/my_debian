@@ -295,7 +295,7 @@ install_packages() {
         echo -e "firefox\napt-listbugs\nneedrestart" >> "${usefull}" &&
         echo -e "firefox-esr\nzutty" >> "${useless}"
 
-    (lspci | grep -q nvidia) && add_i386=y && echo "nvidia-driver" >> "${usefull}"
+    (lspci | grep -qi nvidia) && add_i386=y && echo "nvidia-driver" >> "${usefull}"
 
     grep -q "pcsx2" "${usefull}" && add_i386=y
 
