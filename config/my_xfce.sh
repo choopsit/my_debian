@@ -147,7 +147,7 @@ feed_checkboxes() {
         [[ $i -ge ${#my_list[@]} ]] && continue
 
         key="${my_list[$i]}"
-        value="${softs[$((i + 1))]}"
+        value="${my_list[$((i + 1))]}"
         [[ ${value} ]] || value="${key}"
 
         checkboxes["${key}"]="${value}"
@@ -199,7 +199,7 @@ add_apps() {
     programs=$(echo "${result}" | sed 's/" /\n/g' | sed 's/"//g')
 
     while IFS= read -r pgm; do
-        echo -e "${checkboxes["${pgm}"]}" >> "${usefull}"
+        [[ ${pgm} ]] && echo -e "${checkboxes["${pgm}"]}" >> "${usefull}"
     done <<< "${programs}"
 }
 
