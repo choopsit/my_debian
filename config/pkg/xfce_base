@@ -6,6 +6,7 @@ rsync
 p7zip-full
 tree
 htop
+linux-headers-amd64
 build-essential
 firmware-iwlwifi
 task-desktop
@@ -17,6 +18,7 @@ xfce4-whiskermenu-plugin
 bluetooth
 blueman
 slick-greeter
+gvfs
 tumbler-plugins-extra
 mediainfo
 file-roller
