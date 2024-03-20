@@ -146,7 +146,7 @@ sepm="\t\t  "
 swap="$(free -m | awk '/^Swap:/ {print $3 "/" $2 "MB"}')"
 line[9]="${CYN}RAM${DEF}:    ${ram}i${sepm}${CYN}Swap${DEF}: ${swap}"
 
-colors=("${RED}" "${GRN}" "${YLO}" "${BLU}" "${PUR}" "${CYN}")
+colors=("${RED}" "${GRN}" "${YLO}" "${BLU}" "${PUR}" "${CYN}" "${GRY}")
 rand=$[$RANDOM % ${#colors[@]}]
 COL="${colors[${rand}]}"
 
