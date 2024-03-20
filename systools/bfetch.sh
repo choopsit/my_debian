@@ -10,6 +10,8 @@ DEF="\e[0m"
 RED="\e[31m"
 GRN="\e[32m"
 YLO="\e[33m"
+BLU="\e[34m"
+PUR="\e[35m"
 CYN="\e[36m"
 GRY="\e[37m"
 
@@ -144,9 +146,13 @@ sepm="\t\t  "
 swap="$(free -m | awk '/^Swap:/ {print $3 "/" $2 "MB"}')"
 line[9]="${CYN}RAM${DEF}:    ${ram}i${sepm}${CYN}Swap${DEF}: ${swap}"
 
+colors=("${RED}" "${GRN}" "${YLO}" "${BLU}" "${PUR}" "${CYN}")
+rand=$[$RANDOM % ${#colors[@]}]
+COL="${colors[${rand}]}"
+
 for i in $(seq ${#dlogo[@]}); do
     idx=$(($i-1))
-    echo -e "${RED}${dlogo[$idx]}${line[$idx]}"
+    echo -e "${COL}${dlogo[$idx]}${line[$idx]}"
 done
 
 echo
