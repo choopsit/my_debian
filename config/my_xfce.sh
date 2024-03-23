@@ -206,6 +206,13 @@ add_apps() {
 applications_adding_menu() {
     init_pkglists
 
+    swterm_title="Terminal emulator"
+    swterm_text="Use terminator instead of xfce-terminal ?"
+    if (whiptail --title "${swterm_title}" --yesno "${swterm_text}" 8 78); then
+        echo "terminator" >> "${usefull}"
+        echo "xfce4-terminal" >> "${useless}"
+    fi
+
     nets_title="Internet and security"
     nets_text="Choose internet and security application(s) you want to install"
 

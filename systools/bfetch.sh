@@ -82,7 +82,11 @@ shell+=" ${shell_version}"
 sept="\t\t  "
 [[ ${#shell} -lt 7 ]] && sept="\t\t\t  "
 [[ ${#shell} -gt 14 ]] && sept="\t  "
-term="$(awk -F"'" '/exec/ {print $2}' /etc/alternatives/x-terminal-emulator)"
+if (grep -q terminator /etc/alternatives/x-terminal-emulator); then
+    term="terminator"
+else
+    term="$(awk -F"'" '/exec/ {print $2}' /etc/alternatives/x-terminal-emulator)"
+fi
 term_version="$(dpkg-query -W "${term}" | awk '{print $2}')"
 term+=" ${term_version}"
 line[4]="${CYN}Shell${DEF}:  ${shell}${sept}${CYN}Terminal${DEF}:  ${term}"

@@ -1,0 +1,47 @@
+[global_config]
+  tab_position = bottom
+  scroll_tabbar = True
+  enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
+  suppress_multiple_term_dialog = True
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#282828"
+    background_darkness = 0.92
+    background_type = transparent
+    font = Noto Mono 11
+    foreground_color = "#ebdbb2"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    palette = "#282828:#cc241d:#98971a:#d79921:#2c746b:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    login_shell = True
+    use_system_font = False
+    use_theme_colors = True
+    bold_is_bright = True
+    title_hide_sizetext = True
+    title_transmit_fg_color = "#ebdbb2"
+    title_transmit_bg_color = "#32312f"
+    title_receive_fg_color = "#2d87c7"
+    title_receive_bg_color = "#32312f"
+    title_inactive_fg_color = "#77767b"
+    title_inactive_bg_color = "#32312f"
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 972:32
+      maximised = False
+      fullscreen = False
+      size = 932, 928
+      last_active_term = 2abddf77-72d3-4f82-8e42-959abb663aa3
+      last_active_window = True
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      uuid = 2abddf77-72d3-4f82-8e42-959abb663aa3
+[plugins]
