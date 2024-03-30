@@ -29,7 +29,8 @@ usage() {
     echo -e "${CYN}Usage${DEF}:"
     echo -e "  '$(basename "$0") [OPTION]' as root or using sudo"
     echo -e "${CYN}Options${DEF}:"
-    echo -e "  -h,--help: Print this help"
+    echo -e "  -h,--help:    Print this help"
+    echo -e "  -c,--compact: Compact mode"
     echo
 
     exit "${errcode}"
@@ -37,7 +38,7 @@ usage() {
 
 
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
-
+[[ $1 =~ ^-(c|-compact)$ ]] && binfo && exit
 [[ $1 ]] && echo -e "${ERR} Bad argument" && usage 1
 
 
