@@ -77,8 +77,8 @@ else
     shell_versiob=${shell_version/xonsh\//xonsh }
     shell_version=${shell_version/options*}
     shell_version=${shell_version/\(*\)}
+    shell+=" ${shell_version}"
 fi
-shell+=" ${shell_version}"
 sept="\t\t  "
 [[ ${#shell} -lt 7 ]] && sept="\t\t\t  "
 [[ ${#shell} -gt 14 ]] && sept="\t  "
