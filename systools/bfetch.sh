@@ -58,7 +58,7 @@ line[0]="${GRN}${USER}${DEF}@${YLO}$(hostname -s)${DEF}"
 os="$(awk -F"\"" '/^PRETTY/ {print $2}' /etc/os-release)"
 line[1]="${CYN}OS${DEF}:     ${os}"
 
-kernel="$(uname -r)"
+kernel="$(uname -sr)"
 sepk="\t\t  "
 [[ ${#kernel} -lt 7 ]] && sepk="\t\t\t  "
 [[ ${#kernel} -gt 14 ]] && sepk="\t  "

@@ -38,7 +38,7 @@ my_swap="$(free -m | awk '/^Swap:/ {print $3 "/" $2 "MB"}')"
 
 echo -e "${col_deb}   .a#\$\$#a.   ${col_usr}${USER}${DEF}@${YLO}$(hostname -s)${DEF}"
 echo -e "${col_deb}  d#\"    \"#b  ${CYN}OS${DEF}: ${my_os}"
-echo -e "${col_deb}  ##  d\"  ##  ${CYN}kernel${DEF}: $(uname -r)"
+echo -e "${col_deb}  ##  d\"  ##  ${CYN}kernel${DEF}: $(uname -sr)"
 echo -e "${col_deb}  \"#. \"#\$#\"   ${CYN}shell${DEF}: ${my_shell}"
 echo -e "${col_deb}   \"#.        ${CYN}packages${DEF}: $(dpkg -l | grep '^ii' | wc -l)"
 echo -e "${col_deb}     \"+.      ${CYN}uptime${DEF}: $(uptime -p | sed 's/up //')"
