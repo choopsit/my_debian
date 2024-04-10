@@ -203,6 +203,18 @@ add_apps() {
     done <<< "${programs}"
 }
 
+virtualization_menu() {
+    virt_title="Virtualization"
+    virt_text="Choose Virtual machines manager(s) you want to install"
+
+    virt=(
+        "virt-manager" ""
+        "cockpit-images" "cockpit\ncockpit-machines\ncockpit-pcp"
+    )
+
+    add_apps "${virt_title}" "${virt_text}" "${virt[@]}"
+}
+
 applications_adding_menu() {
     init_pkglists
 
@@ -251,15 +263,7 @@ applications_adding_menu() {
 
     add_apps "${graph_title}" "${graph_text}" "${graph[@]}"
 
-    virt_title="Virtualization"
-    virt_text="Choose Virtual machines manager(s) you want to install"
-
-    virt=(
-        "virt-manager" ""
-        "cockpit-images" "cockpit\ncockpit-machines\ncockpit-pcp"
-    )
-
-    add_apps "${virt_title}" "${virt_text}" "${virt[@]}"
+    (systemd-detect-virt >/dev/null) || virtualization_menu
 
     games_title="Games"
     games_text="Choose game(s) you want to install"
