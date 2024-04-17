@@ -144,12 +144,12 @@ line[7]="${CYN}CPU${DEF}:    ${cpu} (${cpu_cores}) @ ${cpu_speed}MHz"
 gpu="$(lspci | grep 'display\|3D\|VGA' | sed -e 's/.*\[\(.*\)\].*/\1/')"
 line[8]="${CYN}GPU${DEF}:    ${gpu}"
 
-ram="$(free -m | awk '/^Mem:/ {print $3 "/" $2 "MB"}')"
+ram="$(free -m | awk '/^Mem:/ {print $3 "/" $2 " MB"}')"
 sepm="\t\t  "
 [[ ${#ram} -lt 7 ]] && sepm="\t\t\t  "
 [[ ${#ram} -gt 14 ]] && sepm="\t  "
-swap="$(free -m | awk '/^Swap:/ {print $3 "/" $2 "MB"}')"
-line[9]="${CYN}RAM${DEF}:    ${ram}i${sepm}${CYN}Swap${DEF}: ${swap}"
+swap="$(free -m | awk '/^Swap:/ {print $3 "/" $2 " MB"}')"
+line[9]="${CYN}RAM${DEF}:    ${ram}${sepm}${CYN}Swap${DEF}: ${swap}"
 
 colors=("${RED}" "${GRN}" "${YLO}" "${BLU}" "${PUR}" "${CYN}" "${GRY}")
 rand=$[$RANDOM % ${#colors[@]}]
