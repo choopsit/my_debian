@@ -234,7 +234,7 @@ applications_adding_menu() {
         "chromium" ""
         "deluge" ""
         "transmission-qt" "transmission-qt\nqt5ct"
-        "keepassxc" "keepassxc\nwebext-keepassxc-browser"
+        "keepassxc" "keepassxc-full\nwebext-keepassxc-browser"
     )
 
     add_apps "${nets_title}" "${nets_text}" "${nets[@]}"
