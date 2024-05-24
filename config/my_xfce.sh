@@ -218,18 +218,37 @@ virtualization_menu() {
 applications_adding_menu() {
     init_pkglists
 
+    if ! (dpkg -l | grep -q "^ii  openssh-server"); then
+        $ssh_title="ssh server"
+        $ssh_text="Install ssh server ?"
+        if (whiptail --title "${ssh_title}" --yesno "${ssh_text}" 8 78); then
+            echo "openssh-server" >>"${usefull}"
+        fi
+    fi
+
     swterm_title="Terminal emulator"
     swterm_text="Use terminator instead of xfce-terminal ?"
     if (whiptail --title "${swterm_title}" --yesno "${swterm_text}" 8 78); then
-        echo "terminator" >> "${usefull}"
-        echo "xfce4-terminal" >> "${useless}"
+        echo "terminator" >>"${usefull}"
+        echo "xfce4-terminal" >>"${useless}"
     fi
+
+    tools_title="Tools"
+    tools_text="Choose tool(s) you want to install"
+
+    # list: key1 packages1 key2 packages2 key3 packages3... to feed checkboxes
+    # if packages# = key# then packages# can be "" to simplify additions
+    tools=(
+        "flameshot" ""
+        "gnome-system-monitor" ""
+        "galculator"
+    )
+
+    add_apps "${tools_title}" "${tools_text}" "${tools[@]}"
 
     nets_title="Internet and security"
     nets_text="Choose internet and security application(s) you want to install"
 
-    # list: key1 packages1 key2 packages2 key3 packages3... to feed checkboxes
-    # if packages# = key# then packages# can be "" to simplify additions
     nets=(
         "chromium" ""
         "deluge" ""

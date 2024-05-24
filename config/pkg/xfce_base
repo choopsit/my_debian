@@ -1,7 +1,6 @@
 vim
 curl
 git
-openssh-server
 rsync
 p7zip-full
 tree
@@ -15,6 +14,7 @@ xfce4-screenshooter
 xfce4-appmenu-plugin
 xfce4-weather-plugin
 xfce4-whiskermenu-plugin
+libfuse2t64
 bluetooth
 blueman
 slick-greeter
@@ -31,5 +31,4 @@ cups
 system-config-printer
 evince
 eog
-galculator
 mpv
