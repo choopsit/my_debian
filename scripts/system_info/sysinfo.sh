@@ -11,6 +11,7 @@ RED="\e[31m"
 GRN="\e[32m"
 YLO="\e[33m"
 CYN="\e[36m"
+GRY="\e[37m"
 
 ERR="${RED}ERR${DEF}:"
 OK="${GRN}OK${DEF}:"
@@ -36,7 +37,7 @@ usage() {
 
 sys_upgrade() {
     echo -e "${CYN}System Upgrade${DEF}:"
-    echo -e "${NFO} Upating repos..."
+    echo -e "${NFO} Updating repos..."
     sudo apt update
 
     echo -e "\n${NFO} Upgrading..."
@@ -66,7 +67,8 @@ sys_info() {
 
     (dpkg -l | grep -q "^ii  libvirt0") && (virsh list | grep -q running) &&
         echo -e "${CYN}Virtual Machine(s) running${DEF}:" &&
-        virsh list | awk '/running/{print $2}' &&
+        virsh list | awk '/running/{print "\033[36m> \033[0m"$2}' &&
+        #virsh list | awk '/running/{print "\033[36m> \033[37m"$2"\033[0m"}' &&
         echo
 
     (dpkg -l | grep -q "^ii  transmission-daemon") &&
