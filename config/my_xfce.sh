@@ -219,8 +219,8 @@ applications_adding_menu() {
     init_pkglists
 
     if ! (dpkg -l | grep -q "^ii  openssh-server"); then
-        $ssh_title="ssh server"
-        $ssh_text="Install ssh server ?"
+        ssh_title="ssh server"
+        ssh_text="Install openssh-server ?"
         if (whiptail --title "${ssh_title}" --yesno "${ssh_text}" 8 78); then
             echo "openssh-server" >>"${usefull}"
         fi
