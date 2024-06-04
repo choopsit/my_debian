@@ -88,7 +88,6 @@ run "**install.sh**" to deploy.
 #### gtk-themes
 
 - **colloid_gtk**: gruvbox/nord/teal dark: https://github.com/vinceliuice/Colloid-gtk-theme
-- **gruvbox_gtk**: https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
 - **whiteSur_gtk**: https://github.com/vinceliuice/WhiteSur-gtk-theme
 
 #### icon-themes
