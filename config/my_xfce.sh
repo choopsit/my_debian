@@ -287,6 +287,10 @@ applications_adding_menu() {
     games_title="Games"
     games_text="Choose game(s) you want to install"
 
+    #TODO:
+    #add RPCS3:
+    #"rpcs3" "libfuse2t64"
+    #install from github
     games=(
         "steam" "steam-installer"
         "pcsx2" ""
@@ -445,6 +449,11 @@ system_config() {
     papirus-folders -t Papirus-Dark -C yaru
     "${SCRIPT_PATH}"/../scripts/tweak/themeupgrade.sh
     "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
+
+    wp_folder="/usr/share/images/desktop-base/"
+    wp_url="https://raw.githubusercontent.com/choopsit/resources/main/img/my_debian.jpg"
+    rm -f "${wp_folder}my_debian.jpg"
+    wget "${wp_url}" -P "${wp_folder}"
 }
 
 add_user_to() {

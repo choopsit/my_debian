@@ -2,7 +2,7 @@ vim
 curl
 git
 rsync
-p7zip-full
+7zip
 tree
 htop
 linux-headers-amd64
@@ -14,7 +14,6 @@ xfce4-screenshooter
 xfce4-appmenu-plugin
 xfce4-weather-plugin
 xfce4-whiskermenu-plugin
-libfuse2t64
 bluetooth
 blueman
 slick-greeter

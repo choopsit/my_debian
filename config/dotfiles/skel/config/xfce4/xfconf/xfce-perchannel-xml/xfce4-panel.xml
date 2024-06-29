@@ -17,8 +17,8 @@
         <value type="int" value="4"/>
         <value type="int" value="5"/>
         <value type="int" value="6"/>
-        <value type="int" value="2"/>
         <value type="int" value="9"/>
+        <value type="int" value="7"/>
         <value type="int" value="10"/>
         <value type="int" value="11"/>
         <value type="int" value="12"/>
@@ -38,6 +38,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="quod libet"/>
         <value type="string" value="ethernet network connection “bridge-br0” active"/>
         <value type="string" value="ethernet network connection “bridge0 port 1” active"/>
         <value type="string" value="ethernet network connection “wired connection 1” active"/>
@@ -51,6 +52,7 @@
         <value type="string" value="networkmanager applet"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="deluge"/>
         <value type="string" value="KeePassXC"/>
         <value type="string" value="tao application"/>
         <value type="string" value="virt-manager"/>
@@ -94,7 +96,7 @@
     <property name="plugin-23" type="string" value="weather">
       <property name="msl" type="int" value="35"/>
       <property name="timezone" type="string" value="Europe/Paris"/>
-      <property name="offset" type="string" value="+01:00"/>
+      <property name="offset" type="string" value="+02:00"/>
       <property name="cache-max-age" type="int" value="172800"/>
       <property name="power-saving" type="bool" value="true"/>
       <property name="units" type="empty">
@@ -148,21 +150,19 @@
         <value type="string" value="xfce4-file-manager.desktop"/>
         <value type="string" value="libreoffice-startcenter.desktop"/>
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="synaptic.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="PCSX2.desktop"/>
       </property>
       <property name="recent" type="array">
-        <value type="string" value="PCSX2.desktop"/>
-        <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
-        <value type="string" value="synaptic.desktop"/>
-        <value type="string" value="transmission-qt.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="libreoffice-startcenter.desktop"/>
-        <value type="string" value="qt5ct.desktop"/>
-        <value type="string" value="blueman-manager.desktop"/>
-        <value type="string" value="org.xfce.mousepad.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
+        <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
+        <value type="string" value="transmission-qt.desktop"/>
+        <value type="string" value="synaptic.desktop"/>
+        <value type="string" value="org.gnome.Lollypop.desktop"/>
+        <value type="string" value="supertuxkart.desktop"/>
+        <value type="string" value="steam.desktop"/>
+        <value type="string" value="RPCS3-RPCS3.desktop"/>
+        <value type="string" value="PCSX2.desktop"/>
+        <value type="string" value="firefox.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="launcher-show-name" type="bool" value="true"/>
@@ -180,11 +180,10 @@
     <property name="plugin-1" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-2" type="string" value="pulseaudio">
+    <property name="plugin-7" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="firefox.instance10136;firefox.instance10270;firefox.instance10306;firefox.instance10428;firefox.instance10526;firefox.instance10528;firefox.instance10537;firefox.instance10601;firefox.instance10741;firefox.instance10909;firefox.instance11413;firefox.instance11534;firefox.instance11557;firefox.instance11829;firefox.instance11961;firefox.instance11967;firefox.instance12109;firefox.instance12553;firefox.instance12610;firefox.instance12828;firefox.instance12830;firefox.instance12835;firefox.instance13088;firefox.instance13240;firefox.instance13407;firefox.instance13424;firefox.instance13531;firefox.instance13595;firefox.instance13608;firefox.instance13662;firefox.instance13996;firefox.instance14060;firefox.instance14774;firefox.instance14874;firefox.instance15079;firefox.instance15138;firefox.instance15522;firefox.instance15708;firefox.instance15876;firefox.instance16241;firefox.instance17319;firefox.instance17607;firefox.instance18732;firefox.instance19395;firefox.instance19784;firefox.instance20422;firefox.instance20675;firefox.instance2084;firefox.instance2087;firefox.instance20913;firefox.instance21186;firefox.instance21200;firefox.instance21251;firefox.instance2160;firefox.instance2161;firefox.instance2163;firefox.instance2164;firefox.instance2168;firefox.instance21724;firefox.instance2178;firefox.instance2191;firefox.instance2209;firefox.instance2230;firefox.instance2231;firefox.instance22392;firefox.instance2242;firefox.instance2246;firefox.instance2249;firefox.instance2258;firefox.instance2267;firefox.instance22678;firefox.instance2268;firefox.instance2271;firefox.instance2276;firefox.instance2279;firefox.instance2284;firefox.instance2296;firefox.instance22974;firefox.instance2298;firefox.instance2303;firefox.instance2305;firefox.instance2311;firefox.instance23283;firefox.instance2334;firefox.instance2343;firefox.instance2386;firefox.instance2392;firefox.instance2409;firefox.instance2438;firefox.instance2495;firefox.instance26582;firefox.instance2667;firefox.instance26994;firefox.instance26998;firefox.instance2711;firefox.instance2732;firefox.instance2740;firefox.instance2768;firefox.instance27740;firefox.instance2778;firefox.instance28101;firefox.instance28673;firefox.instance28711;firefox.instance28768;firefox.instance28774;firefox.instance2883;firefox.instance29053;firefox.instance2915;firefox.instance2922;firefox.instance2939;firefox.instance29404;firefox.instance2941;firefox.instance2958;firefox.instance2962;firefox.instance29753;firefox.instance29980;firefox.instance30188;firefox.instance30349;firefox.instance30824;firefox.instance30950;firefox.instance3123;firefox.instance3140;firefox.instance3143;firefox.instance31575;firefox.instance31668;firefox.instance3225;firefox.instance3234;firefox.instance33058;firefox.instance3324;firefox.instance3390;firefox.instance3412;firefox.instance3417;firefox.instance3449;firefox.instance3502;firefox.instance3521;firefox.instance35337;firefox.instance36370;firefox.instance3650;firefox.instance3679;firefox.instance37492;firefox.instance3761;firefox.instance37611;firefox.instance3804;firefox.instance3844;firefox.instance38916;firefox.instance3893;firefox.instance3976;firefox.instance4017;firefox.instance4024;firefox.instance4050;firefox.instance4094;firefox.instance4146;firefox.instance4171;firefox.instance4242;firefox.instance4253;firefox.instance4259;firefox.instance4272;firefox.instance4296;firefox.instance4303;firefox.instance43084;firefox.instance4325;firefox.instance4330;firefox.instance43316;firefox.instance4360;firefox.instance4412;firefox.instance4474;firefox.instance44833;firefox.instance4497;firefox.instance45979;firefox.instance4615;firefox.instance4634;firefox.instance4645;firefox.instance4660;firefox.instance4665;firefox.instance4676;firefox.instance47886;firefox.instance4790;firefox.instance4814;firefox.instance4922;firefox.instance4951;firefox.instance49734;firefox.instance5115;firefox.instance51371;firefox.instance5197;firefox.instance5198;firefox.instance5211;firefox.instance5216;firefox.instance5304;firefox.instance5364;firefox.instance54074;firefox.instance5420;firefox.instance5544;firefox.instance5609;firefox.instance5635;firefox.instance5659;firefox.instance5668;firefox.instance5758;firefox.instance5771;firefox.instance5894;firefox.instance5911;firefox.instance6048;firefox.instance6089;firefox.instance6117;firefox.instance6447;firefox.instance6537;firefox.instance6556;firefox.instance6599;firefox.instance6692;firefox.instance6772;firefox.instance6811;firefox.instance6838;firefox.instance6846;firefox.instance6891;firefox.instance6893;firefox.instance6905;firefox.instance7042;firefox.instance7152;firefox.instance7163;firefox.instance7225;firefox.instance7284;firefox.instance7304;firefox.instance7349;firefox.instance7815;firefox.instance7837;firefox.instance8030;firefox.instance8152;firefox.instance8463;firefox.instance8485;firefox.instance8669;firefox.instance8692;firefox.instance8705;firefox.instance8747;firefox.instance9041;firefox.instance9120;firefox.instance9197;firefox.instance9426;firefox.instance9658;firefox.instance9714;firefox.instance9719;firefox.instance9945;firefox.instance9998;Lollypop;rhythmbox"/>
       <property name="volume-step" type="int" value="3"/>
-      <property name="known-players" type="string" value="Firefox;firefox;io.github.quodlibet.QuodLibet;Lollypop;Rhythmbox"/>
+      <property name="known-players" type="string" value="firefox;io.github.quodlibet.QuodLibet;org.gnome.Lollypop"/>
     </property>
   </property>
 </channel>
