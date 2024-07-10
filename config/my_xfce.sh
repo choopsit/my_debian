@@ -266,7 +266,7 @@ applications_adding_menu() {
         "soundconverter" ""
         "sound-juicer" ""
         "audacity" ""
-        "kodi" ""
+        "kodi" "kodi\nkodi-inputstream-adaptive"
     )
 
     add_apps "${media_title}" "${media_text}" "${media[@]}"
