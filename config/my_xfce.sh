@@ -252,7 +252,7 @@ applications_adding_menu() {
     nets=(
         "chromium" ""
         "deluge" ""
-        "transmission-qt" "transmission-qt\nqt5ct"
+        "transmission-qt" "transmission-qt\n${qtct}"
         "keepassxc" "keepassxc-full\nwebext-keepassxc-browser"
     )
 
@@ -383,8 +383,9 @@ user_config() {
         copy_conf "${dotfile}" "${dest}"
     done
 
-    [[ ${debian_version} == sid ]] && rm -rf "${dest}/config/xfce4/terminal"
+    [[ ${debian_version} == sid ]] && rm -rf "${dest}/.config/xfce4/terminal"
 
+    sed "s/qt6ct/${qtct}/g" "${dest}/.profile"
     if [[ ${conf_user} != "future users" ]]; then
         chown -R "${conf_user}":"${conf_user}" "${dest}"
 
@@ -533,6 +534,9 @@ fi
 
 ! [[ "$STABLE $TESTING sid" =~ (\ |^)$debian_version(\ |$) ]] &&
     echo -e "${ERR} Unsupported version '${version}'" && exit 1
+
+qtct="qt5ct"
+[[ ${debian_version} == sid ]] && qtct="qt6ct"
 
 # system part: manage packages, add few scripts to '/usr/local/bin'
 #              and supply personalization for future users
