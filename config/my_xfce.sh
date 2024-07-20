@@ -294,10 +294,11 @@ applications_adding_menu() {
     games=(
         "steam" "steam-installer"
         "pcsx2" ""
+        "mednaffe" ""
+        "supertuxkart" ""
         "0ad" ""
         "quadrapassel" ""
         "gnome-2048" ""
-        "supertuxkart" ""
         "pokerth" ""
     )
 
