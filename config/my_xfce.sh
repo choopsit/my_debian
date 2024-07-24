@@ -262,11 +262,12 @@ applications_adding_menu() {
     media_text="Choose multimedia application(s) you want to install"
 
     media=(
+        "kodi" "kodi\nkodi-inputstream-adaptive"
         "lollypop" ""
+        "kdenlive" ""
         "soundconverter" ""
         "sound-juicer" ""
         "audacity" ""
-        "kodi" "kodi\nkodi-inputstream-adaptive"
     )
 
     add_apps "${media_title}" "${media_text}" "${media[@]}"
@@ -453,7 +454,7 @@ system_config() {
     "${SCRIPT_PATH}"/../deployment/deploy_systools.sh
 
     wp_folder="/usr/share/images/desktop-base/"
-    wp_url="https://raw.githubusercontent.com/choopsit/resources/main/img/my_debian.jpg"
+    wp_url="https://raw.githubusercontent.com/choopsit/resources/main/my_debian/wallpaper/my_debian.jpg"
     rm -f "${wp_folder}my_debian.jpg"
     wget "${wp_url}" -P "${wp_folder}"
 }
