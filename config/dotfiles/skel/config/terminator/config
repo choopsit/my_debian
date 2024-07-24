@@ -31,10 +31,10 @@
       type = Window
       parent = ""
       order = 0
-      position = 856:32
+      position = 971:32
       maximised = False
       fullscreen = False
-      size = 1048, 999
+      size = 933, 999
       title = choops@mrchat: ~
       last_active_term = 2abddf77-72d3-4f82-8e42-959abb663aa3
       last_active_window = True
