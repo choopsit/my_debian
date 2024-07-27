@@ -54,7 +54,7 @@ usage() {
 }
 
 stable_sources() {
-    cat <<eof > /etc/apt/sources.list
+    cat <<EOF >/etc/apt/sources.list
 # ${STABLE}
 deb http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ ${STABLE} main contrib non-free non-free-firmware
@@ -67,11 +67,11 @@ deb http://deb.debian.org/debian/ ${STABLE}-updates main contrib non-free non-fr
 # ${STABLE} backports
 deb http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ ${STABLE}-backports main contrib non-free non-free-firmware
-eof
+EOF
 }
 
 testing_sources() {
-    cat <<eof > /etc/apt/sources.list
+    cat <<EOF >/etc/apt/sources.list
 # testing
 deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
@@ -79,15 +79,15 @@ deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmwar
 # testing security
 deb http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian-security/ testing-security/updates main contrib non-free non-free-firmware
-eof
+EOF
 }
 
 sid_sources() {
-    cat <<eof > /etc/apt/sources.list
+    cat <<EOF >/etc/apt/sources.list
 # sid
 deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware
 #deb-src http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware 
-eof
+EOF
 }
 
 clean_sources() {
@@ -199,7 +199,7 @@ add_apps() {
     programs=$(echo "${result}" | sed 's/" /\n/g' | sed 's/"//g')
 
     while IFS= read -r pgm; do
-        [[ ${pgm} ]] && echo -e "${checkboxes["${pgm}"]}" >> "${usefull}"
+        [[ ${pgm} ]] && echo -e "${checkboxes["${pgm}"]}" >>"${usefull}"
     done <<< "${programs}"
 }
 
@@ -328,10 +328,10 @@ install_packages() {
     add_i386=n
 
     [[ ${debian_version} == sid ]] &&
-        echo -e "firefox\napt-listbugs\nneedrestart" >> "${usefull}" &&
-        echo -e "firefox-esr\nzutty" >> "${useless}"
+        echo -e "firefox\napt-listbugs\nneedrestart" >>"${usefull}" &&
+        echo -e "firefox-esr\nzutty" >>"${useless}"
 
-    (lspci | grep -qi nvidia) && add_i386=y && echo "nvidia-driver" >> "${usefull}"
+    (lspci | grep -qi nvidia) && add_i386=y && echo "nvidia-driver" >>"${usefull}"
 
     grep -q "pcsx2" "${usefull}" && add_i386=y
 
@@ -349,7 +349,7 @@ install_packages() {
 }
 
 lightdm_config() {
-    cat <<EOF > "${lightdm_conf}"
+    cat <<EOF >"${lightdm_conf}"
 [Seat:*]
 greeter-hide-users=false
 user-session=xfce
@@ -439,7 +439,7 @@ system_config() {
 
     redshift_conf=/etc/geoclue/geoclue.conf
     (grep -qvs redshift "${redshift_conf}") &&
-        echo -e "\n[redshift]\nallowed=true\nsystem=false\nusers=" >> "${redshift_conf}"
+        echo -e "\n[redshift]\nallowed=true\nsystem=false\nusers=" >>"${redshift_conf}"
 
     resources="${SCRIPT_PATH}"/resources
 
