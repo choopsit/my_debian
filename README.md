@@ -41,16 +41,16 @@ run "**install.sh**" to deploy.
 ### multimedia
 
 - video-player: mpv
-- video-editor: kdenlive
+- video-editor [optional]: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*
-- audio-ripper/editors [optional]: sound-juicer, soundconverter, audacity
+- audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
 
 ### office
 
 - office-suite: libreoffice *(from desktop base)*
-- PDF-viewer: evince
+- pdf-viewer: evince
 
 ### graphisme
 
