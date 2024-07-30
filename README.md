@@ -22,7 +22,7 @@ run "**install.sh**" to deploy.
 
 ### system-tools
 
-- terminal-emulator: xfce4-terminal *(from desktop base)*
+- terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator
 - system-monitor: htop
 - virtualization supports [optional]: virt-manager, cockpit-machines
 
@@ -30,17 +30,18 @@ run "**install.sh**" to deploy.
 
 - dock: plank
 - text-editors: mousepad *(from desktop base)*, vim
-- archivers: p7zip-full, file-roller
+- archivers: 7zip, xarchiver *(from desktop base)*
 - day/night-color-temperature: redshift
 
 ### internet
 
-- web-browser: firefox on sid|firefox-esr on bookworm, chromium [optional]
-- torrent-clients [optional]: transmission-qt *(add qt5ct for better qt5-apps integration)*, deluge
+- web-browser: firefox on sid | firefox-esr on bookworm, chromium [optional]
+- torrent-clients [optional]: transmission-qt *(add qt5ct/qt6ct for better qt5/qt6-apps integration)*, deluge
 
 ### multimedia
 
 - video-player: mpv
+- video-editor: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*
 - audio-ripper/editors [optional]: sound-juicer, soundconverter, audacity
@@ -67,6 +68,7 @@ run "**install.sh**" to deploy.
 
 - steam
 - pcsx2 (playstation 2 emulator)
+- mednaffen (multiple retro consoles emulator)
 - supertuxkart
 - 0ad
 - pokerth
