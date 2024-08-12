@@ -309,7 +309,7 @@ applications_adding_menu() {
     sci_text="Choose science/educational application(s) you want to install"
 
     sci=(
-        "leocad" ""
+        "leocad" "leocad\nldraw-parts"
         "freecad" ""
         "stellarium" ""
     )
