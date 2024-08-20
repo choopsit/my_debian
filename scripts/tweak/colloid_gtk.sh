@@ -69,7 +69,7 @@ hello_gtk() {
         fi
     fi
 
-    if [[ -d "${thm_gitpath}" ]]; then
+    if [[ -d "${thm_gitpath}/.git" ]]; then
         pushd "${thm_gitpath}" >/dev/null
         upd_state="$(git pull | tee /dev/tty)"
         popd >/dev/null
@@ -89,36 +89,28 @@ hello_gtk() {
         git clone "${git_url}" "${thm_gitpath}"
     fi
 
-    if ! [[ ${upd_state} =~ ^(Already up to date.|Déjà à jour.)$ ]] ; then
-        sed -e 's/xfce4-panel -r/echo -n/' \
-            -e 's/^\([[:space:]]*\)echo.*gnome-shell.*/\1echo -n/' \
-            -i "${thm_gitpath}"/install.sh
+    install_script="${thm_gitpath}/install.sh"
+    sed 's/xfce4-panel -r/echo -n \"\"/g' -i "${install_script}"
+    sed 's/^\([[:space:]]*\)echo.*gnome-shell.*/\1echo -n \"\"/g' -i "${install_script}"
 
+    if ! [[ ${upd_state} =~ ^(Already up to date.|Déjà à jour.)$ ]] ; then
         if [[ $(whoami) == root ]]; then
             rm -rf "${THEMES_DIR}"/Colloid-Dark-*
         else
             sudo rm -rf "${THEMES_DIR}"/Colloid-Dark-*
         fi
 
-        color_thm=teal
         if [[ $(whoami) == root ]]; then
-            "${thm_gitpath}"/install.sh -c dark --theme "${color_thm}"
+            "${install_script}" -c dark --tweaks all
         else
-            sudo "${thm_gitpath}"/install.sh -c dark --theme "${color_thm}"
+            sudo "${install_script}" -c dark --tweaks all
         fi
-
-        for variant in gruvbox nord; do
-            if [[ $(whoami) == root ]]; then
-                "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
-            else
-                sudo "${thm_gitpath}"/install.sh -c dark --tweaks "${variant}"
-            fi
-        done
-
-        pushd "${thm_gitpath}" >/dev/null
-        git reset --hard HEAD -q
-        popd >/dev/null
     fi
+
+    pushd "${thm_gitpath}" >/dev/null
+    git reset --hard HEAD -q
+    popd >/dev/null
+
     echo
 }
 

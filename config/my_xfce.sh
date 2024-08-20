@@ -312,6 +312,8 @@ applications_adding_menu() {
         "leocad" "leocad\nldraw-parts"
         "freecad" ""
         "stellarium" ""
+        "gelementar" ""
+        "avogadro" ""
     )
 
     add_apps "${sci_title}" "${sci_text}" "${sci[@]}"
