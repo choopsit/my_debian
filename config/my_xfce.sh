@@ -389,7 +389,9 @@ user_config() {
 
     [[ ${debian_version} == sid ]] && rm -rf "${dest}/.config/xfce4/terminal"
 
-    sed "s/qt6ct/${qtct}/g" "${dest}/.profile"
+    # Better results with qt5ct for now in .profile
+    #sed "s/qt5ct/${qtct}/g" "${dest}/.profile"
+
     if [[ ${conf_user} != "future users" ]]; then
         chown -R "${conf_user}":"${conf_user}" "${dest}"
 
