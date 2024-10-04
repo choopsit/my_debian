@@ -67,7 +67,7 @@ sys_info() {
 
     (dpkg -l | grep -q "^ii  libvirt0") && (virsh list | grep -q running) &&
         echo -e "${CYN}Virtual Machine(s) running${DEF}:" &&
-        virsh list | awk '/running/{print "\033[36m> \033[0m"$2}' &&
+        virsh list | awk '/running/{print "\033[32m> \033[0m"$2}' &&
         #virsh list | awk '/running/{print "\033[36m> \033[37m"$2"\033[0m"}' &&
         echo
 
