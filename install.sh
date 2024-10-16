@@ -64,8 +64,7 @@ my_dist="$(awk -F= '/^ID=/{print $2}' /etc/os-release)"
 [[ ${my_dist} != debian ]] &&
     echo -e "${ERR} $(basename "$0") works only on Debian" && exit 1
 
-de_list=("xfce")
-#de_list=("xfce" "gnome")
+de_list=("xfce" "gnome")
 
 if [[ ${#de_list[@]} -gt 1 ]]; then
     # TODO: replace this by whiptail TUI

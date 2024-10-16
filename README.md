@@ -1,6 +1,6 @@
 # my\_debian
 
-personal debian xfce config (tested on 12.x "bookworm" and sid)
+personal debian xfce/gnome config (tested on 12.x "bookworm" and sid)
 
 ---------
 
@@ -8,37 +8,37 @@ personal debian xfce config (tested on 12.x "bookworm" and sid)
 
 run "**install.sh**" to deploy.
 
----------
-
-## desktop
-
-**base package**: task-xfce-desktop (+ task-desktop)
-
----------
-
-## applications
+then choose desktop configuration to apply: xfce or gnome
 
 */!\ WARNING: some applications you previously installed could be uninstalled during the process if they are or depend on one of the packages listed in "config/pkg/xfce\_useless"*
 
-### system-tools
+---------
+
+## xfce desktop
+
+**base package**: task-xfce-desktop (+ task-desktop)
+
+### applications
+
+#### system-tools
 
 - terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator
 - system-monitor: htop
 - virtualization supports [optional]: virt-manager, cockpit-machines
 
-### accessories
+#### accessories
 
 - dock: plank
 - text-editors: mousepad *(from desktop base)*, vim
 - archivers: 7zip, xarchiver *(from desktop base)*
 - day/night-color-temperature: redshift
 
-### internet
+#### internet
 
 - web-browser: firefox on sid | firefox-esr on bookworm, chromium [optional]
 - torrent-clients [optional]: transmission-qt *(add qt5ct/qt6ct for better qt5/qt6-apps integration)*, deluge
 
-### multimedia
+#### multimedia
 
 - video-player: mpv
 - video-editor [optional]: kdenlive
@@ -47,24 +47,24 @@ run "**install.sh**" to deploy.
 - audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
 
-### office
+#### office
 
 - office-suite: libreoffice *(from desktop base)*
 - pdf-viewer: evince
 
-### graphisme
+#### graphisme
 
 - image-viewer: eog (eye of gnome)
 - image-editors [optional]: gimp, inkscape
 - 3D-editor [optional]: blender
 
-### science [optional]
+#### science [optional]
 
 - freecad
 - leocad (virtual brick CAD)
 - stellarium
 
-### games [optional]
+#### games [optional]
 
 - steam
 - pcsx2 (playstation 2 emulator)
@@ -74,6 +74,65 @@ run "**install.sh**" to deploy.
 - pokerth
 - quadrapassel (tetris-like)
 - gnome-2048
+
+---------
+
+## gnome desktop
+
+**base package**: task-gnome-desktop (+ task-desktop + gnome-tweaks)
+
+### applications
+
+#### system-tools
+
+- terminal-emulator [choice]: gnome-terminal *(from desktop base)* or terminator
+- system-monitor: htop
+- virtualization supports [optional]: virt-manager, cockpit-machines
+
+#### accessories
+
+- text-editors: gedit *(from desktop base)*, vim
+- archivers: 7zip, file-roller *(from desktop base)*
+- day/night-color-temperature: redshift
+
+#### internet
+
+- web-browser: firefox on sid | firefox-esr on bookworm, chromium [optional]
+
+#### multimedia
+
+- video-player: mpv
+- video-editor [optional]: kdenlive
+- music-players: rhythmbox *(from desktop base)*, lollypop [optional]
+- tag-editor [optional]: easytag
+- audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
+- mediacenter [optional]: kodi
+
+#### office
+
+- office-suite: libreoffice *(from desktop base)*
+- pdf-viewer: evince *(from desktop base)*
+
+#### graphisme
+
+- image-viewer: eog (eye of gnome)
+- image-editors [optional]: gimp, inkscape
+- 3D-editor [optional]: blender
+
+#### science [optional]
+
+- freecad
+- leocad (virtual brick CAD)
+- stellarium
+
+#### games [optional]
+
+- steam
+- pcsx2 (playstation 2 emulator)
+- mednaffen (multiple retro consoles emulator)
+- supertuxkart
+- 0ad
+- pokerth
 
 ---------
 

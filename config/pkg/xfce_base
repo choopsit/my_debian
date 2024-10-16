@@ -17,7 +17,7 @@ xfce4-whiskermenu-plugin
 bluetooth
 blueman
 slick-greeter
-gvfs
+gvfs-backends
 tumbler-plugins-extra
 ffmpegthumbnailer
 mediainfo
