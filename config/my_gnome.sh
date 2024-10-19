@@ -369,7 +369,7 @@ user_config() {
     echo -e "${nfo} applying custom configuration for ${conf_user}..."
 
     for root_conf in "vim" "profile"; do
-        copy_conf "${root_conf}" "${dest}"
+        copy_conf "${SCRIPT_PATH}/dotfiles/skel/${root_conf}" "${dest}"
     done
 
     for conf in "${SCRIPT_PATH}"/dotfiles/skel/config/*; do
