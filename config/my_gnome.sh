@@ -374,6 +374,7 @@ user_config() {
 
     for conf in "${SCRIPT_PATH}/dotfiles/skel/config"/*; do
         if [[ $(basename "$conf") =~ ^(bash|terminator)$ ]]; then
+            mkdir -p "${dest}/.config/$(basename "$conf")"
             cp -r "${conf}" "${dest}/.config/"
         fi
     done

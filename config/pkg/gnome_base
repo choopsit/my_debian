@@ -11,6 +11,8 @@ firmware-iwlwifi
 task-desktop
 task-gnome-desktop
 gnome-tweaks
+gnome-shell-extension-user-theme
+gnome-shell-extension-dashtodock
 papirus-icon-theme
 libreoffice-style-sifr
 ttf-mscorefonts-installer
