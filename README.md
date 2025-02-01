@@ -23,7 +23,7 @@ then choose desktop configuration to apply: xfce or gnome
 #### system-tools
 
 - terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator
-- system-monitor: htop
+- system-monitor: htop, gnome-system-monitor [optional]
 - virtualization supports [optional]: virt-manager, cockpit-machines
 
 #### accessories
@@ -43,19 +43,19 @@ then choose desktop configuration to apply: xfce or gnome
 - video-player: mpv
 - video-editor [optional]: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
-- tag-editor: exfalso *(from desktop base)*
+- tag-editor: exfalso *(from desktop base)*, easytag [optional]
 - audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
 
 #### office
 
 - office-suite: libreoffice *(from desktop base)*
-- pdf-viewer: evince
+- pdf-viewer [optional]: evince
 
 #### graphisme
 
-- image-viewer: eog (eye of gnome)
-- image-editors [optional]: gimp, inkscape
+- image-viewer: gthumb
+- image-editors [optional]: gimp, inkscape, krita
 - 3D-editor [optional]: blender
 
 #### science [optional]
@@ -63,6 +63,8 @@ then choose desktop configuration to apply: xfce or gnome
 - freecad
 - leocad (virtual brick CAD)
 - stellarium
+- gelementar
+- avogadro
 
 #### games [optional]
 

@@ -241,19 +241,22 @@ applications_adding_menu() {
     tools=(
         "flameshot" ""
         "gnome-system-monitor" ""
-        "galculator"
+        "galculator" ""
     )
 
     add_apps "${tools_title}" "${tools_text}" "${tools[@]}"
 
-    nets_title="Internet and security"
-    nets_text="Choose internet and security application(s) you want to install"
+    nets_title="Internet and Office"
+    nets_text="Choose internet and office application(s) you want to install"
 
     nets=(
         "chromium" ""
+        "thunderbird" ""
         "deluge" ""
         "transmission-qt" "transmission-qt\n${qtct}"
         "keepassxc" "keepassxc-full\nwebext-keepassxc-browser"
+        "evince" ""
+        "simple-scan" ""
     )
 
     add_apps "${nets_title}" "${nets_text}" "${nets[@]}"
@@ -264,6 +267,7 @@ applications_adding_menu() {
     media=(
         "kodi" "kodi\nkodi-inputstream-adaptive"
         "lollypop" ""
+        "easytag" ""
         "kdenlive" ""
         "soundconverter" ""
         "sound-juicer" ""
@@ -279,6 +283,7 @@ applications_adding_menu() {
         "gimp" ""
         "blender" ""
         "inkscape" ""
+        "krita" ""
     )
 
     add_apps "${graph_title}" "${graph_text}" "${graph[@]}"

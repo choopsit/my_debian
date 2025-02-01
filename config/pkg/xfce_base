@@ -17,6 +17,7 @@ xfce4-whiskermenu-plugin
 bluetooth
 blueman
 slick-greeter
+greybird-gtk-theme
 gvfs-backends
 tumbler-plugins-extra
 ffmpegthumbnailer
@@ -28,6 +29,5 @@ libreoffice-style-sifr
 ttf-mscorefonts-installer
 cups
 system-config-printer
-evince
 gthumb
 mpv
