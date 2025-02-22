@@ -49,7 +49,7 @@ while read line; do
     devmap=${df_elts[0]}
     mydev=${devmap#/dev/}
     sepdev=""
-    for i in $(seq 1 "$((8-${#mydev}))"); do
+    for i in $(seq 1 "$((27-${#mydev}))"); do
         sepdev+=" "
     done
     fsline="${CYN}${mydev}${DEF}${sepdev}"
@@ -73,26 +73,24 @@ while read line; do
     for i in $(seq 1 "$((26-${#mntpoint}))"); do
         sepmp+=" "
     done
-    fsline+="on ${fscol}${mntpoint}${DEF}${sepmp}["
+    fsline+="on ${fscol}${mntpoint}${DEF}${sepmp}\n["
 
     pctused=${df_elts[5]}
     pctu=${pctused%\%}
-    if (( ${pctu} <= 90 )); then
-    #if [[ ${pctu} -le 90 ]]; then
+    if [[ ${pctu} -le 90 ]]; then
         grcol="${GRN}"
-    elif (( ${pctu} > 95 )); then
-    #elif [[ ${pctu} -gt 95 ]]; then
+    elif [[ ${pctu} -gt 95 ]]; then
         grcol="${RED}"
     else
         grcol="${YLO}"
     fi
-    used=$((pctu/10))
+    used=$((pctu/4))
     gru=""
     for i in $(seq 1 "${used}"); do
         gru+="#"
     done
     grf=""
-    for i in $(seq "$((used+1))" 10); do
+    for i in $(seq "$((used+1))" 25); do
         grf+="-"
     done
     graph="${grcol}${gru}${fscol}${grf}"
