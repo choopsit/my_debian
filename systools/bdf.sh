@@ -49,12 +49,13 @@ while read line; do
     devmap=${df_elts[0]}
     mydev=${devmap#/dev/}
     sepdev=""
-    for i in $(seq 1 "$((27-${#mydev}))"); do
-        sepdev+=" "
-    done
-    fsline="${CYN}${mydev}${DEF}${sepdev}"
 
     fstype=${df_elts[1]}
+
+    for i in $(seq 1 "$((32-${#mydev}-${#fstype}))"); do
+        sepdev+=" "
+    done
+
     if [[ ${fstype} =~ ^(nfs|cifs) ]]; then
         fscol="${BLU}"
     elif [[ ${fstype} =~ ^fuse ]]; then
@@ -62,10 +63,9 @@ while read line; do
     else
         fscol="${GRY}"
     fi
-    sepfs=""
-    for i in $(seq 1 "$((9-${#fstype}))"); do
-        sepfs+=" "
-    done
+    sepfs=" "
+
+    fsline="${CYN}${mydev}${DEF}${sepdev}"
     fsline+=" [${fscol}${fstype}${DEF}]${sepfs}"
 
     mntpoint=${df_elts[6]}
@@ -73,7 +73,7 @@ while read line; do
     for i in $(seq 1 "$((26-${#mntpoint}))"); do
         sepmp+=" "
     done
-    fsline+="on ${fscol}${mntpoint}${DEF}${sepmp}\n["
+    fsline+="${fscol}${mntpoint}${DEF}${sepmp}\n["
 
     pctused=${df_elts[5]}
     pctu=${pctused%\%}
@@ -84,13 +84,13 @@ while read line; do
     else
         grcol="${YLO}"
     fi
-    used=$((pctu/4))
+    used=$((pctu/3))
     gru=""
     for i in $(seq 1 "${used}"); do
         gru+="#"
     done
     grf=""
-    for i in $(seq "$((used+1))" 25); do
+    for i in $(seq "$((used+1))" 33); do
         grf+="-"
     done
     graph="${grcol}${gru}${fscol}${grf}"
