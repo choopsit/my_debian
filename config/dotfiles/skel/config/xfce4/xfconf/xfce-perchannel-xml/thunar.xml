@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="thunar" version="1.0">
   <property name="last-view" type="string" value="ThunarIconView"/>
@@ -23,4 +23,8 @@
   <property name="misc-parallel-copy-mode" type="string" value="THUNAR_PARALLEL_COPY_MODE_ALWAYS"/>
   <property name="last-toolbar-item-order" type="string" value="0,1,2,3,4,5,6,9,10,11,12,13,14,7,8,15,16,17"/>
   <property name="last-toolbar-visible-buttons" type="string" value="1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0"/>
+  <property name="last-splitview-separator-position" type="int" value="385"/>
+  <property name="last-toolbar-items" type="string" value="menu:1,back:1,forward:1,open-parent:1,open-home:1,undo:0,redo:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,toggle-split-view:0,location-bar:1,zoom-in:0,zoom-out:0,reload:0,search:1,uca-action-1648849338160784-1:0,new-tab:0,new-window:0,view-switcher:0"/>
+  <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
+  <property name="misc-use-csd" type="bool" value="true"/>
 </channel>

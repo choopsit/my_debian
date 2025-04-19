@@ -10,4 +10,5 @@
   </property>
   <property name="window-width" type="int" value="938"/>
   <property name="window-height" type="int" value="874"/>
+  <property name="window-maximized" type="bool" value="false"/>
 </channel>

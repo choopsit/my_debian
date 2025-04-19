@@ -52,7 +52,7 @@ while read line; do
 
     fstype=${df_elts[1]}
 
-    for i in $(seq 1 "$((32-${#mydev}-${#fstype}))"); do
+    for i in $(seq 1 "$((34-${#mydev}-${#fstype}))"); do
         sepdev+=" "
     done
 
@@ -63,17 +63,17 @@ while read line; do
     else
         fscol="${GRY}"
     fi
-    sepfs=" "
+    sepfs=" -----${DEF}> "
 
-    fsline="${CYN}${mydev}${DEF}${sepdev}"
-    fsline+=" [${fscol}${fstype}${DEF}]${sepfs}"
+    fsline="${fscol}${mydev}${DEF}${sepdev}"
+    fsline+=" ${fscol}${fstype}${sepfs}"
 
     mntpoint=${df_elts[6]}
     sepmp=" "
     for i in $(seq 1 "$((26-${#mntpoint}))"); do
         sepmp+=" "
     done
-    fsline+="${fscol}${mntpoint}${DEF}${sepmp}\n["
+    fsline+="${mntpoint}${sepmp}\n["
 
     pctused=${df_elts[5]}
     pctu=${pctused%\%}
@@ -96,11 +96,11 @@ while read line; do
     graph="${grcol}${gru}${fscol}${grf}"
     seppct=" "
     [[ ${#pctu} -lt 2 ]] && seppct="  "
-    fsline+="${graph}${DEF}]${seppct}${grcol}${pctu}${DEF}%"
+    fsline+="${graph}${DEF}] ${seppct}${grcol}${pctu}${DEF}% -"
 
     used=${df_elts[3]}
     size=${df_elts[2]}
-    sepsp=" "
+    sepsp=""
     for i in $(seq 1 "$((5-${#used}))"); do
         sepsp+=" "
     done
@@ -108,14 +108,14 @@ while read line; do
     for i in $(seq 1 "$((4-${#size}))"); do
         sepsp2+=" "
     done
-    fsline+="${sepsp}${fscol}${used}${DEF}/${fscol}${size}${sepsp2}${DEF}-"
+    fsline+="${sepsp}${grcol}${used}${DEF}/${grcol}${size}${DEF}${sepsp2}-"
 
     free=${df_elts[4]}
     sepf=" "
     for i in $(seq 1 "$((4-${#free}))"); do
         sepf+=" "
     done
-    fsline+="${sepf}${fscol}${free}${DEF} free"
+    fsline+="${sepf}${grcol}${free}${DEF} free"
 
     echo -e "${fsline}"
 done < <(df -hT | grep -v 'tmpfs\|^Filesystem\|^Sys')

@@ -1,14 +1,12 @@
 # my\_debian
 
-personal debian xfce/gnome config (tested on 12.x "bookworm" and sid)
+personal debian xfce (tested on 12.x "bookworm" and sid)
 
 ---------
 
 ## how to
 
 run "**install.sh**" to deploy.
-
-then choose desktop configuration to apply: xfce or gnome
 
 */!\ WARNING: some applications you previously installed could be uninstalled during the process if they are or depend on one of the packages listed in "config/pkg/xfce\_useless"*
 
@@ -22,9 +20,9 @@ then choose desktop configuration to apply: xfce or gnome
 
 #### system-tools
 
-- terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator
+- terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator or tilix
 - system-monitor: htop, gnome-system-monitor [optional]
-- virtualization supports [optional]: virt-manager, cockpit-machines
+- virtualization supports [optional]: virt-manager, cockpit-machines, gnome-boxes
 
 #### accessories
 
@@ -41,22 +39,23 @@ then choose desktop configuration to apply: xfce or gnome
 #### multimedia
 
 - video-player: mpv
-- video-editor [optional]: kdenlive
+- video-editor [optional]: kdenlive, pitivi
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*, easytag [optional]
 - audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
-
-#### office
-
-- office-suite: libreoffice *(from desktop base)*
-- pdf-viewer [optional]: evince
+- cd/dvd-tool [optional]: xfburn, brasero
 
 #### graphisme
 
 - image-viewer: gthumb
 - image-editors [optional]: gimp, inkscape, krita
 - 3D-editor [optional]: blender
+
+#### office
+
+- office-suite: libreoffice *(from desktop base)*
+- pdf-viewer [optional]: evince
 
 #### science [optional]
 
@@ -76,65 +75,6 @@ then choose desktop configuration to apply: xfce or gnome
 - pokerth
 - quadrapassel (tetris-like)
 - gnome-2048
-
----------
-
-## gnome desktop
-
-**base package**: task-gnome-desktop (+ task-desktop + gnome-tweaks)
-
-### applications
-
-#### system-tools
-
-- terminal-emulator [choice]: gnome-terminal *(from desktop base)* or terminator
-- system-monitor: htop
-- virtualization supports [optional]: virt-manager, cockpit-machines
-
-#### accessories
-
-- text-editors: gedit *(from desktop base)*, vim
-- archivers: 7zip, file-roller *(from desktop base)*
-- day/night-color-temperature: redshift
-
-#### internet
-
-- web-browser: firefox on sid | firefox-esr on bookworm, chromium [optional]
-
-#### multimedia
-
-- video-player: mpv
-- video-editor [optional]: kdenlive
-- music-players: rhythmbox *(from desktop base)*, lollypop [optional]
-- tag-editor [optional]: easytag
-- audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
-- mediacenter [optional]: kodi
-
-#### office
-
-- office-suite: libreoffice *(from desktop base)*
-- pdf-viewer: evince *(from desktop base)*
-
-#### graphisme
-
-- image-viewer: eog (eye of gnome)
-- image-editors [optional]: gimp, inkscape
-- 3D-editor [optional]: blender
-
-#### science [optional]
-
-- freecad
-- leocad (virtual brick CAD)
-- stellarium
-
-#### games [optional]
-
-- steam
-- pcsx2 (playstation 2 emulator)
-- mednaffen (multiple retro consoles emulator)
-- supertuxkart
-- 0ad
-- pokerth
 
 ---------
 

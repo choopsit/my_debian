@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfwm4" version="1.0">
   <property name="general" type="empty">
@@ -22,7 +22,7 @@
     <property name="double_click_action" type="string" value="maximize"/>
     <property name="double_click_distance" type="int" value="5"/>
     <property name="double_click_time" type="int" value="250"/>
-    <property name="easy_click" type="string" value="Alt"/>
+    <property name="easy_click" type="string" value="Super"/>
     <property name="focus_delay" type="int" value="250"/>
     <property name="focus_hint" type="bool" value="true"/>
     <property name="focus_new" type="bool" value="true"/>
@@ -82,8 +82,8 @@
     <property name="zoom_desktop" type="bool" value="true"/>
     <property name="zoom_pointer" type="bool" value="true"/>
     <property name="workspace_names" type="array">
-      <value type="string" value="Workspace 1"/>
-      <value type="string" value="Workspace 2"/>
+      <value type="string" value="Home"/>
+      <value type="string" value="Work"/>
       <value type="string" value="Workspace 3"/>
       <value type="string" value="Workspace 4"/>
     </property>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-panel" version="1.0">
   <property name="configver" type="int" value="2"/>
@@ -7,34 +7,37 @@
     <property name="dark-mode" type="bool" value="true"/>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=6;x=0;y=0"/>
-      <property name="length" type="uint" value="100"/>
+      <property name="length" type="double" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="icon-size" type="uint" value="0"/>
       <property name="size" type="uint" value="26"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="3"/>
-        <value type="int" value="15"/>
-        <value type="int" value="4"/>
-        <value type="int" value="5"/>
+        <value type="int" value="8"/>
         <value type="int" value="6"/>
         <value type="int" value="9"/>
         <value type="int" value="7"/>
         <value type="int" value="10"/>
         <value type="int" value="11"/>
         <value type="int" value="12"/>
-        <value type="int" value="1"/>
         <value type="int" value="23"/>
-        <value type="int" value="13"/>
         <value type="int" value="14"/>
       </property>
       <property name="background-style" type="uint" value="0"/>
+      <property name="leave-opacity" type="uint" value="100"/>
+      <property name="mode" type="uint" value="0"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.15666666666666668"/>
+        <value type="double" value="0.1430888888888889"/>
+        <value type="double" value="0.1430888888888889"/>
+        <value type="double" value="0.44966442953020136"/>
+      </property>
+      <property name="enter-opacity" type="uint" value="100"/>
+      <property name="autohide-behavior" type="uint" value="0"/>
+      <property name="length-adjust" type="bool" value="true"/>
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-4" type="string" value="pager"/>
-    <property name="plugin-5" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-    </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
@@ -72,9 +75,7 @@
       <property name="digital-time-font" type="string" value="Sans Bold 10"/>
       <property name="digital-date-format" type="string" value="%a, %b %d &lt;b&gt;%R&lt;/b&gt;"/>
       <property name="digital-date-font" type="string" value="Sans 10"/>
-    </property>
-    <property name="plugin-13" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
+      <property name="mode" type="uint" value="2"/>
     </property>
     <property name="plugin-14" type="string" value="actions">
       <property name="appearance" type="uint" value="0"/>
@@ -140,50 +141,44 @@
       <property name="category-icon-size" type="int" value="2"/>
       <property name="view-mode" type="int" value="0"/>
       <property name="favorites-in-recent" type="bool" value="true"/>
-      <property name="position-search-alternate" type="bool" value="true"/>
+      <property name="position-search-alternate" type="bool" value="false"/>
       <property name="position-categories-alternate" type="bool" value="true"/>
       <property name="menu-width" type="int" value="942"/>
-      <property name="menu-height" type="int" value="598"/>
-      <property name="menu-opacity" type="int" value="95"/>
+      <property name="menu-height" type="int" value="616"/>
+      <property name="menu-opacity" type="int" value="85"/>
       <property name="favorites" type="array">
         <value type="string" value="xfce4-web-browser.desktop"/>
         <value type="string" value="xfce4-file-manager.desktop"/>
         <value type="string" value="libreoffice-startcenter.desktop"/>
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="RPCS3-RPCS3.desktop"/>
       </property>
       <property name="recent" type="array">
+        <value type="string" value="RPCS3-RPCS3.desktop"/>
         <value type="string" value="virt-manager.desktop"/>
         <value type="string" value="org.gnome.TwentyFortyEight.desktop"/>
         <value type="string" value="transmission-qt.desktop"/>
-        <value type="string" value="synaptic.desktop"/>
-        <value type="string" value="org.gnome.Lollypop.desktop"/>
-        <value type="string" value="supertuxkart.desktop"/>
         <value type="string" value="steam.desktop"/>
-        <value type="string" value="RPCS3-RPCS3.desktop"/>
-        <value type="string" value="PCSX2.desktop"/>
-        <value type="string" value="firefox.desktop"/>
+        <value type="string" value="synaptic.desktop"/>
+        <value type="string" value="xfce4-web-browser.desktop"/>
+        <value type="string" value="plank.desktop"/>
+        <value type="string" value="org.gnome.Quadrapassel.desktop"/>
+        <value type="string" value="org.xfce.mousepad.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="launcher-show-name" type="bool" value="true"/>
       <property name="position-categories-horizontal" type="bool" value="false"/>
-    </property>
-    <property name="plugin-15" type="string" value="appmenu">
-      <property name="plugins" type="empty">
-        <property name="plugin-15" type="empty">
-          <property name="compact-mode" type="bool" value="false"/>
-          <property name="bold-application-name" type="bool" value="true"/>
-          <property name="expand" type="bool" value="false"/>
-        </property>
-      </property>
-    </property>
-    <property name="plugin-1" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
+      <property name="profile-shape" type="int" value="0"/>
     </property>
     <property name="plugin-7" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="volume-step" type="int" value="3"/>
       <property name="known-players" type="string" value="firefox;io.github.quodlibet.QuodLibet;org.gnome.Lollypop"/>
+    </property>
+    <property name="plugin-8" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="true"/>
     </property>
   </property>
 </channel>

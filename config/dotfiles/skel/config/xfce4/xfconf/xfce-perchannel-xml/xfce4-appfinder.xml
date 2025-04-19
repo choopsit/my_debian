@@ -43,8 +43,8 @@
   <property name="category-icon-size" type="uint" value="2"/>
   <property name="always-center" type="bool" value="false"/>
   <property name="last" type="empty">
-    <property name="window-height" type="int" value="938"/>
-    <property name="window-width" type="int" value="1916"/>
+    <property name="window-height" type="int" value="1053"/>
+    <property name="window-width" type="int" value="1920"/>
     <property name="pane-position" type="int" value="252"/>
   </property>
   <property name="hide-category-pane" type="bool" value="false"/>

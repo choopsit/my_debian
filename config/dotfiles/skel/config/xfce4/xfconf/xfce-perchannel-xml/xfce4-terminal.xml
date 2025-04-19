@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-terminal" version="1.0">
   <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
   <property name="background-darkness" type="double" value="0.90000000000000002"/>
-  <property name="color-foreground" type="string" value="#f2f2e5e5bcbc"/>
-  <property name="color-background" type="string" value="#323230302f2f"/>
+  <property name="color-foreground" type="string" value="#c9c9c1c19797"/>
+  <property name="color-background" type="string" value="#281b24a124a1"/>
   <property name="color-cursor-foreground" type="string" value=""/>
   <property name="color-cursor" type="string" value="#d65bc4cd8ca1"/>
   <property name="color-cursor-use-default" type="bool" value="false"/>
@@ -19,7 +19,7 @@
   <property name="misc-borders-default" type="bool" value="true"/>
   <property name="misc-cursor-blinks" type="bool" value="true"/>
   <property name="misc-cursor-shape" type="string" value="TERMINAL_CURSOR_SHAPE_BLOCK"/>
-  <property name="misc-default-geometry" type="string" value="103x49+982+36"/>
+  <property name="misc-default-geometry" type="string" value="103x53+974+56"/>
   <property name="misc-inherit-geometry" type="bool" value="false"/>
   <property name="misc-menubar-default" type="bool" value="false"/>
   <property name="misc-mouse-autohide" type="bool" value="false"/>
@@ -42,8 +42,8 @@
   <property name="misc-right-click-action" type="string" value="TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU"/>
   <property name="scrolling-bar" type="string" value="TERMINAL_SCROLLBAR_NONE"/>
   <property name="scrolling-unlimited" type="bool" value="true"/>
-  <property name="tab-activity-color" type="string" value="#aa0000"/>
-  <property name="color-use-theme" type="bool" value="true"/>
+  <property name="tab-activity-color" type="string" value="#767997e48d20"/>
+  <property name="color-use-theme" type="bool" value="false"/>
   <property name="color-background-vary" type="bool" value="false"/>
   <property name="color-selection" type="string" value=""/>
   <property name="color-selection-background" type="string" value=""/>
