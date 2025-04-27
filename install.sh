@@ -503,6 +503,8 @@ install() {
     echo "Starting installation..."
 
     if (grep -q "proton-vpn-gnome-desktop" "${mypkg}"); then
+        apt update
+        apt install -y gnupg
         pushd /tmp
         wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
         dpkg -i ./protonvpn-stable-release_1.0.8_all.deb
