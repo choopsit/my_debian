@@ -82,6 +82,7 @@ choose_terminalemulator() {
 
 choose_internetapps() {
     internet_applist=(
+        "proton-vpn-gnome-desktop"
         "thunderbird"
         "chromium"
         "deluge"
@@ -499,7 +500,14 @@ system_config() {
 }
 
 install() {
-    echo "Starting installation [needs credentials]..."
+    echo "Starting installation..."
+
+    if (grep -q "proton-vpn-gnome-desktop" "${mypkg}"); then
+        pushd /tmp
+        wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
+        dpkg -i ./protonvpn-stable-release_1.0.8_all.deb
+        popd
+    fi
 
     apt update
     apt full-upgrade -y
