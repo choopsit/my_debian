@@ -438,8 +438,7 @@ user_config() {
 }
 
 lightdm_config() {
-    echo "Types: deb
-[Seat:*]
+    echo "[Seat:*]
 greeter-hide-users=false
 user-session=xfce
 [Greeter]
@@ -506,6 +505,7 @@ install() {
     apt full-upgrade -y
     xargs apt install -y < "${mypkg}"
     xargs apt purge -y < "${uselesspkg}"
+    apt autoremove --purge -y
 
     system_config
     theming

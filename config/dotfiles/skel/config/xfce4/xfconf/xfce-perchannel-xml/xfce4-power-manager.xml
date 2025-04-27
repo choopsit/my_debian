@@ -12,6 +12,6 @@
     <property name="dpms-on-ac-off" type="uint" value="0"/>
     <property name="inactivity-on-ac" type="uint" value="0"/>
     <property name="presentation-mode" type="bool" value="false"/>
-    <property name="general-notification" type="bool" value="true"/>
+    <property name="general-notification" type="bool" value="false"/>
   </property>
 </channel>
