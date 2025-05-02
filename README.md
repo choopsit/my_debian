@@ -8,20 +8,20 @@ personal debian xfce (tested on 12.x "bookworm" and sid)
 
 run "**install.sh**" to deploy.
 
-*/!\ WARNING: some applications you previously installed could be uninstalled during the process if they are or depend on one of the packages listed in "config/pkg/xfce\_useless"*
+*/!\ WARNING: some applications you previously installed could be uninstalled during the process if they are or depend on one of the packages listed in "config/pkg/useless"*
 
 ---------
 
 ## xfce desktop
 
-**base package**: task-xfce-desktop (+ task-desktop)
+**base package**: task-xfce-desktop + task-desktop
 
 ### applications
 
 #### system-tools
 
 - terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator or tilix
-- system-monitor: htop, gnome-system-monitor [optional]
+- system-monitor: htop, xfce4-taskmanager [optional], gnome-system-monitor [optional]
 - virtualization supports [optional]: virt-manager, cockpit-machines, gnome-boxes
 
 #### accessories

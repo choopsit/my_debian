@@ -69,15 +69,59 @@ choose_terminalemulator() {
 
     term_checklist=$(gen_checklist ${term_applist[@]})
 
-
     myterm=($(whiptail --separate-output --radiolist "Terminal-emulator" \
-        $((${#term_applist[@]}+8)) 30 ${#term_applist[@]} \
+        $((${#term_applist[@]}+8)) 40 ${#term_applist[@]} \
         ${term_checklist[@]} 3>&1 1>&2 2>&3))
 
     if [[ ${myterm} != "xfce4-terminal" ]]; then
         echo "${myterm}" >> "${mypkg}"
         echo "xfce4-terminal" >> "${uselesspkg}"
     fi
+}
+
+select_apps() {
+    title=$1
+    shift
+    applist=($@)
+
+    checklist=$(gen_checklist ${applist[@]})
+
+    myapps=($(whiptail --separate-output --checklist "${title//_/ }" \
+        $((${#applist[@]}+8)) 40 ${#applist[@]} \
+        ${checklist[@]} 3>&1 1>&2 2>&3))
+
+    for app in ${myapps[@]}; do
+        echo -e "${app}" >> "${mypkg}"
+    done
+
+    if [[ ${myapps[@]} =~ "transmission-qt" ]]; then
+        if [[ ${debian_version} == ${stable} ]]; then
+            echo "qt5ct" >> "${mypkg}"
+        else
+            echo "qt6ct" >> "${mypkg}"
+        fi
+    fi
+
+    if [[ ${myapps[@]} =~ "xfburn" ]]; then
+        sed -e "s/xfurn\n//" -i "${uselesspkg}"
+    fi
+
+    if [[ ${myapps[@]} =~ "leocad" ]]; then
+        echo "ldraw-parts" >> "${mypkg}"
+    fi
+
+    if [[ ${myapps[@]} =~ "cockpit-machines" ]]; then
+        echo "cockpit-pcp" >> "${mypkg}"
+    fi
+}
+
+choose_systemtools() {
+    systools_applist=(
+        "xfce4-taskmanager"
+        "gnome-system-monitor"
+    )
+
+    select_apps "System_tools" ${systools_applist[@]}
 }
 
 choose_internetapps() {
@@ -89,23 +133,7 @@ choose_internetapps() {
         "transmission-qt"
     )
 
-    internet_checklist=$(gen_checklist ${internet_applist[@]})
-
-    myinternet=($(whiptail --separate-output --checklist "Internet applications" \
-        $((${#internet_applist[@]}+8)) 30 ${#internet_applist[@]} \
-        ${internet_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${myinternet[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
-
-    if [[ ${myinternet[@]} =~ "transmission-qt" ]]; then
-        if [[ ${debian_version} == ${stable} ]]; then
-            echo "qt5ct" >> "${mypkg}"
-        else
-            echo "qt6ct" >> "${mypkg}"
-        fi
-    fi
+    select_apps "Internet_applications" ${internet_applist[@]}
 }
 
 choose_multimediaapps() {
@@ -122,19 +150,7 @@ choose_multimediaapps() {
         "brasero"
     )
 
-    multimedia_checklist=$(gen_checklist ${multimedia_applist[@]})
-
-    mymultimedia=($(whiptail --separate-output --checklist "Multimedia applications" \
-        $((${#multimedia_applist[@]}+8)) 30 ${#multimedia_applist[@]} \
-        ${multimedia_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${mymultimedia[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
-
-    if [[ ${mymultimedia} =~ "xfburn" ]]; then
-        sed -e "s/xfurn\n//" -i "${uselesspkg}"
-    fi
+    select_apps "Multimedia_applications" ${multimedia_applist[@]}
 }
 
 choose_graphicsapps() {
@@ -145,15 +161,7 @@ choose_graphicsapps() {
         "blender"
     )
 
-    graphics_checklist=$(gen_checklist ${graphics_applist[@]})
-
-    mygraphics=($(whiptail --separate-output --checklist "Graphics applications" \
-        $((${#graphics_applist[@]}+8)) 30 ${#graphics_applist[@]} \
-        ${graphics_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${mygraphics[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
+    select_apps "Graphics_applications" ${graphics_applist[@]}
 }
 
 choose_officeapps() {
@@ -163,15 +171,7 @@ choose_officeapps() {
         "zim"
     )
 
-    office_checklist=$(gen_checklist ${office_applist[@]})
-
-    myoffice=($(whiptail --separate-output --checklist "Office applications" \
-        $((${#office_applist[@]}+8)) 30 ${#office_applist[@]} \
-        ${office_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${myoffice[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
+    select_apps "Office_applications" ${office_applist[@]}
 }
 
 choose_games() {
@@ -190,15 +190,7 @@ choose_games() {
     #dep: libfuse2t64
     #install from github
 
-    games_checklist=$(gen_checklist ${gameslist[@]})
-
-    mygames=($(whiptail --separate-output --checklist "Games" \
-        $((${#gameslist[@]}+8)) 30 ${#gameslist[@]} \
-        ${games_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${mygames[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
+    select_apps "Games" ${gameslist[@]}
 }
 
 choose_scienseapps() {
@@ -210,15 +202,7 @@ choose_scienseapps() {
         "avogadro"
     )
 
-    science_checklist=$(gen_checklist ${science_applist[@]})
-
-    myscience=($(whiptail --separate-output --checklist "Science applications" \
-        $((${#science_applist[@]}+8)) 30 ${#science_applist[@]} \
-        ${science_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${myscience[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
+    select_apps "Sience_applications" ${science_applist[@]}
 
     if [[ ${myscience} =~ "leocad" ]]; then
         echo "ldraw-parts" >> "${mypkg}"
@@ -232,19 +216,7 @@ choose_virtualizationtools() {
         "gnome-boxes"
     )
 
-    virt_checklist=$(gen_checklist ${virt_applist[@]})
-
-    myvirt=($(whiptail --separate-output --checklist "Virtualization tools" \
-        $((${#virt_applist[@]}+8)) 30 ${#virt_applist[@]} \
-        ${virt_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${myvirt[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
-
-    if [[ ${myvirt} =~ "cockpit-machines" ]]; then
-        echo "cockpit-pcp" >> "${mypkg}"
-    fi
+    select_apps "Virtualization_tools" ${virt_applist[@]}
 }
 
 choose_services() {
@@ -253,19 +225,12 @@ choose_services() {
         "nfs-kernel-server"
     )
 
-    services_checklist=$(gen_checklist ${serviceslist[@]})
-
-    myservices=($(whiptail --separate-output --checklist "Services" \
-        $((${#serviceslist[@]}+8)) 30 ${#serviceslist[@]} \
-        ${services_checklist[@]} 3>&1 1>&2 2>&3))
-
-    for app in ${myservices[@]}; do
-        echo -e "${app}" >> "${mypkg}"
-    done
+    select_apps "Services" ${serviceslist[@]}
 }
 
 choose_components() {
     choose_terminalemulator
+    choose_systemtools
     choose_internetapps
     choose_multimediaapps
     choose_graphicsapps
