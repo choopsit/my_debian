@@ -65,6 +65,7 @@ choose_terminalemulator() {
         "terminator"
         "xfce4-terminal" 
         "tilix"
+        "kitty"
     )
 
     term_checklist=$(gen_checklist ${term_applist[@]})
@@ -106,6 +107,10 @@ select_apps() {
         sed -e "s/xfurn\n//" -i "${uselesspkg}"
     fi
 
+    if [[ ${myapps[@]} =~ "gthumb" ]]; then
+        echo "ristretto" >> "${uselesspkg}"
+    fi
+
     if [[ ${myapps[@]} =~ "leocad" ]]; then
         echo "ldraw-parts" >> "${mypkg}"
     fi
@@ -119,6 +124,8 @@ choose_systemtools() {
     systools_applist=(
         "xfce4-taskmanager"
         "gnome-system-monitor"
+        "gparted"
+        "qdirstat"
     )
 
     select_apps "System_tools" ${systools_applist[@]}
@@ -129,8 +136,9 @@ choose_internetapps() {
         "proton-vpn-gnome-desktop"
         "thunderbird"
         "chromium"
-        "deluge"
         "transmission-qt"
+        "qbittorrent"
+        "remmina"
     )
 
     select_apps "Internet_applications" ${internet_applist[@]}
@@ -140,14 +148,13 @@ choose_multimediaapps() {
     multimedia_applist=(
         "kodi"
         "kdenlive"
-        "pitivi"
         "lollypop"
-        "easytag"
         "audacity"
         "soundconverter"
         "sound-juicer"
         "xfburn"
-        "brasero"
+        "obs-studio"
+        "hydrogen"
     )
 
     select_apps "Multimedia_applications" ${multimedia_applist[@]}
@@ -159,6 +166,8 @@ choose_graphicsapps() {
         "inkscape"
         "krita"
         "blender"
+        "simple-scan"
+        "gthumb"
     )
 
     select_apps "Graphics_applications" ${graphics_applist[@]}
@@ -169,6 +178,7 @@ choose_officeapps() {
         "galculator"
         "evince"
         "zim"
+        "system-config-printer"
     )
 
     select_apps "Office_applications" ${office_applist[@]}
@@ -198,15 +208,11 @@ choose_scienseapps() {
         "leocad"
         "freecad"
         "stellarium"
-        "gelementar"
+        "gelemental"
         "avogadro"
     )
 
     select_apps "Sience_applications" ${science_applist[@]}
-
-    if [[ ${myscience} =~ "leocad" ]]; then
-        echo "ldraw-parts" >> "${mypkg}"
-    fi
 }
 
 choose_virtualizationtools() {
@@ -330,13 +336,13 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg" > /etc/apt/sources.li
 }
 
 renew_sources() {
-    echo "Renewng sources (deb288 format) [need credentials]..."
+    echo "Renewng sources (deb288 format)..."
 
     rm -f /etc/apt/sources.list
 
-    for sources_file in /etc/apt/sources.list.d/*; do
-        rm -f "${sources_file}"
-    done
+    #for sources_file in /etc/apt/sources.list.d/*; do
+    #    rm -f "${sources_file}"
+    #done
 
     if [[ ${debian_version} == sid ]]; then
         sid_sources
@@ -468,14 +474,17 @@ install() {
     echo "Starting installation..."
 
     if (grep -q "proton-vpn-gnome-desktop" "${mypkg}"); then
-        apt update
-        apt install -y gnupg
-        pushd /tmp
-        wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
-        dpkg -i ./protonvpn-stable-release_1.0.8_all.deb
-        popd
+        if ! (dpkg -l | grep -q "protonvpn-stable-release"); then
+            apt update
+            apt install -y gnupg
+            proton_srcpkg="protonvpn-stable-release_1.0.8_all.deb"
+            proton_repo="https://repo.protonvpn.com/debian/dists/stable/main/binary-all"
+            wget -O "/tmp/${proton_srcpkg}" "${proton_repo}/${proton_srcpkg}"
+            dpkg -i "/tmp/${proton_srcpkg}"
+        fi
     fi
 
+    dpkg --add-architecture i386
     apt update
     apt full-upgrade -y
     xargs apt install -y < "${mypkg}"
@@ -540,7 +549,7 @@ groups2ad=()
 user_config_menu
 
 renewsources=n
-sources_text="Refresh apt sources (deb288 format) ?\nWARNING: Third party repos will be removed"
+sources_text="Refresh apt sources (deb288 format) ?\nWARNING: Third party repos may be removed"
 if (whiptail --yesno "${sources_text}" 8 78); then
     renewsources=y
 fi

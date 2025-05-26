@@ -22,6 +22,7 @@ run "**install.sh**" to deploy.
 
 - terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator or tilix
 - system-monitor: htop, xfce4-taskmanager [optional], gnome-system-monitor [optional]
+- disk-tools [optional]: gparted, qdirstat
 - virtualization supports [optional]: virt-manager, cockpit-machines, gnome-boxes
 
 #### accessories
@@ -34,35 +35,39 @@ run "**install.sh**" to deploy.
 #### internet
 
 - web-browser: firefox on sid | firefox-esr on bookworm, chromium [optional]
-- torrent-clients [optional]: transmission-qt *(add qt5ct/qt6ct for better qt5/qt6-apps integration)*, deluge
+- torrent-clients [optional]: transmission-qt *(add qt5ct/qt6ct for better qt5/qt6-apps integration)*, qbittorrent
 
 #### multimedia
 
 - video-player: mpv
-- video-editor [optional]: kdenlive, pitivi
+- video-editor [optional]: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
-- tag-editor: exfalso *(from desktop base)*, easytag [optional]
+- tag-editor: exfalso *(from desktop base)*
 - audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
-- cd/dvd-tool [optional]: xfburn, brasero
+- cd/dvd-tool [optional]: xfburn
+- drum-machine: hydrogen
 
 #### graphisme
 
-- image-viewer: gthumb
+- image-viewer: ristretto *(from desktop base)*, gthumb [optional - *replace ristretto*]
 - image-editors [optional]: gimp, inkscape, krita
 - 3D-editor [optional]: blender
+- scan-manager [optional]: simple-scan
 
 #### office
 
 - office-suite: libreoffice *(from desktop base)*
 - pdf-viewer [optional]: evince
+- notes: zim
+- printer-manager [optional]: system-config-printer
 
 #### science [optional]
 
 - freecad
 - leocad (virtual brick CAD)
 - stellarium
-- gelementar
+- gelemental
 - avogadro
 
 #### games [optional]

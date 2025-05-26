@@ -47,12 +47,11 @@ while read line; do
     df_elts=(${line})
 
     devmap=${df_elts[0]}
-    mydev=${devmap#/dev/}
     sepdev=""
 
     fstype=${df_elts[1]}
 
-    for i in $(seq 1 "$((34-${#mydev}-${#fstype}))"); do
+    for i in $(seq 1 "$((51-${#devmap}-${#fstype}))"); do
         sepdev+=" "
     done
 
@@ -65,7 +64,7 @@ while read line; do
     fi
     sepfs=" -----${DEF}> "
 
-    fsline="${fscol}${mydev}${DEF}${sepdev}"
+    fsline="${fscol}${devmap}${DEF}${sepdev}"
     fsline+=" ${fscol}${fstype}${sepfs}"
 
     mntpoint=${df_elts[6]}
@@ -84,13 +83,13 @@ while read line; do
     else
         grcol="${YLO}"
     fi
-    used=$((pctu/3))
+    used=$((pctu/2))
     gru=""
     for i in $(seq 1 "${used}"); do
         gru+="#"
     done
     grf=""
-    for i in $(seq "$((used+1))" 33); do
+    for i in $(seq "$((used+1))" 50); do
         grf+="-"
     done
     graph="${grcol}${gru}${fscol}${grf}"
