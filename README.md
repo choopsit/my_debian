@@ -22,7 +22,9 @@ run "**install.sh**" to deploy.
 
 - terminal-emulator [choice]: xfce4-terminal *(from desktop base)* or terminator or tilix
 - system-monitor: htop, xfce4-taskmanager [optional], gnome-system-monitor [optional]
+- system-informations [otional]: hardinfo
 - disk-tools [optional]: gparted, qdirstat
+- backups [optional]: deja-dup
 - virtualization supports [optional]: virt-manager, cockpit-machines, gnome-boxes
 
 #### accessories

@@ -124,8 +124,10 @@ choose_systemtools() {
     systools_applist=(
         "xfce4-taskmanager"
         "gnome-system-monitor"
+        "hardinfo"
         "gparted"
         "qdirstat"
+        "deja-dup"
     )
 
     select_apps "System_tools" ${systools_applist[@]}
