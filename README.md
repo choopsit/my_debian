@@ -29,7 +29,7 @@ run "**install.sh**" to deploy.
 
 #### accessories
 
-- dock: plank
+- dock: plank [optional]
 - text-editors: mousepad *(from desktop base)*, vim
 - archivers: 7zip, xarchiver *(from desktop base)*
 - day/night-color-temperature: redshift
@@ -41,7 +41,7 @@ run "**install.sh**" to deploy.
 
 #### multimedia
 
-- video-player: mpv
+- video-player: parole *(from desktop base)*, showtime, mpv, vlc _[choose another video-player removes parole]_
 - video-editor [optional]: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*

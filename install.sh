@@ -133,6 +133,15 @@ choose_systemtools() {
     select_apps "System_tools" ${systools_applist[@]}
 }
 
+choose_accessories() {
+    accessorieslist=(
+        "galculator"
+        "plank"
+    )
+
+    select_apps "Accessories" ${accesorieslist[@]}
+}
+
 choose_internetapps() {
     internet_applist=(
         "proton-vpn-gnome-desktop"
@@ -148,6 +157,7 @@ choose_internetapps() {
 
 choose_multimediaapps() {
     multimedia_applist=(
+        "showtime"
         "kodi"
         "kdenlive"
         "lollypop"
@@ -157,6 +167,8 @@ choose_multimediaapps() {
         "xfburn"
         "obs-studio"
         "hydrogen"
+        "mpv"
+        "vlc"
     )
 
     select_apps "Multimedia_applications" ${multimedia_applist[@]}
@@ -177,7 +189,6 @@ choose_graphicsapps() {
 
 choose_officeapps() {
     office_applist=(
-        "galculator"
         "evince"
         "zim"
         "system-config-printer"
@@ -239,6 +250,7 @@ choose_services() {
 choose_components() {
     choose_terminalemulator
     choose_systemtools
+    choose_accessories
     choose_internetapps
     choose_multimediaapps
     choose_graphicsapps
