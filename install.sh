@@ -442,11 +442,6 @@ theming() {
     papirus-folders -t Papirus-Dark -C yaru
 
     "${scriptpath}"/scripts/tweak/themeupgrade.sh
-
-    wp_folder="/usr/share/images/desktop-base/"
-    wp_url="https://raw.githubusercontent.com/choopsit/resources/main/my_debian/wallpaper/my_debian.jpg"
-    rm -f "${wp_folder}my_debian.jpg"
-    wget "${wp_url}" -P "${wp_folder}"
 }
 
 root_config() {

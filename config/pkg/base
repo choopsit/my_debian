@@ -13,6 +13,9 @@ task-xfce-desktop
 xfce4-screenshooter
 xfce4-weather-plugin
 xfce4-whiskermenu-plugin
+xfce4-docklike-plugin
+xfce4-indicator-plugin
+xfce4-panel-profiles
 bluetooth
 blueman
 slick-greeter
