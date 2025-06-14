@@ -123,11 +123,11 @@ select_apps() {
 choose_systemtools() {
     systools_applist=(
         "xfce4-taskmanager"
-        "gnome-system-monitor"
-        "hardinfo"
+        "deja-dup"
         "gparted"
         "qdirstat"
-        "deja-dup"
+        "hardinfo"
+        "gnome-system-monitor"
     )
 
     select_apps "System_tools" ${systools_applist[@]}
@@ -139,16 +139,16 @@ choose_accessories() {
         "plank"
     )
 
-    select_apps "Accessories" ${accesorieslist[@]}
+    select_apps "Accessories" ${accessorieslist[@]}
 }
 
 choose_internetapps() {
     internet_applist=(
         "proton-vpn-gnome-desktop"
+        "qbittorrent"
+        "transmission-qt"
         "thunderbird"
         "chromium"
-        "transmission-qt"
-        "qbittorrent"
         "remmina"
     )
 
@@ -157,16 +157,16 @@ choose_internetapps() {
 
 choose_multimediaapps() {
     multimedia_applist=(
-        "showtime"
+        "celluloid"
         "kodi"
         "kdenlive"
-        "lollypop"
+        "obs-studio"
+        "xfburn"
         "audacity"
         "soundconverter"
         "sound-juicer"
-        "xfburn"
-        "obs-studio"
         "hydrogen"
+        "lollypop"
         "mpv"
         "vlc"
     )
@@ -176,12 +176,12 @@ choose_multimediaapps() {
 
 choose_graphicsapps() {
     graphics_applist=(
+        "gthumb"
         "gimp"
+        "blender"
         "inkscape"
         "krita"
-        "blender"
         "simple-scan"
-        "gthumb"
     )
 
     select_apps "Graphics_applications" ${graphics_applist[@]}
@@ -189,9 +189,9 @@ choose_graphicsapps() {
 
 choose_officeapps() {
     office_applist=(
-        "evince"
-        "zim"
         "system-config-printer"
+        "zim"
+        "evince"
     )
 
     select_apps "Office_applications" ${office_applist[@]}
@@ -218,9 +218,9 @@ choose_games() {
 
 choose_scienseapps() {
     science_applist=(
+        "stellarium"
         "leocad"
         "freecad"
-        "stellarium"
         "gelemental"
         "avogadro"
     )

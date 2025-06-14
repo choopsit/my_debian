@@ -39,10 +39,11 @@ usage() {
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 git_base="${HOME}/Work/git"
-thm_list=("colloid_gtk" "whitesur_cursors")
-#[[ -d "${git_base}/Colloid-gtk" ]] && thm_list+=("colloid_gtk")
+thm_list=("colloid_gtk" "whitesur_cursors" "colloid_icons-cursors" "gruvbox_icons")
+#[[ -d "${git_base}/Colloid-gtk-theme" ]] && thm_list+=("colloid_gtk")
+#[[ -d "${git_base}/Colloid-icon-theme" ]] && thm_list+=("colloid_icon-cursors")
 [[ -d "${git_base}/Gruvbox-GTK-Theme" ]] && thm_list+=("gruvbox_gtk")
-[[ -d "${git_base}/gruvbox-plus-icon-pack" ]] && thm_list+=("gruvbox_icons")
+#[[ -d "${git_base}/gruvbox-plus-icon-pack" ]] && thm_list+=("gruvbox_icons")
 [[ -d "${git_base}/kora" ]] && thm_list+=("kora_icons")
 [[ -d "${git_base}/McMojave-cursors" ]] && thm_list+=("mcmojave_cursors")
 [[ -d "${git_base}/Mojave-gtk-theme" ]] && thm_list+=("mojave_gtk")
