@@ -41,7 +41,7 @@ run "**install.sh**" to deploy.
 
 #### multimedia
 
-- video-player: parole *(from desktop base)*, celluloid, mpv, vlc _[choose another video-player removes parole]_
+- video-player: parole *(from desktop base)*, clapper, mpv, vlc _[choose another video-player removes parole]_
 - video-editor [optional]: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*
@@ -90,8 +90,8 @@ run "**install.sh**" to deploy.
 ### default theme
 
 - **gtk-theme**: Colloid gruvbox dark - https://github.com/vinceliuice/Colloid-gtk-theme
-- **icon-theme**: papirus 'yaru' (using papirus-folders: https://github.com/PapirusDevelopmentTeam/papirus-folders)
-- **cursors**: WhiteSur-cursors - https://github.com/vinceliuice/WhiteSur-cursors
+- **icon-theme**: Gruvbox-Plus-icon-pack - https://github.com/SylEleuth/gruvbox-plus-icon-pack
+- **cursors**: Colloid-cursors - https://github.com/vinceliuice/Colloid-icon-theme
 
 ### more installable themes with scripts deployed in $HOME/.local/bin
 
@@ -102,6 +102,7 @@ run "**install.sh**" to deploy.
 
 #### icon-themes
 
+- **colloid_icons-cursors**: https://github.com/vinceliuice/Colloid-icon-theme
 - **gruvbox_icons**: https://github.com/SylEleuth/gruvbox-plus-icon-pack
 - **kora_icons**: https://github.com/bikass/kora
 - **whitesur_icons**: https://github.com/vinceliuice/WhiteSur-icon-theme
@@ -109,6 +110,7 @@ run "**install.sh**" to deploy.
 #### cursors
 
 - **mcmojave_cursors**: https://github.com/vinceliuice/McMojave-cursors
+- **whitesur_cursors**: https://github.com/vinceliuice/WhiteSur-cursors
 
 ---------
 
@@ -122,7 +124,6 @@ run "**install.sh**" to deploy.
 - **statgitrepo**: return state of git repos in $HOME/Work/git
 - **themeupragde**: upgrade themes installed with supplied scripts
 - **tsm**: simple transmission-daemon management
-- **backup**: rsync backup (few sytem conf + $HOME important things) to /volumes/backup
 
 ### systemlevel: /usr/local/bin
 
