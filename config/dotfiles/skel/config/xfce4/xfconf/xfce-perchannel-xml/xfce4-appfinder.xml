@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-appfinder" version="1.0">
   <property name="actions" type="array">
@@ -40,13 +40,13 @@
   </property>
   <property name="icon-view" type="bool" value="true"/>
   <property name="item-icon-size" type="uint" value="4"/>
-  <property name="category-icon-size" type="uint" value="2"/>
-  <property name="always-center" type="bool" value="false"/>
-  <property name="last" type="empty">
-    <property name="window-height" type="int" value="1053"/>
-    <property name="window-width" type="int" value="1920"/>
-    <property name="pane-position" type="int" value="252"/>
-  </property>
   <property name="hide-category-pane" type="bool" value="false"/>
-  <property name="hide-window-decorations" type="bool" value="true"/>
+  <property name="category-icon-size" type="uint" value="2"/>
+  <property name="generic-names" type="bool" value="false"/>
+  <property name="last" type="empty">
+    <property name="window-height" type="int" value="771"/>
+    <property name="window-width" type="int" value="1836"/>
+    <property name="pane-position" type="int" value="180"/>
+  </property>
+  <property name="always-center" type="bool" value="true"/>
 </channel>

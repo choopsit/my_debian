@@ -1,0 +1,12 @@
+[user]
+inactiveColor=rgba(152,139,125,0.57047)
+indicatorStyle=2
+indicatorColor=rgb(81,134,123)
+inactiveIndicatorStyle=2
+forceIconSize=true
+iconSize=64
+showPreviews=true
+middleButtonBehavior=1
+indicatorColorFromTheme=false
+keyComboActive=true
+pinned=thunar;firefox;io.github.quodlibet.QuodLibet;terminator;

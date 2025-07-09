@@ -4,23 +4,12 @@
 	<icon>utilities-terminal</icon>
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
-	<unique-id>1648849338160784-1</unique-id>
+	<unique-id>1752010166176229-1</unique-id>
 	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
 	<description>Example for a custom action</description>
 	<range></range>
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
-</action>
-<action>
-	<icon>plasma-media-center</icon>
-	<name>Video details</name>
-	<submenu></submenu>
-	<unique-id>1700863878403854-1</unique-id>
-	<command>mediainfo -i %f | zenity --text-info --title %N --width=480 --height=640</command>
-	<description></description>
-	<range>*</range>
-	<patterns>*</patterns>
-	<video-files/>
 </action>
 </actions>

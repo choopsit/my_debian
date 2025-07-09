@@ -3,7 +3,7 @@
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
     <property name="ThemeName" type="string" value="Colloid-Dark-Gruvbox"/>
-    <property name="IconThemeName" type="string" value="Papirus-Dark"/>
+    <property name="IconThemeName" type="string" value="Gruvbox-Plus-Dark"/>
     <property name="DoubleClickTime" type="empty"/>
     <property name="DoubleClickDistance" type="empty"/>
     <property name="DndDragThreshold" type="empty"/>
@@ -30,13 +30,11 @@
     <property name="MenuImages" type="empty"/>
     <property name="ButtonImages" type="empty"/>
     <property name="MenuBarAccel" type="empty"/>
-    <property name="CursorThemeName" type="string" value="WhiteSur-cursors"/>
+    <property name="CursorThemeName" type="string" value="Colloid-cursors"/>
     <property name="CursorThemeSize" type="int" value="36"/>
     <property name="DecorationLayout" type="string" value="close,minimize,maximize:"/>
     <property name="DialogsUseHeader" type="empty"/>
     <property name="TitlebarMiddleClick" type="empty"/>
-    <property name="ToolbarStyle" type="empty"/>
-    <property name="ToolbarIconSize" type="empty"/>
   </property>
   <property name="Gdk" type="empty">
     <property name="WindowScalingFactor" type="empty"/>

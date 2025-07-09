@@ -157,7 +157,7 @@ choose_internetapps() {
 
 choose_multimediaapps() {
     multimedia_applist=(
-        "celluloid"
+        "clapper"
         "kodi"
         "kdenlive"
         "obs-studio"
@@ -391,8 +391,6 @@ user_config() {
     for dotfile in "${scriptpath}"/config/dotfiles/skel/*; do
         copy_conf "${dotfile}" "${myhome}"
     done
-
-    [[ ${debian_version} == sid ]] && ${up}rm -rf "${myhome}/.config/xfce4/terminal"
 
     if [[ ${myuser} != root ]]; then
         chown -R "${myuser}":"${myuser}" "${myhome}"

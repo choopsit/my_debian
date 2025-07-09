@@ -39,7 +39,7 @@ usage() {
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
 git_base="${HOME}/Work/git"
-thm_list=("colloid_gtk" "whitesur_cursors" "colloid_icons-cursors" "gruvbox_icons")
+thm_list=("colloid_gtk" "colloid_icons-cursors" "gruvbox_icons")
 #[[ -d "${git_base}/Colloid-gtk-theme" ]] && thm_list+=("colloid_gtk")
 #[[ -d "${git_base}/Colloid-icon-theme" ]] && thm_list+=("colloid_icon-cursors")
 [[ -d "${git_base}/Gruvbox-GTK-Theme" ]] && thm_list+=("gruvbox_gtk")
@@ -47,7 +47,7 @@ thm_list=("colloid_gtk" "whitesur_cursors" "colloid_icons-cursors" "gruvbox_icon
 [[ -d "${git_base}/kora" ]] && thm_list+=("kora_icons")
 [[ -d "${git_base}/McMojave-cursors" ]] && thm_list+=("mcmojave_cursors")
 [[ -d "${git_base}/Mojave-gtk-theme" ]] && thm_list+=("mojave_gtk")
-#[[ -d "${git_base}/WhiteSur-cursors" ]] && thm_list+=("whitesur_cursors")
+[[ -d "${git_base}/WhiteSur-cursors" ]] && thm_list+=("whitesur_cursors")
 [[ -d "${git_base}/WhiteSur-gtk-theme" ]] && thm_list+=("whitesur_gtk")
 [[ -d "${git_base}/WhiteSur-icon-theme" ]] && thm_list+=("whitesur_icons")
 

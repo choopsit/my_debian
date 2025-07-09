@@ -3,28 +3,17 @@
 <channel name="thunar" version="1.0">
   <property name="last-view" type="string" value="ThunarIconView"/>
   <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_100_PERCENT"/>
-  <property name="misc-single-click" type="bool" value="false"/>
-  <property name="misc-directory-specific-settings" type="bool" value="true"/>
-  <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
-  <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
-  <property name="misc-middle-click-in-tab" type="bool" value="true"/>
-  <property name="misc-show-delete-action" type="bool" value="true"/>
-  <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
-  <property name="last-menubar-visible" type="bool" value="false"/>
-  <property name="last-window-width" type="int" value="923"/>
-  <property name="last-window-height" type="int" value="498"/>
-  <property name="last-window-maximized" type="bool" value="false"/>
   <property name="last-separator-position" type="int" value="170"/>
   <property name="last-show-hidden" type="bool" value="false"/>
-  <property name="misc-confirm-close-multiple-tabs" type="bool" value="false"/>
-  <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_100_PERCENT"/>
-  <property name="last-details-view-visible-columns" type="string" value="THUNAR_COLUMN_DATE_MODIFIED,THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE"/>
-  <property name="last-details-view-column-widths" type="string" value="50,50,118,50,50,93,50,50,454,50,50,69,50,130"/>
-  <property name="misc-parallel-copy-mode" type="string" value="THUNAR_PARALLEL_COPY_MODE_ALWAYS"/>
-  <property name="last-toolbar-item-order" type="string" value="0,1,2,3,4,5,6,9,10,11,12,13,14,7,8,15,16,17"/>
-  <property name="last-toolbar-visible-buttons" type="string" value="1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0"/>
-  <property name="last-splitview-separator-position" type="int" value="385"/>
-  <property name="last-toolbar-items" type="string" value="menu:1,back:1,forward:1,open-parent:1,open-home:1,undo:0,redo:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,toggle-split-view:0,location-bar:1,zoom-in:0,zoom-out:0,reload:0,search:1,uca-action-1648849338160784-1:0,new-tab:0,new-window:0,view-switcher:0"/>
-  <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
+  <property name="last-window-width" type="int" value="875"/>
+  <property name="last-window-height" type="int" value="440"/>
+  <property name="last-window-maximized" type="bool" value="false"/>
+  <property name="misc-single-click" type="bool" value="false"/>
+  <property name="misc-directory-specific-settings" type="bool" value="true"/>
   <property name="misc-use-csd" type="bool" value="true"/>
+  <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
+  <property name="misc-middle-click-in-tab" type="bool" value="true"/>
+  <property name="misc-show-delete-action" type="bool" value="true"/>
+  <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
+  <property name="last-menubar-visible" type="bool" value="false"/>
 </channel>
