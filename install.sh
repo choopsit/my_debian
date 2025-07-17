@@ -103,10 +103,6 @@ select_apps() {
         fi
     fi
 
-    if [[ ${myapps[@]} =~ "xfburn" ]]; then
-        sed -e "s/xfurn\n//" -i "${uselesspkg}"
-    fi
-
     if [[ ${myapps[@]} =~ "gthumb" ]]; then
         echo "ristretto" >> "${uselesspkg}"
     fi
@@ -161,7 +157,7 @@ choose_multimediaapps() {
         "kodi"
         "kdenlive"
         "obs-studio"
-        "xfburn"
+        "brasero"
         "audacity"
         "soundconverter"
         "sound-juicer"
