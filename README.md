@@ -47,7 +47,7 @@ run "**install.sh**" to deploy.
 - tag-editor: exfalso *(from desktop base)*
 - audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
-- cd/dvd-tool [optional]: brasero
+- cd/dvd-tool [optional]: xfburn, brasero
 - drum-machine: hydrogen
 
 #### graphisme
