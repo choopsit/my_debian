@@ -1,6 +1,6 @@
 # my\_debian
 
-personal debian xfce (tested on 12.x "bookworm" and sid)
+personal debian xfce (tested on 13.x "trixie" and sid)
 
 ---------
 
@@ -130,4 +130,4 @@ run "**install.sh**" to deploy.
 - **bdf**: graphical view of 'df' (python alternative: pydf)
 - **bfetch**: system informations (python alternative: pyfetch)
 - **netinfo**: return connexions informations (actually python but may switch to bash)
-- **udbcreator**: generate bootable USB key
+- **usbcreator**: generate bootable USB key

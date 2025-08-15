@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 description="Deploy my personal xfce configuration"
-# version: 12.9
+# version: 13.0
 # author: Choops <choopsbd@gmail.com>
 
 set -e
 
-stable=bookworm
-testing=trixie
+stable=trixie
+testing=forky
 
 scriptpath="$(dirname "$(realpath "$0")")"
 
@@ -103,8 +103,8 @@ select_apps() {
         fi
     fi
 
-    if [[ ${myapps[@]} =~ "xfburn" ]]; then
-        sed -e "s/xfurn\n//" -i "${uselesspkg}"
+    if ! [[ ${myapps[@]} =~ "xfburn" ]]; then
+        echo "s/xfurn\n//" > "${uselesspkg}"
     fi
 
     if [[ ${myapps[@]} =~ "gthumb" ]]; then
@@ -354,10 +354,6 @@ renew_sources() {
     echo "Renewng sources (deb288 format)..."
 
     rm -f /etc/apt/sources.list
-
-    #for sources_file in /etc/apt/sources.list.d/*; do
-    #    rm -f "${sources_file}"
-    #done
 
     if [[ ${debian_version} == sid ]]; then
         sid_sources

@@ -3,7 +3,7 @@
 set -e
 
 description="Create USB bootable key with debian stable on it"
-# version: 12.1
+# version: 13.0
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -17,8 +17,8 @@ OK="${GRN}OK${DEF}:"
 WRN="${YLO}WRN${DEF}:"
 NFO="${CYN}NFO${DEF}:"
 
-DEBIAN_V="12.5.0"
-MINT_V="21.3"
+DEBIAN_V="13.0.0"
+MINT_V="22.1"
 GPARTED_V="1.6.0-1"
 
 
