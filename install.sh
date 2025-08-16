@@ -115,6 +115,10 @@ select_apps() {
         echo "ldraw-parts" >> "${mypkg}"
     fi
 
+    if [[ ${myapps[@]} =~ "system-config-printer" ]]; then
+        echo "cups" >> "${mypkg}"
+    fi
+
     if [[ ${myapps[@]} =~ "cockpit-machines" ]]; then
         echo "cockpit-pcp" >> "${mypkg}"
     fi
