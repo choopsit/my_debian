@@ -3,7 +3,7 @@
 set -e
 
 description="Fetch system informations"
-# version: 12.1
+# version: 13.0
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -59,9 +59,9 @@ os="$(awk -F"\"" '/^PRETTY/ {print $2}' /etc/os-release)"
 line[1]="${CYN}OS${DEF}:     ${os}"
 
 kernel="$(uname -sr)"
-sepk="\t\t  "
-[[ ${#kernel} -lt 7 ]] && sepk="\t\t\t  "
-[[ ${#kernel} -gt 14 ]] && sepk="\t  "
+sepk="\t\t"
+[[ ${#kernel} -lt 7 ]] && sepk="\t\t\t"
+[[ ${#kernel} -gt 14 ]] && sepk="\t"
 nb_pkgs="$(dpkg -l | grep ^ii | wc -l)"
 line[2]="${CYN}Kernel${DEF}: ${kernel}${sepk}${CYN}Packages${DEF}:  ${nb_pkgs}"
 
@@ -80,9 +80,9 @@ else
     shell_version=${shell_version/\(*\)}
     shell+=" ${shell_version}"
 fi
-sept="\t\t  "
-[[ ${#shell} -lt 7 ]] && sept="\t\t\t  "
-[[ ${#shell} -gt 14 ]] && sept="\t  "
+sept="\t\t\t"
+[[ ${#shell} -lt 7 ]] && sept="\t\t\t\t"
+[[ ${#shell} -gt 14 ]] && sept="\t\t"
 if (grep -q terminator /etc/alternatives/x-terminal-emulator); then
     term="terminator"
 else
@@ -109,16 +109,16 @@ if [[ ${wm_bin} ]]; then
 else
     wm="N/A"
 fi
-sepwm="\t\t  "
-[[ ${#de} -lt 7 ]] && sepwm="\t\t\t  "
-[[ ${#de} -gt 14 ]] && sepwm="\t  "
+sepwm="\t\t\t"
+[[ ${#de} -lt 7 ]] && sepwm="\t\t\t\t"
+[[ ${#de} -gt 14 ]] && sepwm="\t\t"
 line[5]="${CYN}DE${DEF}:     ${de}${sepwm}${CYN}WM${DEF}:        ${wm}"
 
 [[ ${wm} == xfwm4 ]] && icons="$(xfconf-query -c xsettings -p /Net/IconThemeName)"
 [[ ${de} == GNOME ]] && icons="$(gsettings get org.gnome.desktop.interface icon-theme)"
-sepd="\t\t  "
-[[ ${#icons} -lt 7 ]] && sepd="\t\t\t  "
-[[ ${#icons} -gt 14 ]] && sepd="\t  "
+sepd="\t\t\t"
+[[ ${#icons} -lt 7 ]] && sepd="\t\t\t\t"
+[[ ${#icons} -gt 14 ]] && sepd="\t\t"
 [[ ${wm} == xfwm4 ]] && gtk_thm="$(xfconf-query -c xfwm4 -p /general/theme)"
 [[ ${de} == GNOME ]] && gtk_thm="$(gsettings get org.gnome.shell.extensions.user-theme name)"
 line[6]="${CYN}Icons${DEF}:  ${icons}${sepd}${CYN}GTK-theme${DEF}: ${gtk_thm}"
@@ -144,12 +144,12 @@ line[7]="${CYN}CPU${DEF}:    ${cpu} (${cpu_cores}) @ ${cpu_speed}MHz"
 gpu="$(lspci | grep 'display\|3D\|VGA' | sed -e 's/.*\[\(.*\)\].*/\1/')"
 line[8]="${CYN}GPU${DEF}:    ${gpu}"
 
-ram="$(free -m | awk '/^Mem:/ {print $3 "/" $2 " MB"}')"
-sepm="\t\t  "
-[[ ${#ram} -lt 7 ]] && sepm="\t\t\t  "
-[[ ${#ram} -gt 14 ]] && sepm="\t  "
+ram="$(free -m | awk '/^Mem:/ {print$3 "/" $2 " MB"}')"
+sepm="\t\t\t"
+[[ ${#ram} -lt 7 ]] && sepm="\t\t\t\t"
+[[ ${#ram} -gt 14 ]] && sepm="\t\t"
 swap="$(free -m | awk '/^Swap:/ {print $3 "/" $2 " MB"}')"
-line[9]="${CYN}RAM${DEF}:    ${ram}${sepm}${CYN}Swap${DEF}: ${swap}"
+line[9]="${CYN}RAM${DEF}:    ${ram}${sepm}${CYN}Swap${DEF}:\t${swap}"
 
 colors=("${RED}" "${GRN}" "${YLO}" "${BLU}" "${PUR}" "${CYN}" "${GRY}")
 rand=$[$RANDOM % ${#colors[@]}]

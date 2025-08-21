@@ -3,7 +3,7 @@
 #set -e
 
 description="Display system informations"
-# version: 12.1
+# version: 13.0
 # author: Choops <choopsbd@gmail.com>
 
 DEF="\e[0m"
@@ -68,7 +68,6 @@ sys_info() {
     (dpkg -l | grep -q "^ii  libvirt0") && (virsh list | grep -q running) &&
         echo -e "${CYN}Virtual Machine(s) running${DEF}:" &&
         virsh list | awk '/running/{print "\033[32m> \033[0m"$2}' &&
-        #virsh list | awk '/running/{print "\033[36m> \033[37m"$2"\033[0m"}' &&
         echo
 
     (dpkg -l | grep -q "^ii  transmission-daemon") &&
