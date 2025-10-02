@@ -36,6 +36,10 @@ init_pkglists() {
 
     cp -f ${scriptpath}/config/pkg/base ${base} 
     cp -f ${scriptpath}/config/pkg/useless ${useless} 
+
+    if [[ ${debian_version} == sid ]]; then
+        echo -e "needrestart\napt-listbugs" >> ${base}
+    fi
 }
 
 pkgstate() {
@@ -104,7 +108,7 @@ select_apps() {
     fi
 
     if ! [[ ${myapps[@]} =~ "xfburn" ]]; then
-        echo "s/xfurn\n//" > "${uselesspkg}"
+        echo "xfburn" >> "${uselesspkg}"
     fi
 
     if [[ ${myapps[@]} =~ "gthumb" ]]; then
@@ -127,8 +131,8 @@ select_apps() {
 choose_systemtools() {
     systools_applist=(
         "xfce4-taskmanager"
-        "deja-dup"
         "gparted"
+        "deja-dup"
         "qdirstat"
         "hardinfo"
         "gnome-system-monitor"
@@ -163,13 +167,12 @@ choose_multimediaapps() {
     multimedia_applist=(
         "clapper"
         "kodi"
-        "kdenlive"
-        "obs-studio"
-        "xfurn"
-        "brasero"
-        "audacity"
+        "xfburn"
         "soundconverter"
         "sound-juicer"
+        "kdenlive"
+        "obs-studio"
+        "audacity"
         "hydrogen"
         "lollypop"
         "mpv"
@@ -185,6 +188,7 @@ choose_graphicsapps() {
         "gimp"
         "blender"
         "inkscape"
+        "mypaint"
         "krita"
         "simple-scan"
     )
@@ -205,12 +209,13 @@ choose_officeapps() {
 choose_games() {
     gameslist=(
         "steam-installer"
-        "pcsx2:i386"
-        "mednaffe"
+        "dolphin-emu"
         "supertuxkart"
-        "0ad"
         "quadrapassel"
         "gnome-2048"
+        "pcsx2:i386"
+        "mednaffe"
+        "0ad"
         "pokerth"
     )
     #TODO:
