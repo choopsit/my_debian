@@ -104,14 +104,14 @@ while read line; do
         sepsp+=" "
     done
     sepsp2=" "
-    for i in $(seq 1 "$((4-${#size}))"); do
+    for i in $(seq 1 "$((5-${#size}))"); do
         sepsp2+=" "
     done
     fsline+="${sepsp}${grcol}${used}${DEF}/${grcol}${size}${DEF}${sepsp2}-"
 
     free=${df_elts[4]}
     sepf=" "
-    for i in $(seq 1 "$((4-${#free}))"); do
+    for i in $(seq 1 "$((5-${#free}))"); do
         sepf+=" "
     done
     fsline+="${sepf}${grcol}${free}${DEF} free"
