@@ -31,29 +31,33 @@ run "**install.sh**" to deploy.
 
 - dock: plank [optional]
 - text-editors: mousepad *(from desktop base)*, vim
-- archivers: 7zip, xarchiver *(from desktop base)*
+- archivers: 7zip, file-roller
 - day/night-color-temperature: redshift
 
 #### internet
 
 - web-browser: firefox on sid | firefox-esr on bookworm, chromium [optional]
+- email-client [optional]: thunderbird
 - torrent-clients [optional]: transmission-qt *(add qt5ct/qt6ct for better qt5/qt6-apps integration)*, qbittorrent
+- remote-destop [optional]: remmina
+- vpn [optional]: proton-vpn
 
 #### multimedia
 
-- video-player: parole *(from desktop base)*, clapper, mpv, vlc _[choose another video-player removes parole]_
+- video-player [choices]: clapper, mpv, vlc
 - video-editor [optional]: kdenlive
 - music-players: quodlibet *(from desktop base)*, lollypop [optional]
 - tag-editor: exfalso *(from desktop base)*
 - audio-rippers/editors [optional]: sound-juicer, soundconverter, audacity
 - mediacenter [optional]: kodi
-- cd/dvd-tool [optional]: xfburn, brasero
-- drum-machine: hydrogen
+- cd/dvd-tool [optional]: xfburn
+- drum-machine [optional]: hydrogen
+- screen-capture [otpional]: obs-studio
 
 #### graphisme
 
 - image-viewer: ristretto *(from desktop base)*, gthumb [optional - *replace ristretto*]
-- image-editors [optional]: gimp, inkscape, krita
+- image-editors [optional]: gimp, inkscape, krita, mypaint
 - 3D-editor [optional]: blender
 - scan-manager [optional]: simple-scan
 
@@ -69,19 +73,18 @@ run "**install.sh**" to deploy.
 - freecad
 - leocad (virtual brick CAD)
 - stellarium
-- gelemental
-- avogadro
 
 #### games [optional]
 
 - steam
-- pcsx2 (playstation 2 emulator)
-- mednaffen (multiple retro consoles emulator)
+- dolphin-emu
 - supertuxkart
-- 0ad
-- pokerth
 - quadrapassel (tetris-like)
 - gnome-2048
+- pcsx2 (playstation 2 emulator)
+- mednaffen (multiple retro consoles emulator)
+- 0ad
+- pokerth
 
 ---------
 

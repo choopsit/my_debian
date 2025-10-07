@@ -231,8 +231,6 @@ choose_scienseapps() {
         "stellarium"
         "leocad"
         "freecad"
-        "gelemental"
-        "avogadro"
     )
 
     select_apps "Sience_applications" ${science_applist[@]}
