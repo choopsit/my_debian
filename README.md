@@ -78,6 +78,7 @@ run "**install.sh**" to deploy.
 
 - steam
 - dolphin-emu
+- retroarch
 - supertuxkart
 - quadrapassel (tetris-like)
 - gnome-2048

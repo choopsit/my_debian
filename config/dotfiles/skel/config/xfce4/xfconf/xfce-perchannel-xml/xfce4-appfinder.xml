@@ -44,9 +44,11 @@
   <property name="category-icon-size" type="uint" value="2"/>
   <property name="generic-names" type="bool" value="false"/>
   <property name="last" type="empty">
-    <property name="window-height" type="int" value="771"/>
-    <property name="window-width" type="int" value="1836"/>
+    <property name="window-height" type="int" value="1053"/>
+    <property name="window-width" type="int" value="1920"/>
     <property name="pane-position" type="int" value="180"/>
   </property>
   <property name="always-center" type="bool" value="true"/>
+  <property name="hide-window-decorations" type="bool" value="true"/>
+  <property name="close-on-focus-lost" type="bool" value="true"/>
 </channel>

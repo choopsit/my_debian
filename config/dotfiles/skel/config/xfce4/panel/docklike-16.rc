@@ -1,0 +1,13 @@
+[user]
+pinned=thunar;firefox;kodi;io.github.quodlibet.QuodLibet;dolphin-emu;RPCS3;terminator;
+showPreviews=true
+showWindowCount=true
+middleButtonBehavior=1
+indicatorStyle=2
+inactiveColor=rgba(114,114,114,0.9)
+indicatorColor=rgb(106,165,144)
+inactiveIndicatorStyle=2
+indicatorColorFromTheme=false
+indicatorOrientation=0
+keyComboActive=true
+forceIconSize=false

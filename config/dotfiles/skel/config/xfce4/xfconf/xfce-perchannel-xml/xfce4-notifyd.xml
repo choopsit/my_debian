@@ -7,7 +7,19 @@
   <property name="initial-opacity" type="double" value="0.80000000000000004"/>
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
+      <value type="string" value="brasero"/>
+      <value type="string" value="Firefox"/>
+      <value type="string" value="org.freedesktop.network-manager-applet"/>
+      <value type="string" value="org.qbittorrent.qBittorrent"/>
+      <value type="string" value="org.xfce.Thunar"/>
+      <value type="string" value="proton.vpn.app.gtk"/>
+      <value type="string" value="Transmission"/>
+      <value type="string" value="Xfce volume control"/>
       <value type="string" value="Xfce4-notifyd settings"/>
+      <value type="string" value="xfce4-settings-helper"/>
     </property>
   </property>
+  <property name="notification-log" type="bool" value="false"/>
+  <property name="log-level" type="string" value="always"/>
+  <property name="log-max-size" type="uint" value="10"/>
 </channel>

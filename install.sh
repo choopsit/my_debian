@@ -210,6 +210,7 @@ choose_games() {
     gameslist=(
         "steam-installer"
         "dolphin-emu"
+        "retroarch"
         "supertuxkart"
         "quadrapassel"
         "gnome-2048"

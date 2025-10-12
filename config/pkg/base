@@ -18,6 +18,7 @@ xfce4-indicator-plugin
 xfce4-panel-profiles
 bluetooth
 blueman
+nfs-common
 slick-greeter
 greybird-gtk-theme
 gvfs-backends

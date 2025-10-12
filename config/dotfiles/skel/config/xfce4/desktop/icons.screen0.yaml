@@ -4,6 +4,36 @@
 configs:
 - level: 0
   monitors:
+  - id: "d25db66b7aaca37ab6e8ddf3e5459360c87baf3a"
+    display_name: "Mars-Tech Corporation Smart TV 0x00000001 (HDMI-0)"
+    geometry:
+      x: 0
+      y: 0
+      width: 1920
+      height: 1080
+  icons:
+    "4E21-0000":
+      row: 0
+      col: 0
+      last_seen: 1754070647864447
+    "a9506b6c-1028-4feb-8531-26f03724a4fd":
+      row: 1
+      col: 0
+      last_seen: 1758487509735495
+    "1a38d605-a2f6-4fad-8c39-f20b0b0aaa64":
+      row: 0
+      col: 0
+      last_seen: 1758487509733858
+    "88947325-d328-444e-958f-7552c246492e":
+      row: 3
+      col: 0
+      last_seen: 1758487509739527
+    "8d377cdd-2df3-4089-83e1-055d57bb90fa":
+      row: 2
+      col: 0
+      last_seen: 1759437131272183
+- level: 0
+  monitors:
   - id: "abfb9c8813957ba56a06ac1f0133da569ae08c54"
     display_name: "Red Hat, Inc. QEMU Monitor (Virtual-1)"
     geometry:

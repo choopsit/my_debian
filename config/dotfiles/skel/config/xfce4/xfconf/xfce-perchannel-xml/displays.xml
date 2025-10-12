@@ -5,11 +5,12 @@
   <property name="Notify" type="int" value="1"/>
   <property name="AutoEnableProfiles" type="int" value="3"/>
   <property name="Default" type="empty">
-    <property name="Virtual-1" type="string" value="Red Hat, Inc. 15&quot;">
+    <property name="HDMI-A-0" type="string" value="MITAC 43&quot;">
       <property name="Active" type="bool" value="true"/>
-      <property name="EDID" type="string" value="19821ae4de9e0d3dc994c8dcce178ba0471d41de"/>
+      <property name="EDID" type="string" value="188f80fac7ee6b4f5cea1fbe9d3c55306bc346c2"/>
       <property name="Resolution" type="string" value="1920x1080"/>
       <property name="RefreshRate" type="double" value="60"/>
+      <property name="ModeFlags" type="uint64" value="5"/>
       <property name="Rotation" type="int" value="0"/>
       <property name="Reflection" type="string" value="0"/>
       <property name="Primary" type="bool" value="false"/>
