@@ -101,9 +101,11 @@ hello_gtk() {
         fi
 
         if [[ $(whoami) == root ]]; then
-            "${install_script}" -c dark --tweaks all
+            "${install_script}" -c dark --tweaks gruvbox --tweaks normal
+            #"${install_script}" -c dark --tweaks all
         else
-            sudo "${install_script}" -c dark --tweaks all
+            sudo "${install_script}" -c dark --tweaks gruvbox --tweaks normal
+            #sudo "${install_script}" -c dark --tweaks all
         fi
     fi
 
