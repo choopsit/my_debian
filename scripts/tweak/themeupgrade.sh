@@ -41,7 +41,7 @@ usage() {
 git_base="${HOME}/Work/git"
 thm_list=("colloid_gtk" "colloid_icons-cursors" "gruvbox_icons")
 #[[ -d "${git_base}/Colloid-gtk-theme" ]] && thm_list+=("colloid_gtk")
-#[[ -d "${git_base}/Colloid-icon-theme" ]] && thm_list+=("colloid_icon-cursors")
+#[[ -d "${git_base}/Colloid-icon-theme" ]] && thm_list+=("colloid_icons-cursors")
 [[ -d "${git_base}/Gruvbox-GTK-Theme" ]] && thm_list+=("gruvbox_gtk")
 #[[ -d "${git_base}/gruvbox-plus-icon-pack" ]] && thm_list+=("gruvbox_icons")
 [[ -d "${git_base}/kora" ]] && thm_list+=("kora_icons")
