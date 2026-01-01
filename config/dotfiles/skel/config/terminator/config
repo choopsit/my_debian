@@ -1,5 +1,4 @@
 [global_config]
-  borderless = True
   tab_position = bottom
   scroll_tabbar = True
   enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
@@ -32,10 +31,10 @@
       type = Window
       parent = ""
       order = 0
-      position = 975:40
+      position = 975:34
       maximised = False
       fullscreen = False
-      size = 935, 1024
+      size = 935, 1000
       title = choops@mrchat: ~
       last_active_term = 2abddf77-72d3-4f82-8e42-959abb663aa3
       last_active_window = True
