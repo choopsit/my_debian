@@ -57,9 +57,7 @@ hello_gtk() {
 
     rm -f "${pkg_list}"
 
-    for pkg in sassc gtk2-engines-murrine; do
-        (dpkg -l | grep -q "^ii  ${pkg}") || echo "${pkg}" >>"${pkg_list}"
-    done
+    (dpkg -l | grep -q "^ii  sassc") || echo "sassc" >>"${pkg_list}"
 
     if [[ -f "${pkg_list}" ]]; then
         if [[ $(whoami) == root ]]; then
