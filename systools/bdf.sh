@@ -117,6 +117,6 @@ while read line; do
     fsline+="${sepf}${grcol}${free}${DEF} free"
 
     echo -e "${fsline}"
-done < <(df -hT | grep -v 'tmpfs\|^Filesystem\|^Sys')
+done < <(df -hT | grep -v 'tmpfs\|^Filesystem\|^Sys\|efivarfs')
 
 echo
