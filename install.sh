@@ -239,6 +239,7 @@ choose_scienseapps() {
 
 choose_virtualizationtools() {
     virt_applist=(
+        "virt-viewer"
         "virt-manager"
         "cockpit-machines"
         "gnome-boxes"

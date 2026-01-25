@@ -25,7 +25,7 @@ run "**install.sh**" to deploy.
 - system-informations [otional]: hardinfo
 - disk-tools [optional]: gparted, qdirstat
 - backups [optional]: deja-dup
-- virtualization supports [optional]: virt-manager, cockpit-machines, gnome-boxes
+- virtualization supports [optional]: virt-viewer, virt-manager, cockpit-machines, gnome-boxes
 
 #### accessories
 
