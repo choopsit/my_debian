@@ -65,7 +65,7 @@ sys_info() {
         VBoxManage list runningvms | awk -F'"' '{print $2}' &&
         echo
 
-    (dpkg -l | grep -q "^ii  libvirt0") && (virsh list | grep -q running) &&
+    (dpkg -l | grep -q "^ii  virt-manager") && (virsh list | grep -q running) &&
         echo -e "${CYN}Virtual Machine(s) running${DEF}:" &&
         virsh list | awk '/running/{print "\033[32m> \033[0m"$2}' &&
         echo
