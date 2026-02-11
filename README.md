@@ -31,7 +31,7 @@ run "**install.sh**" to deploy.
 
 - dock: plank [optional]
 - text-editors: mousepad *(from desktop base)*, vim
-- archivers: 7zip, engrampa
+- archivers: 7zip, file-roller
 - day/night-color-temperature: redshift
 
 #### internet
