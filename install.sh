@@ -214,7 +214,7 @@ choose_games() {
         "supertuxkart"
         "quadrapassel"
         "gnome-2048"
-        "pcsx2:i386"
+        "pcsx2"
         "mednaffe"
         "0ad"
         "pokerth"
