@@ -57,12 +57,12 @@ hello_icon() {
         upd_state="$(git pull | tee /dev/tty)"
         popd >/dev/null
     elif [[ $(whoami) != root ]]; then
-        echo -e "${WRN} '${icon_theme}' repo must be cloned in '${HOME}/Work/git' before it can be updated"
+        echo -e "${WRN} '${icon_theme}' repo must be cloned in '${HOME}/Projects/git' before it can be updated"
         read -p "Do it now [y/N] ? " -rn1 go4it
         [[ ${go4it} ]] && echo
 
         if [[ ${go4it,} = y ]]; then
-            mkdir -p "${HOME}"/Work/git
+            mkdir -p "${HOME}"/Projects/git
             git clone "${git_url}" "${thm_gitpath}"
         else
             exit 0
@@ -94,7 +94,7 @@ if [[ $(whoami) == root ]]; then
 else
     (groups | grep -qv sudo) && echo -e "${ERR} Need 'sudo' rights" && exit 1
 
-    thm_gitpath="${HOME}"/Work/git/"${icon_theme}"
+    thm_gitpath="${HOME}"/Projects/git/"${icon_theme}"
 
     [[ $1 =~ ^-(r|-remove)$ ]] && bye_icon
 

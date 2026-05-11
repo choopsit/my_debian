@@ -107,8 +107,8 @@ select_apps() {
         fi
     fi
 
-    if ! [[ ${myapps[@]} =~ "xfburn" ]]; then
-        echo "xfburn" >> "${uselesspkg}"
+    if [[ ${myapps[@]} =~ "xfburn" ]]; then
+       sed "/xfburn/d" -i "${uselesspkg}"
     fi
 
     if [[ ${myapps[@]} =~ "gthumb" ]]; then
@@ -198,7 +198,6 @@ choose_graphicsapps() {
 
 choose_officeapps() {
     office_applist=(
-        "system-config-printer"
         "zim"
         "evince"
     )
@@ -289,7 +288,7 @@ elevation() {
         check_add_user_to "${usr}" sudo
     fi
 
-    if grep -q 'virt\|cockpit' "${mypkg}" && ! (groups "${usr}" | grep -q libvirti); then
+    if grep -q 'virt\-m\|cockpit' "${mypkg}" && ! (groups "${usr}" | grep -q libvirti); then
         check_add_user_to "${usr}" libvirt
     fi
 }
@@ -408,7 +407,7 @@ user_config() {
         su -l "${myuser}" -c "vim +PlugInstall +qall"
 
         my_git_url="https://github.com/choopsit/my_debian.git"
-        git_folder="${myhome}"/Work/git
+        git_folder="${myhome}"/Projects/git
         my_git_repo="${git_folder}"/my_debian
 
         su -l "${myuser}" -c "mkdir -p ${git_folder}"
@@ -495,6 +494,11 @@ install() {
             wget -O "/tmp/${proton_srcpkg}" "${proton_repo}/${proton_srcpkg}"
             dpkg -i "/tmp/${proton_srcpkg}"
         fi
+    fi
+
+    if [[ ${debian_version} == sid ]]; then
+        echo "firefox" >> "${mypkg}"
+        echo "firefox-esr" >> "${uselesspkg}"
     fi
 
     dpkg --add-architecture i386

@@ -38,7 +38,7 @@ usage() {
 
 [[ $1 =~ ^-(h|-help)$ ]] && usage 0
 
-git_base="${HOME}/Work/git"
+git_base="${HOME}/Projects/git"
 thm_list=("colloid_gtk" "colloid_icons-cursors" "gruvbox_icons")
 #[[ -d "${git_base}/Colloid-gtk-theme" ]] && thm_list+=("colloid_gtk")
 #[[ -d "${git_base}/Colloid-icon-theme" ]] && thm_list+=("colloid_icons-cursors")

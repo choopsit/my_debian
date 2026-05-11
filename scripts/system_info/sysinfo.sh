@@ -112,6 +112,6 @@ fi
 
 sys_info
 
-gits="${HOME}/Work/git"
+gits="${HOME}/Projects/git"
 [[ -e ~/.local/bin/statgitrepos ]] && [[ -d "${gits}" ]] &&
     echo -e "${CYN}Git repo(s) status${DEF}:" && statgitrepos

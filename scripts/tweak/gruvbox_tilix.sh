@@ -21,7 +21,7 @@ NFO="${CYN}NFO${DEF}:"
 THEMES_DIR=/usr/share/tilix/schemes
 tilix_theme=tilix-gruvbox
 git_url=https://github.com/MichaelThessel/tilix-gruvbox.git
-thm_gitpath="${HOME}"/Work/git/"${tilix_theme}"
+thm_gitpath="${HOME}"/Projects/git/"${tilix_theme}"
 
 
 usage() {
@@ -41,7 +41,7 @@ usage() {
 
 install_tilix_gruvbox() {
     if [[ -d "${THEMES_DIR}" ]]; then
-        if [[ -d ~/Work/git/"${tilix_theme}" ]]; then
+        if [[ -d ~/Projects/git/"${tilix_theme}" ]]; then
             echo -e "${NFO} Installing/Updating ${tilix_theme}..."
 
             pushd "${thm_gitpath}" >/dev/null
@@ -49,13 +49,13 @@ install_tilix_gruvbox() {
             popd >/dev/null
             echo
         else
-            echo -e "${WRN} '${tilix_theme}' repo must be cloned in '${HOME}/Work/git' before it can be updated"
+            echo -e "${WRN} '${tilix_theme}' repo must be cloned in '${HOME}/Projects/git' before it can be updated"
             read -p "Do it now [y/N] ? " -rn1 go4it
             [[ ${go4it} ]] && echo
 
             if [[ ${go4it,} = y ]]; then
-                mkdir -p "${HOME}"/Work/git
-                pushd "${HOME}"/Work/git >/dev/null
+                mkdir -p "${HOME}"/Projects/git
+                pushd "${HOME}"/Projects/git >/dev/null
                 git clone ${git_url}
                 popd >/dev/null
             else

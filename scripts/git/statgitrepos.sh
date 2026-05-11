@@ -2,7 +2,7 @@
 
 set -e
 
-description="Return statuts of git repos in ~/Work/git"
+description="Return statuts of git repos in ~/Projects/git"
 # version: 12.1
 # author: Choops <choopsbd@gmail.com>
 
@@ -67,7 +67,7 @@ elif [[ $1 ]]; then
     echo -e "${ERR} Bad argument" && usage 1
 fi
 
-git_stock="${HOME}"/Work/git
+git_stock="${HOME}"/Projects/git
 [[ ! -d "${git_stock}" ]] &&
     echo -e "${ERR} ${git_stock} does not exist\n" && exit 1
 
