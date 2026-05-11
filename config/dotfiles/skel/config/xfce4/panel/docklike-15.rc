@@ -1,5 +1,5 @@
 [user]
-pinned=thunar;firefox;kodi;io.github.quodlibet.QuodLibet;dolphin-emu;RPCS3;terminator;
+pinned=thunar;firefox;io.github.quodlibet.QuodLibet;dolphin-emu;terminator;
 showPreviews=true
 showWindowCount=true
 middleButtonBehavior=1
