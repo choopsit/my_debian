@@ -23,26 +23,6 @@
         <property name="last-image" type="empty"/>
         <property name="last-single-image" type="empty"/>
       </property>
-      <property name="monitorVirtual-1" type="empty">
-        <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
-        </property>
-      </property>
-      <property name="monitorHDMI-0" type="empty">
-        <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/home/choops/Pictures/my_debian.jpg"/>
-        </property>
-      </property>
-      <property name="monitorHDMI-1" type="empty">
-        <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/home/choops/Pictures/my_debian.jpg"/>
-        </property>
-      </property>
-      <property name="monitorHDMI-A-0" type="empty">
-        <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/home/choops/Pictures/my_debian.jpg"/>
-        </property>
-      </property>
     </property>
   </property>
   <property name="last-settings-migration-version" type="uint" value="1"/>
